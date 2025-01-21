@@ -39,14 +39,14 @@
                             </div>
                         </div>
                     </div>
-                   
+
 
 
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="text-default-light">Featured Image</label>
                             @if(isset($slider) && $slider->image)
-                                <input type="file" name="image" class="dropify" data-default-file="{{ asset($slider->thumbnail_path) }}"/>
+                                <input type="file" name="image" class="dropify" data-default-file="{{ asset(str_replace('\\', '/', $slider->image)) }}"/>
                             @else
                                 <input type="file" name="image" class="dropify"/>
                             @endif

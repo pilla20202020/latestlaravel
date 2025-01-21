@@ -7,7 +7,8 @@ use App\Models\Slider\Slider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\Slider\SliderRequest;
-
+use Illuminate\Support\Facades\Log;
+use Exception;
 class SliderController extends Controller
 {
 
@@ -19,7 +20,7 @@ class SliderController extends Controller
     }
     public function index()
     {
-        
+
 
         $slides = $this->slider->orderBy('created_at', 'asc')->get();
 
@@ -50,7 +51,7 @@ class SliderController extends Controller
 
     public function update(Request $request, Slider $slider)
     {
-        
+
         if ($slider->update($request->all())) {
             $slider->fill([
                 'slug' => $request->title,
@@ -65,7 +66,7 @@ class SliderController extends Controller
 
     public function destroy($id)
     {
-      
+
        $slider = Slider::find($id);
        $slider->delete();
        return redirect()->route('slider.index')->withSuccess(trans('Slider has been deleted'));
@@ -75,24 +76,56 @@ class SliderController extends Controller
 
     function uploadFile(Request $request, $slider)
     {
-        $file = $request->file('image');
-        $path = 'uploads/slider';
-        $fileName = $this->uploadFromAjax($file, $path);
-        if (!empty($slider->image))
-            $this->__deleteImages($slider);
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Get the uploaded file
+            $file = $request->file('image');
 
-        $data['image'] = $fileName;
-        $this->updateImage($slider->id, $data);
+            // Define the destination path for the file
+            $path = 'uploads' . DIRECTORY_SEPARATOR . 'slider';  // Use DIRECTORY_SEPARATOR here
 
+            // Create the directory if it doesn't exist
+            $destinationPath = public_path($path);
+            if (!file_exists($destinationPath)) {
+                // Try creating the directory and log any issues
+                $created = mkdir($destinationPath, 0755, true); // Creates directory with correct permissions
+                if (!$created) {
+                    Log::error('Failed to create directory: ' . $destinationPath);
+                    return response()->json(['error' => 'Failed to create folder'], 500);
+                }
+            }
+
+            // Generate a unique file name
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            // Move the file to the public storage folder
+            $file->move($destinationPath, $fileName);
+
+            // Delete existing image if it exists
+          if (!empty($slider->image)) {
+            $this->__deleteImages($slider); // Assuming you have logic to delete old images
+        }
+            // Save the new file name in the database
+            $data['image'] = $path . DIRECTORY_SEPARATOR . $fileName;
+            $this->updateImage($slider->id, $data); // Update image record in your database
+        } else {
+            // Handle case where no valid image is uploaded
+            return response()->json(['error' => 'No valid image uploaded'], 400);
+        }
     }
-    public function __deleteImages($subCat)
+
+
+    public function __deleteImages($slider)
     {
         try {
-            if (is_file($subCat->image_path))
-                unlink($subCat->image_path);
-
-            if (is_file($subCat->thumbnail_path))
-                unlink($subCat->thumbnail_path);
+                // Build the full path to the old image
+                if (isset($slider->image)) {
+                    $imagePath = public_path($slider->image);
+                    // Check if the file exists before deleting
+                    unlink($imagePath);  // Delete the old image
+                }
         } catch (\Exception $e) {
 
         }
