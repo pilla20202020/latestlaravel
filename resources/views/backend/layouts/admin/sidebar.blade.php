@@ -1,136 +1,33 @@
-<!-- BEGIN MENUBAR-->
-<div id="menubar" class="menubar-inverse ">
-				<div class="menubar-fixed-panel">
-					<div>
-						<a class="btn btn-icon-toggle btn-default menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
-							<i class="fa fa-bars"></i>
-						</a>
-					</div>
-					<div class="expanded">
-						<a href="{{ route('dashboard.index') }}">
-							<span class="text-lg text-bold text-primary ">MATERIAL&nbsp;ADMIN</span>
-						</a>
-					</div>
-				</div>
-				<div class="menubar-scroll-panel">
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
 
-					<!-- BEGIN MAIN MENU -->
-					<ul id="main-menu" class="gui-controls">
+    <div data-simplebar class="h-100">
 
-						<!-- BEGIN DASHBOARD -->
-						<li>
-							<a href="{{ route('dashboard.index') }}" class="active">
-								<div class="gui-icon"><i class="md md-home"></i></div>
-								<span class="title">Dashboard</span>
-							</a>
-						</li><!--end /menu-li -->
-						<!-- END DASHBOARD -->
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
 
-						<li class="gui-folder">
-							<a href="{{ route('menu.index') }}">
-								<div class="gui-icon"><i class="md md-menu"></i></div>
-								<span class="title">Menu</span>
-							</a>
+                <li>
+                    <a href="{{ route('dashboard.index') }}" class="waves-effect">
+                        <i class="icon-accelerator"></i> <span> Dashboard </span>
+                    </a>
+                </li>
 
-							<!-- <ul>
-								<li><a href="{{ route('menu.index') }}" ><span class="title">View All Menus</span></a></li>
-
-							</ul> -->
-						</li>
-
-						<li class="gui-folder">
-							<a href="{{ route('page.index') }}">
-								<div class="gui-icon"><i class="md md-pages"></i></div>
-								<span class="title">Pages</span>
-							</a>
-
-
-						</li>
-
-
-						<li class="gui-folder">
-							<a href="{{ route('slider.index') }}" >
-								<div class="gui-icon"><i class="md md-image"></i></div>
-								<span class="title">Sliders</span>
-							</a>
-
-
-						</li>
-
-						<li class="gui-folder">
-							<a href="{{ route('category.index') }}" >
-								<div class="gui-icon"><i class="md md-folder-special"></i></div>
-								<span class="title">Food Category</span>
-							</a>
-						</li>
-
-
-						<li class="gui-folder">
-							<a href="{{ route('product.index') }}" >
-								<div class="gui-icon"><i class="md md-shopping-cart"></i></div>
-								<span class="title">Food items</span>
-							</a>
-
-
-						</li>
-
-
-						<li class="gui-folder">
-							<a>
-								<div class="gui-icon"><i class="md md-image"></i></div>
-								<span class="title">Gallery</span>
-							</a>
-							{{-- <ul>
-								<li><a href="{{ route('album.index') }}" ><span class="title">View All Album</span></a></li>
-
-							</ul> --}}
-							<ul>
-								<li><a href="{{ route('gallery.index') }}" ><span class="title">View All Gallery</span></a></li>
-
-							</ul>
-
-
-						</li>
-<!--  -->
-
-						<li class="gui-folder">
-							<a href="{{ route('booking.index') }}">
-								<div class="gui-icon"><i class="md md-phone"></i></div>
-								<span class="title">Booking</span>
-							</a>
-
-						</li>
-
-						<li class="gui-folder">
-							<a href="{{ route('testimonial.index') }}">
-								<div class="gui-icon"><i class="md md-speaker-notes"></i></div>
-								<span class="title">Testimonial</span>
-							</a>
-
-						</li>
-
-						<li class="gui-folder">
-							<a href="{{ route('team.index') }}">
-								<div class="gui-icon"><i class="md md-person"></i></div>
-								<span class="title">Team</span>
-							</a>
-
-						</li>
-
-						<li class="gui-folder">
-							<a href="{{ route('blog.index') }}">
-								<div class="gui-icon"><i class="md md-event"></i></div>
-								<span class="title">Blog</span>
-							</a>
-
-						</li>
-
-
-					<div class="menubar-foot-panel">
-						<small class="no-linebreak hidden-folded">
-							<span class="opacity-75">Copyright &copy; 2022</span> <strong>Kaniz</strong>
-						</small>
-					</div>
-				</div><!--end .menubar-scroll-panel-->
-			</div><!--end #menubar-->
-			<!-- END MENUBAR -->
+                <li>
+                    <a href="{{ route('menu.index') }}" class="waves-effect">
+                        <i class="icon-share"></i><span> Menu </span>
+                    </a>
+                </li> 
+                
+                <li>
+                    <a href="{{ route('page.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Pages </span>
+                    </a>
+                </li> 
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->

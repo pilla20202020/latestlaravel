@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Menu\Menu;
 use App\Models\Page\Page;
 use App\Models\Menu\SubMenu;
+use Illuminate\Support\Str;
 
 class StoreMenu extends FormRequest
 {
@@ -44,6 +45,7 @@ class StoreMenu extends FormRequest
             $inputs = [
                 'menu_id' => $this->menu->id,
                 'name' => $this->get('name') ? $this->get('name') : $page->title,
+                
                 // 'name_np' => $this->get('name_np') ? $this->get('name_np') : $page->title,
                 'url' => isset($page) ? $page->slug : ($this->get('custom_url') ? $this->get('custom_url') : '#'),
                 'order' => $first_sub_menu_order ? $first_sub_menu_order->order + 1 : 0,
@@ -96,6 +98,9 @@ class StoreMenu extends FormRequest
 
         $inputs = [
             'name' => $this->get('name') ? $this->get('name') : $page->title,
+            'slug' =>  isset($page) 
+            ? $page->slug 
+            : ($this->get('name') ? Str::slug($this->get('name')) : '#'),
             // 'name_np'    => $this->get('name_np') ? $this->get('name_np') : $page->title_np,
 //            'url'        => route('page.show', $page->slug) ,
             'url' => isset($page) ? $page->slug : ($this->get('custom_url') ? $this->get('custom_url') : '#'),

@@ -2,15 +2,18 @@
 
 @section('title', 'Menu')
 
-@section('page-specific-styles')
+@push('styles')
 
     <link rel="stylesheet" href="{{ asset('css/materialadmin.css') }}" />
     <style>
         #menu-accordion .card-head {
             cursor: pointer;
         }
+        .custom-accordion .card-header {
+            height: 66px;
+        }
     </style>
-@endsection
+@endpush
 
 @section('content')
 
@@ -27,7 +30,7 @@
                     <div class="tab-pane active" id="first2">
                         <div class="col-md-8 col-md-offset-2">
                             <article class="margin-bottom-xxl">
-                                <button class="btn btn-primary ink-reaction" data-toggle="modal" data-target="#addMenu"
+                                <button class="btn btn-primary ink-reaction" data-bs-toggle="modal" data-bs-target="#addMenu"
                                     type="button">
                                     <i class="fas fa-plus"></i>
                                     Add
@@ -41,116 +44,80 @@
                         <div class="col-md-8 col-md-offset-2" style="width: 1200px">
                             <div class="panel-group" id="menu-accordion" data-sortable="true">
                                 @foreach ($menus as $key => $menu)
-                                    <div class="card panel {{ session('collapse_in') == $menu->slug ? 'expanded' : '' }}"
-                                        id="{{ $menu->id }}">
-                                        <input type="hidden" name="order[]" value="{{ $menu->id }}">
-                                        <div class="card-head collapsed {{ session('collapse_in') == $menu->slug ? '' : 'collapsed' }}"
-                                            data-toggle="collapse" data-parent="#menu-accordion"
-                                            data-target="#menu-accordion-{{ $key }}">
-                                            <header>{{ $menu->name }}</header>
-                                            <div class="tools">
-                                                <button type="button" class="btn btn-add-sub-menu"
-                                                    data-url="{{ route('menu.subMenu.component.modal', $menu->id) }}"
-                                                    data-original-title="Add Sub Menu"
-                                                    data-loading-text="<i class='fa fa-spinner fa-spin'></i>">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
-                                                <a href="{{ route('menu.edit', $menu->id) }}"
-                                                    class="btn btn-icon-toggle btn-s" title="edit">
-                                                    <i class="mdi mdi-pencil"></i>
-                                                </a>
-                                                @unless($menu->is_primary)
-                                                    <a class="btn btn-icon-toggle btn-delete" style="color: #f44336;"
-                                                        data-url="{{ route('menu.destroy', $menu->id) }}">
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </a>
-                                                @endunless
-                                                <a class="btn btn-icon-toggle"><i class="fa fa-angle-down"></i></a>
-                                            </div>
-                                        </div>
-                                        <div id="menu-accordion-{{ $key }}"
-                                            class="collapse {{ session('collapse_in') == $menu->slug ? 'collapse in' : 'collapse' }}">
-                                            <div class="card-body">
-                                                <div class="panel-group" id="menu-accordion-{{ $key }}"
-                                                    data-sortable="true">
-                                                    @foreach ($menu->subMenus->sortBy('order') as $subKey => $subMenu)
-                                                        <div class="card panel subpanel {{ session('collapse_in') == $subMenu->slug ? 'expanded' : '' }}"
-                                                            id="{{ $subMenu->id }}">
-                                                            <input type="hidden"
-                                                                name="sub_menu_order[{{ $menu->slug }}][]"
-                                                                value="{{ $subMenu->id }}">
-                                                            <div class="card-head collapsed {{ session('collapse_in') == $subMenu->slug ? '' : 'collapsed' }}"
-                                                                data-toggle="collapse"
-                                                                data-parent="#menu-accordion-{{ $key }}"
-                                                                data-target="#submenu-accordion-{{ $subMenu->slug }}{{ $subKey }}"
-                                                                style="background: #E5E6E6">
-                                                                <header>{{ $subMenu->name }}</header>
-                                                                <div class="tools">
-                                                                    <button type="button"
-                                                                        class="btn-icon-toggle btn-add-sub-menu"
-                                                                        data-url="{{ route('menu.subMenu.childsubMenu.component.childmodal', $subMenu->id) }}"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        data-original-title="Add Child Sub Menu"
-                                                                        data-loading-text="<i class='fa fa-spinner fa-spin'></i>">
-                                                                        <i class="fas fa-plus"></i>
-                                                                    </button>
-                                                                    <a href="{{ route('menu.subMenu.edit', [$menu->id, $subMenu->id]) }}"
-                                                                        class="btn btn-icon-toggle btn-s" title="edit">
-                                                                        <i class="mdi mdi-pencil"></i>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Menu</h4>
+                                            <p class="card-title-desc">Manage your menu items using the collapsible accordion structure.</p>
+                                    
+                                            <div id="menu-accordion" class="custom-accordion">
+                                                @foreach ($menus as $key => $menu)
+                                                    <div class="card mb-1 shadow-none">
+                                                        <div class="card-header d-flex justify-content-between align-items-center" id="heading-menu-{{ $key }}">
+                                                            <a href="#collapse-menu-{{ $key }}" class="text-reset flex-grow-1" data-bs-toggle="collapse"
+                                                                aria-expanded="{{ session('collapse_in') == $menu->slug ? 'true' : 'false' }}"
+                                                                aria-controls="collapse-menu-{{ $key }}">
+                                                                <h6 class="m-0">
+                                                                    {{ $menu->name }}
+                                                                    <i class="mdi mdi-minus float-end accor-plus-icon"></i>
+                                                                </h6>
+                                                            </a>
+                                    
+                                                            <div class="d-flex gap-2">
+                                                                <button type="button" class="btn btn-primary btn-sm" data-url="{{ route('menu.subMenu.component.modal', $menu->id) }}">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </button>
+                                                                @unless($menu->is_primary)
+                                                                    <a class="btn btn-danger btn-sm" data-url="{{ route('menu.destroy', $menu->id) }}">
+                                                                        <i class="far fa-trash-alt"></i>
                                                                     </a>
-                                                                    @unless($subMenu->is_primary)
-                                                                        <a class="btn btn-icon-toggle btn-delete"
-                                                                            style="color: #f44336;"
-                                                                            data-url="{{ route('menu.subMenu.destroy', [$menu->id, $subMenu->id]) }}">
-                                                                            <i class="far fa-trash-alt"></i>
-                                                                        </a>
-                                                                    @endunless
-                                                                    <a class="btn btn-icon-toggle"><i
-                                                                            class="fa fa-angle-down"></i></a>
-                                                                </div>
+                                                                @endunless
                                                             </div>
-                                                            <div id="submenu-accordion-{{ $subMenu->slug }}{{ $subKey }}"
-                                                                class="collapse {{ session('collapse_in') == $menu->slug ? 'collapse in' : 'collapse' }}">
-                                                                <div class="card-body">
-                                                                    <div class="panel-group"
-                                                                        id="submenu-accordion-{{ $subKey }}"
-                                                                        data-sortable="true">
-                                                                        @foreach ($subMenu->childsubMenus->sortBy('order') as $childSubKey => $childsubMenu)
-                                                                            <div class="card panel childsubpanel {{ session('collapse_in') == $childsubMenu->slug ? 'expanded' : '' }}"
-                                                                                id="{{ $childsubMenu->id }}">
-                                                                                <input type="hidden"
-                                                                                    name="child_sub_menu_order[{{ $subMenu->slug }}][]"
-                                                                                    value="{{ $childsubMenu->id }}">
-                                                                                <div class="card-head collapsed {{ session('collapse_in') == $childsubMenu->slug ? '' : 'collapsed' }}"
-                                                                                    data-toggle="collapse"
-                                                                                    data-parent="#submenu-accordion-{{ $subKey }}"
-                                                                                    data-target="#childsubmenu-accordion-{{ $childSubKey }}">
-                                                                                    <header>{{ $childsubMenu->name }}
-                                                                                    </header>
-                                                                                    <div class="tools">
-                                                                                        <a href="{{ route('menu.subMenu.childsubMenu.edit', [$menu->id, $subMenu->id, $childsubMenu->id]) }}"
-                                                                                            class="btn btn-icon-toggle btn-s"
-                                                                                            title="edit">
-                                                                                            <i class="mdi mdi-pencil"></i>
+                                                        </div>
+                                    
+                                                        <div id="collapse-menu-{{ $key }}" class="collapse {{ session('collapse_in') == $menu->slug ? 'show' : '' }}"
+                                                            aria-labelledby="heading-menu-{{ $key }}" data-bs-parent="#menu-accordion">
+                                                            <div class="card-body">
+                                                                <div class="custom-accordion mt-2">
+                                                                    @foreach ($menu->subMenus->sortBy('order') as $subKey => $subMenu)
+                                                                        <div class="card mb-1 shadow-none">
+                                                                            <div class="card-header d-flex justify-content-between align-items-center" id="heading-submenu-{{ $subKey }}">
+                                                                                <a href="#collapse-submenu-{{ $subKey }}" class="text-reset flex-grow-1" data-bs-toggle="collapse"
+                                                                                    aria-expanded="false" aria-controls="collapse-submenu-{{ $subKey }}">
+                                                                                    <h6 class="m-0">
+                                                                                        {{ $subMenu->name }}
+                                                                                        <i class="mdi mdi-minus float-end accor-plus-icon"></i>
+                                                                                    </h6>
+                                                                                </a>
+                                    
+                                                                                <div class="d-flex gap-2">
+                                                                                    <button type="button" class="btn btn-primary btn-sm" data-url="{{ route('menu.subMenu.childsubMenu.component.childmodal', $subMenu->id) }}">
+                                                                                        <i class="fas fa-plus"></i>
+                                                                                    </button>
+                                                                                    @unless($subMenu->is_primary)
+                                                                                        <a class="btn btn-danger btn-sm" data-url="{{ route('menu.subMenu.destroy', [$menu->id, $subMenu->id]) }}">
+                                                                                            <i class="far fa-trash-alt"></i>
                                                                                         </a>
-                                                                                        @unless($childsubMenu->is_primary)
-                                                                                            <a class="btn btn-icon-toggle btn-delete"
-                                                                                                style="color: #f44336;"
-                                                                                                data-url="{{ route('menu.subMenu.childsubMenu.destroy', [$menu->id, $subMenu->id, $childsubMenu->id]) }}">
-                                                                                                <i
-                                                                                                    class="far fa-trash-alt"></i>
-                                                                                            </a>
-                                                                                        @endunless
+                                                                                    @endunless
+                                                                                </div>
+                                                                            </div>
+                                    
+                                                                            <div id="collapse-submenu-{{ $subKey }}" class="collapse"
+                                                                                aria-labelledby="heading-submenu-{{ $subKey }}" data-bs-parent="#collapse-menu-{{ $key }}">
+                                                                                <div class="card-body">
+                                                                                    <div class="mt-2">
+                                                                                        @foreach ($subMenu->childsubMenus->sortBy('order') as $childSubKey => $childsubMenu)
+                                                                                            <p>{{ $childsubMenu->name }}</p>
+                                                                                        @endforeach
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        @endforeach
-                                                                    </div>
+                                                                        </div>
+                                                                    @endforeach
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endforeach
-                                                </div>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -173,9 +140,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="addMenuLabel">Add Menu</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">

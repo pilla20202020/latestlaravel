@@ -1,57 +1,157 @@
+<header id="page-topbar">
+    <div class="navbar-header">
+        <div class="d-flex">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <a href="index.html" class="logo">
+                    <span class="logo-light  fs-5 fw-semibold ">
+                        <i class="mdi mdi-camera-control"></i> STEXO
+                    </span>
+                    <span class="logo-sm fs-2">
+                        <i class="mdi mdi-camera-control"></i>
+                    </span>
+                </a>
+            </div>
 
-		<!-- BEGIN HEADER-->
-		<header id="header" >
-			<div class="headerbar">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="headerbar-left">
-					<ul class="header-nav header-nav-options">
-						<li class="header-nav-brand" >
-							<div class="brand-holder">
-								<a href="{{route('homepage')}}">
-									<span class="text-lg text-bold text-primary">TEST</span>
-								</a>
-							</div>
-						</li>
-						<li>
-							<a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
-								<i class="fa fa-bars"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="headerbar-right">
+            <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                <i class="mdi mdi-menu"></i>
+            </button>
 
-					<ul class="header-nav header-nav-profile">
-						<li class="dropdown">
-							<a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
-								<img src="{{asset('assets/images/logo.png')}}" >
-								<span class="profile-info">
-									{{ auth()->user()->name }}
+        
+        </div>
 
-								</span>
-							</a>
-							<ul class="dropdown-menu animation-dock">
+        <div class="d-flex">
 
-								<!-- <li><a href="../../html/pages/profile.html">My profile</a></li> -->
-								<li>
-									<a href="{{route('setting.index')}}">
-										<i class="md md-settings"></i>
-										Settings
-									</a>
-								</li>
-								<li>
-									<a href="{{url('/logout')}}">
-										<i class="md md-settings-power text-danger"></i>
-										Logout
-                           			 </a>
-                        		</li>
-							</ul><!--end .dropdown-menu -->
-						</li><!--end .dropdown -->
-					</ul><!--end .header-nav-profile -->
+            <!-- light dark -->
+            <button type="button" class="btn header-item fs-4 rounded-end-0" id="light-dark-mode">
+                <i class="fas fa-moon align-middle"></i>
+            </button>
 
-				</div><!--end #header-navbar-collapse -->
-			</div>
-		</header>
-		<!-- END HEADER-->
+            <div class="dropdown d-none d-lg-inline-block ms-1">
+                <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                    <i class="mdi mdi-arrow-expand-all noti-icon"></i>
+                </button>
+            </div>
 
+            {{-- <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="mdi mdi-bell-outline noti-icon"></i>
+                    <span class="badge rounded-pill text-bg-danger noti-dot">3</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
+                    <div class="p-3">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="m-0"> Notifications </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-simplebar style="max-height: 230px;">
+                        <a href="" class="text-reset notification-item">
+                            <div class="d-flex">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title bg-success rounded-circle">
+                                        <i class="mdi mdi-cart-outline"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="mb-0"><b class="mb-1 ">Your order is placed</b></p>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1">Dummy text of the printing and typesetting industry.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" class="text-reset notification-item">
+                            <div class="d-flex">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title bg-danger rounded-circle">
+                                        <i class="mdi mdi-message-text-outline"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="mb-0"><b class="mb-1">New Message received</b></p>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1">You have 87 unread messages</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" class="text-reset notification-item">
+                            <div class="d-flex">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title bg-info rounded-circle">
+                                        <i class="mdi mdi-filter-outline"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="mb-0"><b class="mb-1">Your item is shipped</b></p>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1">It is a long established fact that a reader will</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="" class="text-reset notification-item">
+                            <div class="d-flex">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title bg-success rounded-circle">
+                                        <i class="mdi mdi-message-text-outline"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="mb-0"><b class="mb-1">New Message received</b></p>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1">You have 87 unread messages</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="" class="text-reset notification-item">
+                            <div class="d-flex">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title bg-warning rounded-circle">
+                                        <i class="mdi mdi-cart-outline"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="mb-0"><b class="mb-1">Your order is placed</b></p>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1">Dummy text of the printing and typesetting industry.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-1">
+                        <div class="d-grid">
+                            <a href="javascript:void(0);" class="dropdown-item text-center notify-all text-primary">
+                                View all <i class="fi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
+            <div class="dropdown notification-list d-inline-block user-dropdown">
+                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="rounded-circle header-profile-user" src="{{asset('backend/assets/images/users/user-4.jpg')}}" alt="Header Avatar">
+                </button>
+                <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                    <!-- item-->
+                    <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle "></i> Profile</a>
+                    <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                </div>
+            </div>
+
+            <!-- <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                    <i class="ri-settings-2-line"></i>
+                </button>
+            </div> -->
+
+        </div>
+    </div>
+</header>
