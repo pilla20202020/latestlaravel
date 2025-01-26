@@ -7,14 +7,34 @@
 
     <td class="text-right">
         <a href="{{route('slider.edit', $slide->id)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
-            <i class="glyphicon glyphicon-edit"></i>
+            <i class="fas fa-edit"></i>
         </a>
-        <a href="{{ route('slider.destroy', $slide->id) }}">
-            <button type="button"
-                    class="btn btn-flat btn-danger btn-xs item-delete" title="delete">
-                <i class="glyphicon glyphicon-trash"></i>
-            </button>
-        </a>
+
+        <button class="btn btn-flat btn-danger btn-xs" title="delete" onclick="openDeleteSliderModal({{ $slide->id }}, '{{ $slide->title }}')">
+            <i class="fas fa-trash-alt"></i>
+        </button>
     </td>
 </tr>
 
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the slider "<strong id="sliderTitle"></strong>"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" action="" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
