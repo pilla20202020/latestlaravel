@@ -34,6 +34,7 @@ class Event extends Model
         'content',
         'image',
         'event_date',
+        'type',
         'is_featured',
         'is_published'
     ];

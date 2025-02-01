@@ -1,14 +1,13 @@
 <tr>
     <td>{{++$key}}</td>
-    <td><img src="{{ asset(str_replace('\\', '/', $event->image)) }}" class="img-circle width-1" alt="slide_image" width="50" height="50"></td>
-    <td>{{ Str::limit($event->title, 47) }}</td>
-    <td>{{ $event->event_date ? \Carbon\Carbon::parse($event->event_date)->format('Y-m-d') : 'N/A' }}</td>
+    <td><img src="{{ asset(str_replace('\\', '/', $volunteer->image)) }}" class="img-circle width-1" alt="volunteer_image" width="50" height="50"></td>
+    <td>{{ Str::limit($volunteer->title, 47) }}</td>
     <td class="text-right">
-        <a href="{{route('event.edit', $event->slug)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
+        <a href="{{route('volunteer.edit', $volunteer->slug)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
             <i class="fas fa-edit"></i>
         </a>
 
-        <button class="btn btn-flat btn-danger btn-xs" title="delete" onclick="openDeleteModal({{ $event->id }}, '{{ $event->title }}')">
+        <button class="btn btn-flat btn-danger btn-xs" title="delete" onclick="openDeleteModal({{ $volunteer->id }}, '{{ $volunteer->title }}')">
             <i class="fas fa-trash-alt"></i>
         </button>
     </td>
@@ -23,7 +22,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete the event titled "<strong id="eventTitle"></strong>"?
+                Are you sure you want to delete the volunteer titled "<strong id="volunteerTitle"></strong>"?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Cancel</button>

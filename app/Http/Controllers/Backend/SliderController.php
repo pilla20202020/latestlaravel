@@ -35,7 +35,7 @@ class SliderController extends Controller
     public function store(SliderRequest $request)
     {
         //
-        if($slider = $this->slider->create($request->all())) {
+        if($slider = $this->slider->create($request->pageFillData())) {
             if($request->hasFile('image')) {
                 $this->uploadFile($request, $slider);
             }

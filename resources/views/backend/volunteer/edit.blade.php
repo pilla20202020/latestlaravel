@@ -1,14 +1,14 @@
 @extends('backend.layouts.admin.admin')
 
-@section('title', 'Event')
+@section('title', 'Volunteer')
 
 @section('content')
 <section>
         <div class="section-body">
-            <form class="form form-validate floating-label" action="{{route('event.update', $event->slug )}}"
+            <form class="form form-validate floating-label" action="{{route('volunteer.update', $volunteer->slug )}}"
                   method="POST" enctype="multipart/form-data" novalidate>
             @method('PUT')
-            @include('backend.event.partials.form', ['header' => 'Edit event <span class="text-primary">('.($event->title).')</span>'])
+            @include('backend.volunteer.partials.form', ['header' => 'Edit volunteer <span class="text-primary">('.($volunteer->title).')</span>'])
             </form>
         </div>
 </section>

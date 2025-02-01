@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin.admin')
 
-@section('title', 'Testimonial')
+@section('title', 'Volunteer')
 
 @push('styles')
 
@@ -19,7 +19,7 @@
         <div class="section-body">
             <div class="card">
                 <div class="card-head d-flex justify-content-between align-items-center p-4">
-                    <header class="text-capitalize">All Testimonals</header>
+                    <header class="text-capitalize">All Volunteers</header>
                     <div class="tools">
                         <a class="btn btn-primary ink-reaction" href="{{ route(substr(Route::currentRouteName(), 0 , strpos(Route::currentRouteName(), '.')) . '.create') }}">
                             Add
@@ -41,7 +41,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @each('backend.testimonial.partials.table', $testimonial, 'testimonial')
+                                        @each('backend.volunteer.partials.table', $volunteer, 'volunteer')
                                     </tbody>
                                 </table>
 
@@ -56,12 +56,12 @@
 
 @push('scripts')
     <script>
-        function openDeleteModal(testimonialId, testimonialTitle) {
-            // Set the testimonial title in the modal
-            document.getElementById('testimonialTitle').textContent = testimonialTitle;
+        function openDeleteModal(volunteerId, volunteerTitle) {
+            // Set the volunteer title in the modal
+            document.getElementById('volunteerTitle').textContent = volunteerTitle;
 
-            // Set the form action to the delete URL for the selected testimonial
-            document.getElementById('deleteForm').action = '{{ route('testimonial.destroy', ':id') }}'.replace(':id', testimonialId);
+            // Set the form action to the delete URL for the selected volunteer
+            document.getElementById('deleteForm').action = '{{ route('volunteer.destroy', ':id') }}'.replace(':id', volunteerId);
             // Show the modal
             $('#deleteModal').modal('show');
         }

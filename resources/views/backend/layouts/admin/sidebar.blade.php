@@ -18,13 +18,37 @@
                     <a href="{{ route('menu.index') }}" class="waves-effect">
                         <i class="icon-share"></i><span> Menu </span>
                     </a>
-                </li> 
-                
+                </li>
+
                 <li>
                     <a href="{{ route('page.index') }}" class="waves-effect">
                         <i class="icon-paper-sheet"></i><span> Pages </span>
                     </a>
-                </li> 
+                </li>
+
+                <li>
+                    <a href="{{ route('slider.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Slider </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('event.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Event </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('testimonial.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Testimonial </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('volunteer.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Volunteer </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

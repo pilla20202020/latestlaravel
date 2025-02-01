@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Event;
-
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EventRequest extends FormRequest
@@ -30,20 +30,22 @@ class EventRequest extends FormRequest
         return $rules;
     }
 
-    public function data(){
-        
-        
+    public function eventFillData(){
+
+
         $inputs=[
             'title' => $this->get('title'),
+            'slug' => Str::slug($this->get('title')),
             'meta_description'=> $this->get('meta_description'),
             'content'   => $this->get('content'),
             'event_date' => $this->get('event_date'),
-            'is_published' => ($this->get('is_published') ? $this->get('is_published') : '') == 'on' ? '1' : '0',
-            'is_status' => ($this->get('is_status') ? $this->get('is_status') : '') == 'on' ? '1' : '0',
-            'is_featured' => ($this->get('is_featured') ? $this->get('is_featured') : '') == 'on' ? '1' : '0'
+            'type' => $this->get('type'),
+            // 'is_published' => ($this->get('is_published') ? $this->get('is_published') : '') == 'on' ? '1' : '0',
+            // 'is_status' => ($this->get('is_status') ? $this->get('is_status') : '') == 'on' ? '1' : '0',
+            // 'is_featured' => ($this->get('is_featured') ? $this->get('is_featured') : '') == 'on' ? '1' : '0'
 
         ];
-      
+
         if ($this->has('publish')) {
             $inputs['is_published'] = 1;
         }

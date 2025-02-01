@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin.admin')
 
-@section('title', 'Event')
+@section('title', 'Volunteer')
 
 @section('content')
     <section>
@@ -13,7 +13,7 @@
                 role="form"
                 novalidate>
                 @csrf
-            @include('backend.event.partials.form', ['header' => 'Create a event'])
+            @include('backend.volunteer.partials.form', ['header' => 'Create a volunteer'])
             </form>
         </div>
     </section>

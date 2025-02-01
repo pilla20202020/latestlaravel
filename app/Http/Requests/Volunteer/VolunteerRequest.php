@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Testimonial;
+namespace App\Http\Requests\Volunteer;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
-class TestimonialRequest extends FormRequest
+class VolunteerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,13 +28,13 @@ class TestimonialRequest extends FormRequest
         ];
     }
 
-    public function testimonialFillData()
+    public function volunteerFillData()
     {
         $data = [
             'title'    => $this->get('title'),
             'slug' => Str::slug($this->get('title')),
             'content'      => $this->get('content'),
-            'office'      => $this->get('office'),
+            'meta_description'      => $this->get('meta_description'),
             'position' => $this->get('position'),
         ];
 

@@ -15,17 +15,11 @@ class TestimonialController extends Controller
     {
         $this->testimonial = $testimonial;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
-        $testimonials = $this->testimonial->orderBy('created_at', 'asc')->get();
+        $testimonial = $this->testimonial->orderBy('created_at', 'desc')->get();
 
-        return view('backend.testimonial.index', compact('testimonials'));
+        return view('backend.testimonial.index', compact('testimonial'));
     }
 
     /**
@@ -35,9 +29,7 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
         return view('backend.testimonial.create');
-
     }
 
     /**
@@ -48,12 +40,12 @@ class TestimonialController extends Controller
      */
     public function store(TestimonialRequest $request)
     {
-        //
-        if ($testimonial = $this->testimonial->create($request->data())) {
-            if ($request->hasFile('image')) {
+        if($testimonial = $this->testimonial->create($request->testimonialFillData())) {
+            if($request->hasFile('image')) {
                 $this->uploadFile($request, $testimonial);
             }
             return redirect()->route('testimonial.index');
+
         }
     }
 
@@ -76,9 +68,7 @@ class TestimonialController extends Controller
      */
     public function edit(Testimonial $testimonial)
     {
-        //
         return view('backend.testimonial.edit', compact('testimonial'));
-
     }
 
     /**
@@ -88,10 +78,9 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TestimonialRequest $request, Testimonial $testimonial)
+    public function update(TestimonialRequest $request, testimonial $testimonial)
     {
-        //
-        if ($testimonial->update($request->data())) {
+        if ($testimonial->update($request->testimonialFillData())) {
             $testimonial->fill([
                 'slug' => $request->title,
             ])->save();
@@ -100,7 +89,6 @@ class TestimonialController extends Controller
             }
         }
         return redirect()->route('testimonial.index')->withSuccess(trans('Testimonial has been updated'));
-
     }
 
     /**
@@ -111,35 +99,50 @@ class TestimonialController extends Controller
      */
     public function destroy($id)
     {
-        //
         $testimonial = $this->testimonial->find($id);
         $testimonial->delete();
         return redirect()->route('testimonial.index')->withSuccess(trans('Testimonial has been deleted'));
     }
 
-    function uploadFile(Request $request, $testimonial)
+    function uploadFile(Request $request, $slider)
     {
-        $file = $request->file('image');
-        $path = 'uploads/testimonial';
-        $fileName = $this->uploadFromAjax($file, $path);
-        if (!empty($testimonial->image))
-            $this->__deleteImages($testimonial);
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Get the uploaded file
+            $file = $request->file('image');
 
-        $data['image'] = $fileName;
-        $this->updateImage($testimonial->id, $data);
+            // Define the destination path for the file
+            $path = 'uploads' . DIRECTORY_SEPARATOR . 'testimonial';  // Use DIRECTORY_SEPARATOR here
 
-    }
+            // Create the directory if it doesn't exist
+            $destinationPath = public_path($path);
+            if (!file_exists($destinationPath)) {
+                // Try creating the directory and log any issues
+                $created = mkdir($destinationPath, 0755, true); // Creates directory with correct permissions
+                if (!$created) {
+                    Log::error('Failed to create directory: ' . $destinationPath);
+                    return response()->json(['error' => 'Failed to create folder'], 500);
+                }
+            }
 
-    public function __deleteImages($subCat)
-    {
-        try {
-            if (is_file($subCat->image_path))
-                unlink($subCat->image_path);
+            // Generate a unique file name
+            $fileName = time() . '_' . $file->getClientOriginalName();
 
-            if (is_file($subCat->thumbnail_path))
-                unlink($subCat->thumbnail_path);
-        } catch (\Exception $e) {
+            // Move the file to the public storage folder
+            $file->move($destinationPath, $fileName);
 
+            // Delete existing image if it exists
+          if (!empty($slider->image)) {
+            $this->__deleteImages($slider);
+        }
+            // Save the new file name in the database
+            $data['image'] = $path . DIRECTORY_SEPARATOR . $fileName;
+            $this->updateImage($slider->id, $data);
+        } else {
+            // Handle case where no valid image is uploaded
+            return response()->json(['error' => 'No valid image uploaded'], 400);
         }
     }
 
@@ -152,6 +155,19 @@ class TestimonialController extends Controller
         } catch (Exception $e) {
             //$this->logger->error($e->getMessage());
             return false;
+        }
+    }
+
+    public function __deleteImages($subCat)
+    {
+        try {
+            if (is_file($subCat->image_path))
+                unlink($subCat->image_path);
+
+            if (is_file($subCat->thumbnail_path))
+                unlink($subCat->thumbnail_path);
+        } catch (\Exception $e) {
+
         }
     }
 }

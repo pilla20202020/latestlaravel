@@ -3,28 +3,23 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event\Event;
-use App\Http\Requests\Event\EventRequest;
+use App\Http\Requests\Volunteer\VolunteerRequest;
+use App\Models\Volunteer\Volunteer;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class VolunteerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    protected $event;
+    protected $volunteer;
 
-    function __construct(Event $event)
+    function __construct(Volunteer $volunteer)
     {
-        $this->event = $event;
+        $this->volunteer = $volunteer;
     }
     public function index()
     {
-        $event = $this->event->orderBy('created_at', 'desc')->get();
+        $volunteer = $this->volunteer->orderBy('created_at', 'desc')->get();
 
-        return view('backend.event.index', compact('event'));
+        return view('backend.volunteer.index', compact('volunteer'));
     }
 
     /**
@@ -34,7 +29,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('backend.event.create');
+        return view('backend.volunteer.create');
     }
 
     /**
@@ -43,13 +38,13 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EventRequest $request)
+    public function store(VolunteerRequest $request)
     {
-        if($event = $this->event->create($request->eventFillData())) {
+        if($volunteer = $this->volunteer->create($request->volunteerFillData())) {
             if($request->hasFile('image')) {
-                $this->uploadFile($request, $event);
+                $this->uploadFile($request, $volunteer);
             }
-            return redirect()->route('event.index');
+            return redirect()->route('volunteer.index');
 
         }
     }
@@ -71,9 +66,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(Volunteer $volunteer)
     {
-        return view('backend.event.edit', compact('event'));
+        return view('backend.volunteer.edit', compact('volunteer'));
     }
 
     /**
@@ -83,17 +78,17 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EventRequest $request, Event $event)
+    public function update(VolunteerRequest $request, Volunteer $volunteer)
     {
-        if ($event->update($request->eventFillData())) {
-            $event->fill([
+        if ($volunteer->update($request->volunteerFillData())) {
+            $volunteer->fill([
                 'slug' => $request->title,
             ])->save();
             if ($request->hasFile('image')) {
-                $this->uploadFile($request, $event);
+                $this->uploadFile($request, $volunteer);
             }
         }
-        return redirect()->route('event.index')->withSuccess(trans('Event has been updated'));
+        return redirect()->route('volunteer.index')->withSuccess(trans('Volunteer has been updated'));
     }
 
     /**
@@ -104,12 +99,12 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        $event = $this->event->find($id);
-        $event->delete();
-        return redirect()->route('event.index')->withSuccess(trans('Event has been deleted'));
+        $volunteer = $this->volunteer->find($id);
+        $volunteer->delete();
+        return redirect()->route('volunteer.index')->withSuccess(trans('Volunteer has been deleted'));
     }
 
-    function uploadFile(Request $request, $slider)
+    function uploadFile(Request $request, $volunteer)
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -119,7 +114,7 @@ class EventController extends Controller
             $file = $request->file('image');
 
             // Define the destination path for the file
-            $path = 'uploads' . DIRECTORY_SEPARATOR . 'event';  // Use DIRECTORY_SEPARATOR here
+            $path = 'uploads' . DIRECTORY_SEPARATOR . 'volunteer';  // Use DIRECTORY_SEPARATOR here
 
             // Create the directory if it doesn't exist
             $destinationPath = public_path($path);
@@ -139,24 +134,24 @@ class EventController extends Controller
             $file->move($destinationPath, $fileName);
 
             // Delete existing image if it exists
-          if (!empty($slider->image)) {
-            $this->__deleteImages($slider);
+          if (!empty($volunteer->image)) {
+            $this->__deleteImages($volunteer);
         }
             // Save the new file name in the database
             $data['image'] = $path . DIRECTORY_SEPARATOR . $fileName;
-            $this->updateImage($slider->id, $data); 
+            $this->updateImage($volunteer->id, $data);
         } else {
             // Handle case where no valid image is uploaded
             return response()->json(['error' => 'No valid image uploaded'], 400);
         }
     }
 
-    public function updateImage($eventId, array $data)
+    public function updateImage($volunteerId, array $data)
     {
         try {
-            $event = $this->event->find($eventId);
-            $event = $event->update($data);
-            return $event;
+            $volunteer = $this->volunteer->find($volunteerId);
+            $volunteer = $volunteer->update($data);
+            return $volunteer;
         } catch (Exception $e) {
             //$this->logger->error($e->getMessage());
             return false;
