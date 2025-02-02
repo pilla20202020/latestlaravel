@@ -1,42 +1,46 @@
-<!DOCTYPE html>
-<html lang="en"><!-- Basic -->
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-     <!-- Site Metas -->
-    <title>Live Dinner Restaurant - Responsive HTML5 Template</title>  
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+        <meta name="author" content="DynamicLayers">
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{{ asset('assets/images/apple-touch-icon.png') }}">
+        <title>SERAP LEE FOUNDATION</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">    
-	<!-- Site CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">    
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/classic.css') }}">    
-    <link rel="stylesheet" href="{{ asset('assets/css/classic.date.css') }}">    
-    <link rel="stylesheet" href="{{ asset('assets/css/classic.time.css') }}">
+		<link rel="shortcut icon" type="image/x-icon" href="{{asset('backend/assets/images/logo.jfif')}}">
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        <!-- Themify Icons CSS -->
+        <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
+        <!-- Elegant Font Icons CSS -->
+        <link rel="stylesheet" href="{{ asset('css/elegant-font-icons.css') }}">
+        <!-- Elegant Line Icons CSS -->
+        <link rel="stylesheet" href="{{ asset('css/elegant-line-icons.css') }}">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <!-- Venobox CSS -->
+        <link rel="stylesheet" href="{{ asset('css/venobox/venobox.css') }}">
+        <!-- OWL-Carousel CSS -->
+        <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+        <!-- Slick Nav CSS -->
+        <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}">
+        <!-- Css Animation CSS -->
+        <link rel="stylesheet" href="{{ asset('css/css-animation.min.css') }}">
+        <!-- Nivo Slider CSS -->
+        <link rel="stylesheet" href="{{ asset('css/nivo-slider.css') }}">
+        <!-- Main CSS -->
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
 
-</head>
 
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
 <body>
 
 <!-- LOADER -->
@@ -45,7 +49,7 @@
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
 </div>
-<!-- END LOADER --> 
+<!-- END LOADER -->
 
 @include('frontend.layouts.partials.header')
 
@@ -53,24 +57,43 @@
 
   @include('frontend.layouts.partials.footer')
 
-  <a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+  <a data-scroll href="#header" id="scroll-to-top"><i class="ti-angle-double-up"></i></a>
 
 <!-- ALL JS FILES -->
-<script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ asset('assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-  <!-- ALL PLUGINS -->
-<script src="{{ asset('assets/js/jquery.superslides.min.js') }}"></script>
-<script src="{{ asset('assets/js/images-loded.min.js') }}"></script>
-<script src="{{ asset('assets/js/isotope.min.js') }}"></script>
-<script src="{{ asset('assets/js/baguetteBox.min.js') }}"></script>
-<script src="{{ asset('assets/js/form-validator.min.js') }}"></script>
-  <script src="{{ asset('assets/js/contact-form-script.js') }}"></script>
-  <script src="{{ asset('assets/js/custom.js') }}"></script>
-  <script src="{{ asset('assets/js/picker.js') }}"></script>
-	<script src="{{ asset('assets/js/picker.date.js') }}"></script>
-	<script src="{{ asset('assets/js/picker.time.js') }}"></script>
-  <script src="{{asset('assets/js/legacy.js') }}"></script>
+<script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
+<!-- Bootstrap JS -->
+<script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
+<!-- Tether JS -->
+<script src="{{ asset('js/vendor/tether.min.js') }}"></script>
+<!-- Imagesloaded JS -->
+<script src="{{ asset('js/vendor/imagesloaded.pkgd.min.js') }}"></script>
+<!-- OWL-Carousel JS -->
+<script src="{{ asset('js/vendor/owl.carousel.min.js') }}"></script>
+<!-- isotope JS -->
+<script src="{{ asset('js/vendor/jquery.isotope.v3.0.2.js') }}"></script>
+<!-- Smooth Scroll JS -->
+<script src="{{ asset('js/vendor/smooth-scroll.min.js') }}"></script>
+<!-- venobox JS -->
+<script src="{{ asset('js/vendor/venobox.min.js') }}"></script>
+<!-- ajaxchimp JS -->
+<script src="{{ asset('js/vendor/jquery.ajaxchimp.min.js') }}"></script>
+<!-- Counterup JS -->
+<script src="{{ asset('js/vendor/jquery.counterup.min.js') }}"></script>
+<!-- waypoints JS -->
+<script src="{{ asset('js/vendor/jquery.waypoints.v2.0.3.min.js') }}"></script>
+<!-- Slick Nav JS -->
+<script src="{{ asset('js/vendor/jquery.slicknav.min.js') }}"></script>
+<!-- Nivo Slider JS -->
+<script src="{{ asset('js/vendor/jquery.nivo.slider.pack.js') }}"></script>
+<!-- Letter Animation JS -->
+<script src="{{ asset('js/vendor/letteranimation.min.js') }}"></script>
+<!-- Wow JS -->
+<script src="{{ asset('js/vendor/wow.min.js') }}"></script>
+<!-- Contact JS -->
+<script src="{{ asset('js/contact.js') }}"></script>
+<!-- Main JS -->
+<script src="{{ asset('js/main.js') }}"></script>
+
 
 @stack('scripts')
 
@@ -79,3 +102,4 @@
 
 
 </html>
+

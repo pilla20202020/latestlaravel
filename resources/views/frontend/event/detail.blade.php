@@ -4,54 +4,48 @@
 
   <!-- Event -->
 
-  <div class="untree_co-hero overlay" style="background-image: url({{asset('assets/images/hero_bg.jpg')}});">
+  <section class="blog-section bg-grey padding">
     <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-12">
-          <div class="row justify-content-center">
-            <div class="col-lg-6 text-center">
-              <h1 class="mb-4  mt-5 pt-5 heading text-white" data-aos="fade-up" data-aos-delay="100">Our Events</h1>
+        <div class="row">
+            <div class="col-lg-9 sm-padding">
+                <div class="blog-items single-post row">
+                    <img src="{{asset($event->image)}}" alt="{{$event->title}}" class="img-fluid">
+                    <h2>{{$event->title}}</h2>
+                    <div class="container mt-3">
+                        <div class="row">
+                            <p>{!!$event->content!!}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- Blog Posts -->
+            <div class="col-lg-3 sm-padding">
+                <div class="sidebar-wrap">
+                    <div class="sidebar-widget mb-50">
+                        <h4>Events</h4>
+                        <ul class="recent-posts">
+                            @if (isset($events))
+                                @foreach ($events as $event)
+                                    <li>
+                                        <img src="{{asset($event->image)}}" alt="{{$event->title}}">
+                                        <div>
+                                            <h4><a href="{{route('event.detail', $event->id)}}">{{$event->title}}</a></h4>
+                                            <span class="date"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</span>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endif
+
+
+                        </ul>
+                    </div><!-- Recent Posts -->
+
+                </div><!-- /Sidebar Wrapper -->
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-
-  
-
-  <div class="untree_co-section">
-    <div class="container">
-      
-
-      @if ($events)
-      <div class="events-slider owl-carousel" data-aos="fade-up" data-aos-delay="100">
-       
-        <div class="row align-items-center justify-content-between">
-         
-            <div class="col-lg-6">
-              <img src="{{asset($events->image_path)}}" alt="Image" class="img-fluid">
-            </div>
-            <div class="col-lg-5">
-              {{-- <span class="events-price d-block">$200.99</span> --}}
-              <h3 class="mb-4">{{$events->title}}</h3>
-              <p class="mb-4">{!!$events->content!!}</p>
-              {{-- <ul class="list-unstyled ul-check">
-                <li>Away behind the word</li>
-                <li>Bookmarksgrove right at the coast</li>
-                <li>Separated they live</li>
-              </ul> --}}
-            </div>
-          
-        </div>
-      
-        
-      </div>
-      @endif
-    </div>
-  </div>
-  <!-- Event -->
+</section>
 
 
-   
+
 @endsection

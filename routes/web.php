@@ -33,11 +33,9 @@ Route::get('/', function () {
 Route::controller(LoginController::class)->group(function () {
     Route::get('/backend/login', 'showLoginForm')->name('login');
     Route::post('login', 'login');
-    Route::get('logout', 'logout')->name('logout');
+    Route::post('logout', 'logout')->name('logout');
 });
 
-// Auth Scaffolding (uses Fortify if configured)
-Auth::routes(['verify' => true]);
 
 // Home Route
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -146,5 +144,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('teams', 'teams')->name('teams');
     Route::get('blogs', 'blog')->name('blog');
     Route::get('blogsdetail/{blogs}', 'blogDetail')->name('blogs.detail');
+    Route::get('events', 'events')->name('events');
+    Route::get('eventDetail/{event}', 'eventDetail')->name('event.detail');
     Route::get('{page}', 'page')->name('page.detail');
 });

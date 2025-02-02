@@ -44,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="specialization">Short Description</label>

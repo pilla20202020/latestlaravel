@@ -24,7 +24,7 @@
                     <div class="row mt-3">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="caption">caption</label>
+                                <label for="caption">Description</label>
                                 <textarea type="text" name="caption" class="form-control">{{old('caption',isset($slider->caption)?$slider->caption : '')}}</textarea>
 
                             </div>

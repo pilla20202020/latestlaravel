@@ -24,7 +24,7 @@ use App\Models\Sector\Sector;
 use App\Models\Slider\Slider;
 use App\Models\Testimonial\Testimonial;
 use App\Models\Timeline\Timeline;
-
+use App\Models\Volunteer\Volunteer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -36,14 +36,27 @@ class FrontendController extends Controller
     public function homepage()
     {
 
-        $sliders = Slider::where('is_published',0)->get();
-        $menus = Menu::where('is_published',0)->get();
-        $testimonials = Testimonial::where('is_featured', 1)->get();
-        $galleries= Gallery::where('is_featured', 1)->latest()->take(9)->get();
-        $categories = Category::get();
-        $about = Page::where('slug','About Us')->first();
-        $products = Product::where('is_featured', 1)->get();
-        return view('frontend.home', compact( 'menus','sliders','testimonials','galleries', 'categories','products','about'));
+        $sliders = Slider::get();
+        // $menus = Menu::get();
+        $testimonials = Testimonial::get();
+        $events = Event::all();
+
+        $pastEvents = $events->filter(function ($event) {
+            return $event->type === 'past';
+        });
+
+        $currentEvents = $events->filter(function ($event) {
+            return $event->type === 'present';
+        });
+
+        $upcomingEvents = $events->filter(function ($event) {
+            return $event->type === 'upcoming';
+        });
+        $volunteers = Volunteer::latest()->take(4)->get();
+        // $galleries= Gallery::latest()->take(9)->get();
+        // $about = Page::where('slug','About Us')->first();
+        // $products = Product::get();
+        return view('frontend.home', compact( 'sliders','testimonials','pastEvents','currentEvents','upcomingEvents','volunteers'));
     }
 
     public function page($slug = null)
@@ -52,7 +65,7 @@ class FrontendController extends Controller
         if ($slug) {
 
             $page = Page::whereSlug($slug)->whereIsPublished(1)->first();
-            $allevents = Event::where('is_featured', 1)->get();
+            $allevents = Event::get();
 
 
             if ($page == null) {
@@ -78,13 +91,13 @@ class FrontendController extends Controller
     public function menu(Category $categories, Product $products)
     {
         $categories = Category::get();
-        $products = Product::where('is_featured', 1)->latest()->get();
+        $products = Product::latest()->get();
         return view('frontend.menu.menu', compact('products','categories'));
     }
 
     public function gallery()
     {
-        $galleries = Gallery::where('is_featured', 1)->latest()->get();
+        $galleries = Gallery::latest()->get();
         return view('frontend.gallery.index', compact('galleries'));
     }
 
@@ -101,19 +114,27 @@ class FrontendController extends Controller
 
     public function teams()
     {
-        $teams = Team::where('is_featured', 1)->get();
+        $teams = Team::get();
         return view('frontend.teams.detail',compact('teams'));
     }
 
     public function blog()
     {
-        $blogs = Blog::where('is_featured', 1)->get();
+        $blogs = Blog::get();
         return view('frontend.blog.index',compact('blogs'));
     }
 
     public function blogDetail(Blog $blogs){
 
         return view('frontend.blog.detail', compact('blogs'));
+
+    }
+
+    public function eventDetail($id)
+    {
+        $events = Event::inRandomOrder()->limit(7)->whereNotIn('id', [$id])->get();
+        $event = Event::where('id', $id)->first();
+        return view('frontend.event.detail', compact('event','events'));
 
     }
 
