@@ -5,7 +5,7 @@
             <div class="navbar-brand-box">
                 <a href="index.html" class="logo">
                     <span class="logo-light  fs-5 fw-semibold ">
-                        <i class="mdi mdi-camera-control"></i> STEXO
+                        <i class="mdi mdi-camera-control"></i> SERAP Lee
                     </span>
                     <span class="logo-sm fs-2">
                         <i class="mdi mdi-camera-control"></i>

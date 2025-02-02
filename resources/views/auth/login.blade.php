@@ -16,8 +16,8 @@
                                         <div class="text-center">
                                             <div>
                                                 <a href="{{route('homepage')}}" class="auth-logo">
-                                                    <img src="assets/images/logo-dark.png" alt="" height="20" class=" logo-dark mx-auto">
-                                                    <img src="assets/images/logo-light.png" alt="" height="20" class=" logo-light mx-auto">
+                                                    <img src="{{asset('backend/assets/images/logo.jfif')}}" alt="" height="80" class=" logo-dark mx-auto">
+                                                    <img src="{{asset('backend/assets/images/logo.jfif')}}" alt="" height="80" class=" logo-light mx-auto">
                                                 </a>
                                             </div>
 
@@ -95,13 +95,6 @@
         </div>
     </div>
 
-
-
-    <footer class="text-center">
-        <p>
-            Copyright &#183; {{ str_replace('_',' ',config('app.name'))}} &#183; {{date('Y')}}
-        </p>
-    </footer>
 @endsection
 
 @push('styles')
