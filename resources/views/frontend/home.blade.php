@@ -419,37 +419,21 @@
                 <p>Help today because tomorrow you may be the one who <br> needs more helping!</p>
             </div><!-- /Section Heading -->
             <div id="testimonial-carousel" class="testimonial-carousel owl-carousel">
-                <div class="testimonial-item">
-                    <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                    <div class="testi-footer">
-                       <img src="img/team-1.jpg" alt="profile">
-                        <h4>Jonathan Smith <span>Marketer</span></h4>
+                @foreach($testimonials as $testimonial)
+                    <div class="testimonial-item">
+                        {!! $testimonial->content !!} <!-- Display content as HTML -->
+                        <div class="testi-footer">
+                            <img src="{{ asset($testimonial->image) }}" alt="profile">
+                            <h4>{{ $testimonial->title }} <span>{{ $testimonial->position }}</span></h4>
+                        </div>
                     </div>
-                </div>
-                <div class="testimonial-item">
-                    <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                    <div class="testi-footer">
-                       <img src="img/team-2.jpg" alt="profile">
-                        <h4>Angelina Rose <span>Designer</span></h4>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                    <div class="testi-footer">
-                       <img src="img/team-3.jpg" alt="profile">
-                        <h4>Taylor Swift <span>Developer</span></h4>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                    <div class="testi-footer">
-                       <img src="img/team-4.jpg" alt="profile">
-                        <h4>Michel Brown <span>Programer</span></h4>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
-    </section><!-- Testimonial Section -->
+    </section>
+    <!-- Testimonial Section -->
+
+    <!-- Testimonial Section -->
 
     <!-- Blog Section -->
     <section class="blog-section bg-grey bd-bottom padding">
