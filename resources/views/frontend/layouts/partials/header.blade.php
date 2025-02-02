@@ -33,20 +33,15 @@
                 <div class="bottom-content-wrap row">
                     <div class="col-sm-4">
                         <div class="site-branding">
-                            <a href="#"><img src="{{asset('backend/assets/images/logo.jfif')}}" alt="SERAP LEE FOUNDATION" class="logo_img img-fluid"></a>
+                            <a href="{{route('homepage')}}"><img src="{{asset('backend/assets/images/logo.jfif')}}" alt="SERAP LEE FOUNDATION" class="logo_img img-fluid"></a>
                         </div>
                     </div>
                    <div class="col-sm-8 text-right">
                        <ul id="mainmenu" class="nav navbar-nav nav-menu">
-                            <li class="active"> <a href="index.html">Home</a>
-                                <ul>
-                                   <li><a href="index.html">Home Default</a></li>
-                                   <li><a href="index-2.html">Home Modern</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{{route('homepage')}}">Home</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="causes.html">Causes</a></li>
-                            <li><a href="event.html">Event</a></li>
+                            <li><a href="{{route('events')}}">Event</a></li>
                             <li><a href="#">Pages</a>
                                 <ul>
                                    <li><a href="gallery.html">Gallery</a></li>

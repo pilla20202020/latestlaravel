@@ -30,7 +30,7 @@
                                         <img src="{{asset($event->image)}}" alt="{{$event->title}}">
                                         <div>
                                             <h4><a href="{{route('event.detail', $event->id)}}">{{$event->title}}</a></h4>
-                                            <span class="date"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</span>
+                                            <span class="date" style="font-size: 12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</span>
                                         </div>
                                     </li>
                                 @endforeach

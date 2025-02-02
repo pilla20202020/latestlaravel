@@ -21,6 +21,7 @@
     .reply-list .comment-box{
         width: 540px;
     }
+
 }
 
 /* ---- Start of max-width 992px CSS ---- */
@@ -83,7 +84,7 @@
 
 /* ---- Start of min-width 480px and max-width 768px CSS ---- */
 @media all and (min-width: 480px) and (max-width: 768px) {
-	
+
 }
 /* ---- End of min-width 480px and max-width 768px CSS ---- */
 
@@ -93,6 +94,9 @@
     body, p{
         font-size: 12px;
         line-height: 22px;
+    }
+    .pager-header::before {
+        height: 355px;
     }
     h1{
         font-size: 30px;
@@ -225,6 +229,9 @@
 
 /* ---- Start of max-width 480px CSS ---- */
 @media all and (max-width: 480px) {
+    .pager-header::before {
+        height: 355px;
+    }
     .coment-form .form-group .col-sm-4{
         margin-bottom: 15px;
         margin-top: auto;
@@ -249,7 +256,7 @@
 
 /* ---- Start of max-width 420px CSS ---- */
 @media all and (max-width: 420px) {
-    
+
 }
 /* ---- End of max-width 420px CSS ---- */
 

@@ -30,7 +30,7 @@
     <!-- /#slider-Section -->
 
     <!-- /Promo Section -->
-    {{-- <section class="promo-section bd-bottom">
+    <section class="promo-section bd-bottom">
         <div class="promo-wrap">
            <div class="container">
                 <div class="row">
@@ -61,11 +61,11 @@
                 </div>
             </div>
         </div>
-    </section><!-- /Promo Section --> --}}
+    </section><!-- /Promo Section -->
 
 
     <!-- /Causes Section -->
-    {{-- <section class="causes-section bg-grey bd-bottom padding">
+    <section class="causes-section bg-grey bd-bottom padding">
         <div class="container">
             <div class="section-heading text-center mb-40">
                 <h2>Recent Causes</h2>
@@ -135,11 +135,11 @@
                 </div><!-- /Causes-3 -->
             </div>
         </div>
-    </section><!-- /Causes Section --> --}}
+    </section><!-- /Causes Section -->
 
 
     <!-- /Causes Section -->
-    {{-- <section class="about-section bd-bottom shape circle padding">
+    <section class="about-section bd-bottom shape circle padding">
         <div class="container">
             <div class="row">
                <div class="col-md-4 xs-padding">
@@ -168,11 +168,11 @@
                 </div>
             </div>
         </div>
-    </section><!-- /Causes Section --> --}}
+    </section><!-- /Causes Section -->
 
 
     <!-- /Featured Campaigns Section -->
-    {{-- <section class="campaigns-section bd-bottom">
+    <section class="campaigns-section bd-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 xs-padding">
@@ -200,10 +200,10 @@
                 </div>
             </div>
         </div>
-    </section><!-- /Featured Campaigns Section --> --}}
+    </section><!-- /Featured Campaigns Section -->
 
     <!-- /Team Section -->
-    {{-- <section class="team-section bg-grey bd-bottom circle shape padding">
+    <section class="team-section bg-grey bd-bottom circle shape padding">
         <div class="container">
             <div class="section-heading text-center mb-40">
                 <h2>Meet Out Volunteers</h2>
@@ -213,38 +213,16 @@
             <div class="team-wrapper row">
                 <div class="col-lg-6 sm-padding">
                     <div class="team-wrap row">
-                        <div class="col-md-6">
-                            <div class="team-details">
-                               <img src="img/team-1.jpg" alt="team">
-                                <div class="hover">
-                                    <h3>Jonathan Smith <span>Communicator</span></h3>
+                        @foreach ($volunteers as $volunteer)
+                            <div class="col-md-6">
+                                <div class="team-details">
+                                <img src="{{ asset($volunteer->image) }}" alt="{{ $volunteer->title }}">
+                                    <div class="hover">
+                                        <h3>{{ $volunteer->title }} <span>{{ $volunteer->position }}</span></h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </div><!-- /Team-1 -->
-                        <div class="col-md-6">
-                            <div class="team-details">
-                               <img src="img/team-2.jpg" alt="team">
-                                <div class="hover">
-                                    <h3>Angelina Rose <span>Certified Reader</span></h3>
-                                </div>
-                            </div>
-                        </div><!-- /Team-2 -->
-                        <div class="col-md-6">
-                            <div class="team-details">
-                                <img src="img/team-3.jpg" alt="team">
-                                <div class="hover">
-                                    <h3>Taylor Swift <span>Event Creator</span></h3>
-                                </div>
-                            </div>
-                        </div><!-- /Team-3 -->
-                        <div class="col-md-6">
-                            <div class="team-details">
-                               <img src="img/team-4.jpg" alt="team">
-                                <div class="hover">
-                                    <h3>Michel Brown <span>Internet Specialist</span></h3>
-                                </div>
-                            </div>
-                        </div><!-- /Team-4 -->
+                            </div><!-- /Team-1 -->
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-lg-6 sm-padding">
@@ -264,10 +242,10 @@
                 </div>
             </div>
         </div>
-    </section><!-- /Team Section --> --}}
+    </section><!-- /Team Section -->
 
     <!-- Counter Section -->
-    {{-- <section id="counter" class="counter-section">
+    <section id="counter" class="counter-section">
         <div class="container">
             <ul class="row counters">
                 <li class="col-md-3 col-sm-6 sm-padding">
@@ -300,7 +278,7 @@
                 </li>
             </ul>
         </div>
-    </section><!-- Counter Section --> --}}
+    </section><!-- Counter Section -->
 
 
 
@@ -337,18 +315,19 @@
                     <div class="causes-wrap row">
                         @forelse($pastEvents as $event)
                             <div class="col-md-4 xs-padding">
-                                <div class="causes-content">
-                                    <div class="causes-thumb">
-                                        <img src="{{ asset($event->image) }}" alt="Event Image">
-                                        <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
+                                <a href="{{ route('event.detail', $event->id) }}">
+                                    <div class="causes-content">
+                                        <div class="causes-thumb">
+                                            <img src="{{ asset($event->image) }}" alt="Event Image">
+                                        </div>
+                                        <div class="causes-details">
+                                            <h3>{{ $event->title }}</h3>
+                                            <p>{{ Str::limit($event->meta_description, 100) }}</p>
+                                            <p style="font-size:12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
+                                            <a href="{{ route('event.detail', $event->id) }}" class="read-more">Read More</a>
+                                        </div>
                                     </div>
-                                    <div class="causes-details">
-                                        <h3>{{ $event->title }}</h3>
-                                        <p>{{ Str::limit($event->meta_description, 100) }}</p>
-                                        <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
-                                        <a href="{{ route('event.detail', $event->id) }}" class="read-more">Read More</a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         @empty
                             <p class="text-center">No past events found.</p>
@@ -361,18 +340,19 @@
                     <div class="causes-wrap row">
                         @forelse($currentEvents as $event)
                             <div class="col-md-4 xs-padding">
-                                <div class="causes-content">
-                                    <div class="causes-thumb">
-                                        <img src="{{ asset( $event->image) }}" alt="Event Image">
-                                        <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
+                                <a href="{{ route('event.detail', $event->id) }}">
+                                    <div class="causes-content">
+                                        <div class="causes-thumb">
+                                            <img src="{{ asset($event->image) }}" alt="Event Image">
+                                        </div>
+                                        <div class="causes-details">
+                                            <h3>{{ $event->title }}</h3>
+                                            <p>{{ Str::limit($event->meta_description, 100) }}</p>
+                                            <p style="font-size:12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
+                                            <a href="{{ route('event.detail', $event->id) }}" class="read-more">Read More</a>
+                                        </div>
                                     </div>
-                                    <div class="causes-details">
-                                        <h3>{{ $event->title }}</h3>
-                                        <p>{{ Str::limit($event->meta_description, 100) }}</p>
-                                        <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
-                                        <a href="{{ route('event.detail', $event->id) }}" class="read-more">Read More</a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         @empty
                             <p class="text-center">No current events available.</p>
@@ -385,18 +365,19 @@
                     <div class="causes-wrap row">
                         @forelse($upcomingEvents as $event)
                             <div class="col-md-4 xs-padding">
-                                <div class="causes-content">
-                                    <div class="causes-thumb">
-                                        <img src="{{ asset($event->image) }}" alt="Event Image">
-                                        <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
+                                <a href="{{ route('event.detail', $event->id) }}">
+                                    <div class="causes-content">
+                                        <div class="causes-thumb">
+                                            <img src="{{ asset($event->image) }}" alt="Event Image">
+                                        </div>
+                                        <div class="causes-details">
+                                            <h3>{{ $event->title }}</h3>
+                                            <p>{{ Str::limit($event->meta_description, 100) }}</p>
+                                            <p style="font-size:12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
+                                            <a href="{{ route('event.detail', $event->id) }}" class="read-more">Read More</a>
+                                        </div>
                                     </div>
-                                    <div class="causes-details">
-                                        <h3>{{ $event->title }}</h3>
-                                        <p>{{ Str::limit($event->meta_description, 100) }}</p>
-                                        <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
-                                        <a href="{{ route('event.detail', $event->id) }}" class="read-more">Read More</a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         @empty
                             <p class="text-center">No upcoming events scheduled.</p>

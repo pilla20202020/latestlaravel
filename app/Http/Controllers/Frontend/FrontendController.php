@@ -43,15 +43,16 @@ class FrontendController extends Controller
 
         $pastEvents = $events->filter(function ($event) {
             return $event->type === 'past';
-        });
+        })->sortByDesc('created_at')->take(3); // Take latest 3 past events
 
         $currentEvents = $events->filter(function ($event) {
             return $event->type === 'present';
-        });
+        })->sortByDesc('created_at')->take(3); // Take latest 3 current events
 
         $upcomingEvents = $events->filter(function ($event) {
             return $event->type === 'upcoming';
-        });
+        })->sortByDesc('created_at')->take(3); // Take latest 3 upcoming events
+
         $volunteers = Volunteer::latest()->take(4)->get();
         // $galleries= Gallery::latest()->take(9)->get();
         // $about = Page::where('slug','About Us')->first();
@@ -128,6 +129,24 @@ class FrontendController extends Controller
 
         return view('frontend.blog.detail', compact('blogs'));
 
+    }
+
+    public function events()
+    {
+        $events = Event::all();
+
+        $pastEvents = $events->filter(function ($event) {
+            return $event->type === 'past';
+        });
+
+        $currentEvents = $events->filter(function ($event) {
+            return $event->type === 'present';
+        });
+
+        $upcomingEvents = $events->filter(function ($event) {
+            return $event->type === 'upcoming';
+        });
+        return view('frontend.event.index',compact('pastEvents', 'currentEvents','upcomingEvents'));
     }
 
     public function eventDetail($id)

@@ -751,6 +751,9 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
     border: 1px dashed #ccc;
     padding-top: 25px;
 }
+.causes-details p {
+    color: #000
+}
 .causes-details h3{
     font-size: 24px;
     line-height: 30px;
@@ -1280,7 +1283,7 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
    15.0 Page Header Section
    ========================================================================== */
 .pager-header{
-    background-image: url(../img/page-header-bg.jpg);
+    background-image: url('../images/about_bg.jpg');
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -1289,6 +1292,23 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
     min-height: 300px;
     display: flex;
     align-items: center;
+}
+.pager-header::before {
+    content: ''; /* Create an empty pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent black overlay */
+    z-index: 1; /* Ensure it is behind the content */
+    height: 435px;
+}
+
+.page-content {
+    position: relative;
+    z-index: 2; /* Content should be above the overlay */
+    padding: 20px; /* Add padding as necessary */
 }
 .pager-header h2{
     color: #fff;
