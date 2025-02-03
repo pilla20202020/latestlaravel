@@ -33,7 +33,7 @@
                 <div class="bottom-content-wrap row">
                     <div class="col-sm-4">
                         <div class="site-branding">
-                            <a href="{{route('homepage')}}"><img src="{{asset('backend/assets/images/logo.jfif')}}" alt="SERAP LEE FOUNDATION" class="logo_img img-fluid"></a>
+                            <a href="{{route('homepage')}}"><img src="{{asset('backend/assets/images/logo.jpeg')}}" alt="SERAP LEE FOUNDATION" class="logo_img img-fluid"></a>
                         </div>
                     </div>
                    <div class="col-sm-8 text-right">

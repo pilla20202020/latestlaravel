@@ -76,7 +76,7 @@
                 <div class="col-md-4 xs-padding">
                     <div class="causes-content">
                        <div class="causes-thumb">
-                            <img src="{{asset('images/causes.jpg')}}" alt="causes">
+                            <img src="{{asset('images/cause-1.jfif')}}" alt="causes">
                             <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="wow cssanimation fadeInLeft">25%</span></div>
@@ -96,7 +96,7 @@
                 <div class="col-md-4 xs-padding">
                     <div class="causes-content">
                        <div class="causes-thumb">
-                            <img src="{{asset('images/causes.jpg')}}" alt="causes">
+                            <img src="{{asset('images/cause-2.jfif')}}" alt="causes">
                             <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="wow cssanimation fadeInLeft">45%</span></div>
@@ -116,7 +116,7 @@
                 <div class="col-md-4 xs-padding">
                     <div class="causes-content">
                        <div class="causes-thumb">
-                            <img src="{{asset('images/causes.jpg')}}" alt="causes">
+                            <img src="{{asset('images/cause-3.jfif')}}" alt="causes">
                             <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="wow cssanimation fadeInLeft">75%</span></div>
