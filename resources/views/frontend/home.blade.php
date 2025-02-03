@@ -144,10 +144,10 @@
             <div class="row">
                <div class="col-md-4 xs-padding">
                     <div class="profile-wrap">
-                        <img class="profile" src="{{asset('images/profile.jpg')}}" alt="profile">
-                        <h3>Jonathan Smith <span>CEO & Founder of Charitify.</span></h3>
+                        <img class="profile" src="{{asset('images/profile.jpeg')}}" alt="profile">
+                        <h3>Serap Jangbu Sherpa <span>Founder & Chairman.</span></h3>
                         <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                        <img src="{{asset('images/sign.png')}}" alt="sign">
+                        <img src="{{asset('images/sign.jpeg')}}" alt="sign">
                     </div>
                 </div>
                 <div class="col-md-8 xs-padding">
@@ -159,7 +159,7 @@
                             <a href="#" class="default-btn">Read More</a>
                         </div>
                         <div class="col-md-6 xs-padding">
-                            <img src="{{asset('images/history.jpg')}}" alt="about-thumb">
+                            <img src="{{asset('images/mission.jpeg')}}" alt="about-thumb">
                             <h3>Our Mission</h3>
                             <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor.</p>
                             <a href="#" class="default-btn">Read More</a>
@@ -429,7 +429,7 @@
                     <div class="blog-items grid-list row">
                         <div class="col-md-4 padding-15">
                             <div class="blog-post">
-                                <img src="{{asset('images/causes.jpg')}}" alt="blog post">
+                                <img src="{{asset('images/causes-1.jpg')}}" alt="blog post">
                                 <div class="blog-content">
                                     <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span>
                                     <h3><a href="#">The History of Donation Told</a></h3>
@@ -440,7 +440,7 @@
                         </div><!-- Post 1 -->
                         <div class="col-md-4 padding-15">
                             <div class="blog-post">
-                                <img src="{{asset('images/causes.jpg')}}" alt="blog post">
+                                <img src="{{asset('images/causes-2.jpg')}}" alt="blog post">
                                 <div class="blog-content">
                                     <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span>
                                     <h3><a href="#">Help the Comunity</a></h3>
@@ -451,7 +451,7 @@
                         </div><!-- Post 2 -->
                         <div class="col-md-4 padding-15">
                             <div class="blog-post">
-                                <img src="{{asset('images/causes.jpg')}}" alt="blog post">
+                                <img src="{{asset('images/causes-3.jpg')}}" alt="blog post">
                                 <div class="blog-content">
                                     <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span>
                                     <h3><a href="#">Charity Ever Rule the World?</a></h3>

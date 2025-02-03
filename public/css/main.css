@@ -557,7 +557,7 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
     text-align: center;
 }
 .slider-text h1{
-    font-size: 62px;
+    font-size: 58px;
     font-weight: 600;
     color: #fff;
     line-height: 1.2;
@@ -571,7 +571,7 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
 }
 .slider-text p {
     color: #fff;
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 15px;
 }
 .slider-wrapper {
