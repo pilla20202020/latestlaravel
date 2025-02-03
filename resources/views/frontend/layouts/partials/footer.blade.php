@@ -46,7 +46,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 sm-padding">
-                    <div class="copyright">&copy; 2021 Charitify Powered by DynamicLayers</div>
+                    <div class="copyright"> 2025 Serap Lee Foundation Powered by <a href=" https://www.shubhamtec.com" target="_blank">Shubham Tech </a> </div>
                 </div>
                 <div class="col-md-6 sm-padding">
                     <ul class="footer-social">

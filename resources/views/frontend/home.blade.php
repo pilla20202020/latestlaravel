@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 xs-padding">
                         <div class="promo-content">
-                            <img src="img/icon-1.png" alt="prmo icon">
+                            <img src="{{asset('images/icon-1.png')}}" alt="prmo icon">
                             <h3>Make Donetion</h3>
                             <p>Help today because tomorrow you may be the one who needs helping!</p>
                             <a href="#">Read More</a>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-md-4 col-sm-6 xs-padding">
                         <div class="promo-content">
-                            <img src="img/icon-2.png" alt="prmo icon">
+                            <img src="{{asset('images/icon-2.png')}}" alt="prmo icon">
                             <h3>Fundrising</h3>
                             <p>Help today because tomorrow you may be the one who needs helping! </p>
                             <a href="#">Read More</a>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-md-4 col-sm-6 xs-padding">
                         <div class="promo-content">
-                            <img src="img/icon-3.png" alt="prmo icon">
+                            <img src="{{asset('images/icon-3.png')}}" alt="prmo icon">
                             <h3>Become A Volunteer</h3>
                             <p>Help today because tomorrow you may be the one who needs helping! </p>
                             <a href="#">Read More</a>
@@ -76,7 +76,7 @@
                 <div class="col-md-4 xs-padding">
                     <div class="causes-content">
                        <div class="causes-thumb">
-                            <img src="img/causes-1.jpg" alt="causes">
+                            <img src="{{asset('images/causes.jpg')}}" alt="causes">
                             <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="wow cssanimation fadeInLeft">25%</span></div>
@@ -96,7 +96,7 @@
                 <div class="col-md-4 xs-padding">
                     <div class="causes-content">
                        <div class="causes-thumb">
-                            <img src="img/causes-2.jpg" alt="causes">
+                            <img src="{{asset('images/causes.jpg')}}" alt="causes">
                             <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="wow cssanimation fadeInLeft">45%</span></div>
@@ -116,7 +116,7 @@
                 <div class="col-md-4 xs-padding">
                     <div class="causes-content">
                        <div class="causes-thumb">
-                            <img src="img/causes-3.jpg" alt="causes">
+                            <img src="{{asset('images/causes.jpg')}}" alt="causes">
                             <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="wow cssanimation fadeInLeft">75%</span></div>
@@ -144,22 +144,22 @@
             <div class="row">
                <div class="col-md-4 xs-padding">
                     <div class="profile-wrap">
-                        <img class="profile" src="img/profile.jpg" alt="profile">
+                        <img class="profile" src="{{asset('images/profile.jpg')}}" alt="profile">
                         <h3>Jonathan Smith <span>CEO & Founder of Charitify.</span></h3>
                         <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                        <img src="img/sign.png" alt="sign">
+                        <img src="{{asset('images/sign.png')}}" alt="sign">
                     </div>
                 </div>
                 <div class="col-md-8 xs-padding">
                     <div class="about-wrap row">
                         <div class="col-md-6 xs-padding">
-                            <img src="img/history.jpg" alt="about-thumb">
+                            <img src="{{asset('images/history.jpg')}}" alt="about-thumb">
                             <h3>Our History</h3>
                             <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor.</p>
                             <a href="#" class="default-btn">Read More</a>
                         </div>
                         <div class="col-md-6 xs-padding">
-                            <img src="img/mission.jpg" alt="about-thumb">
+                            <img src="{{asset('images/history.jpg')}}" alt="about-thumb">
                             <h3>Our Mission</h3>
                             <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor.</p>
                             <a href="#" class="default-btn">Read More</a>
@@ -192,7 +192,7 @@
                 </div>
                 <div class="col-md-6 xs-padding">
                     <div class="video-wrap">
-                        <img src="img/video.jpg" alt="video">
+                        <img src="{{asset('images/video.jpg')}}" alt="video">
                         <div class="play">
                             <a class="img-popup" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/watch?v=_IlLwfC2dNc"><i class="ti-control-play"></i></a>
                         </div>
@@ -429,7 +429,7 @@
                     <div class="blog-items grid-list row">
                         <div class="col-md-4 padding-15">
                             <div class="blog-post">
-                                <img src="img/home-blog-1.jpg" alt="blog post">
+                                <img src="{{asset('images/causes.jpg')}}" alt="blog post">
                                 <div class="blog-content">
                                     <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span>
                                     <h3><a href="#">The History of Donation Told</a></h3>
@@ -440,7 +440,7 @@
                         </div><!-- Post 1 -->
                         <div class="col-md-4 padding-15">
                             <div class="blog-post">
-                                <img src="img/home-blog-2.jpg" alt="blog post">
+                                <img src="{{asset('images/causes.jpg')}}" alt="blog post">
                                 <div class="blog-content">
                                     <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span>
                                     <h3><a href="#">Help the Comunity</a></h3>
@@ -451,7 +451,7 @@
                         </div><!-- Post 2 -->
                         <div class="col-md-4 padding-15">
                             <div class="blog-post">
-                                <img src="img/home-blog-3.jpg" alt="blog post">
+                                <img src="{{asset('images/causes.jpg')}}" alt="blog post">
                                 <div class="blog-content">
                                     <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span>
                                     <h3><a href="#">Charity Ever Rule the World?</a></h3>
@@ -471,28 +471,28 @@
         <div class="container">
             <ul id="sponsor-carousel" class="sponsor-items owl-carousel">
                 <li class="sponsor-item">
-                    <img src="img/sponsor-1.png" alt="sponsor-image">
+                    <img src="{{asset('images/sponsor-1.png')}}" alt="sponsor-image">
                 </li>
                 <li class="sponsor-item">
-                    <img src="img/sponsor-2.png" alt="sponsor-image">
+                    <img src="{{asset('images/sponsor-2.png')}}" alt="sponsor-image">
                 </li>
                 <li class="sponsor-item">
-                    <img src="img/sponsor-3.png" alt="sponsor-image">
+                    <img src="{{asset('images/sponsor-3.png')}}" alt="sponsor-image">
                 </li>
                 <li class="sponsor-item">
-                    <img src="img/sponsor-4.png" alt="sponsor-image">
+                    <img src="{{asset('images/sponsor-4.png')}}" alt="sponsor-image">
                 </li>
                 <li class="sponsor-item">
-                    <img src="img/sponsor-5.png" alt="sponsor-image">
+                    <img src="{{asset('images/sponsor-5.png')}}" alt="sponsor-image">
                 </li>
                 <li class="sponsor-item">
-                    <img src="img/sponsor-6.png" alt="sponsor-image">
+                    <img src="{{asset('images/sponsor-1.png')}}" alt="sponsor-image">
                 </li>
                 <li class="sponsor-item">
-                    <img src="img/sponsor-7.png" alt="sponsor-image">
+                    <img src="{{asset('images/sponsor-2.png')}}" alt="sponsor-image">
                 </li>
                 <li class="sponsor-item">
-                    <img src="img/sponsor-8.png" alt="sponsor-image">
+                    <img src="{{asset('images/sponsor-3.png')}}" alt="sponsor-image">
                 </li>
             </ul>
         </div>

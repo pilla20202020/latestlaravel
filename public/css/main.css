@@ -863,7 +863,7 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
    7.0 Campaigns Section
    ========================================================================== */
 .campaigns-section{
-	background-image: url(../img/featured-bg.jpg);
+	background-image: url(../images/featured-bg.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -1050,7 +1050,7 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
    9.0 Counter Section
    ========================================================================== */
 .counter-section{
-	background-image: url(../img/counters-bg.jpg);
+	background-image: url(../images/counters-bg.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
