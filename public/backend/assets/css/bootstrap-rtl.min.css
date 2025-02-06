@@ -14397,8 +14397,7 @@ pre {
 }
 
 .rounded-pill {
-  padding-left: 0.6em;
-  padding-right: 0.6em;
+    padding: 7px 24px;
 }
 
 .badge.bg-dark {

@@ -3,55 +3,124 @@
 
 
   <!-- Event -->
-
-  <div class="untree_co-hero overlay" style="background-image: url({{asset('assets/images/hero_bg.jpg')}});">
-    <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-12">
-          <div class="row justify-content-center">
-            <div class="col-lg-6 text-center">
-              <h1 class="mb-4  mt-5 pt-5 heading text-white" data-aos="fade-up" data-aos-delay="100">Our Events</h1>
+<section class="overlay_bg_50">
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content">
+                <h2>Events</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
+                    <li class="breadcrumb-item active">Events</li>
+                </ol>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</section>
+<!-- /Page Header -->
 
-  
 
-  <div class="untree_co-section">
+
+<!-- START SECTION EVENT -->
+<section class="events-section bg-grey bd-bottom padding">
     <div class="container">
-      
-
-      @if ($events->isNotEmpty())
-      <div class="events-slider owl-carousel" data-aos="fade-up" data-aos-delay="100">
-        @foreach($events as $event)
-        <div class="row align-items-center justify-content-between">
-         
-            <div class="col-lg-6">
-              <a href="{{ route('events.detail', $event->slug) }}"><img src="{{asset($event->image_path)}}" alt="Image" class="img-fluid">
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <ul class="nav nav-pills justify-content-center" role="tablist">
+                    <li class="nav-item">
+                        <a data-toggle="tab" class="nav-link active" href="#past" role="tab">Past Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="tab" class="nav-link" href="#current" role="tab">Current Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="tab" class="nav-link" href="#upcoming" role="tab">Upcoming Events</a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-lg-5">
-              {{-- <span class="event-price d-block">$200.99</span> --}}
-              <h3 class="mb-4">{{$event->title}}</h3>
-              <p class="mb-4">{!!$event->content!!}</p>
-              {{-- <ul class="list-unstyled ul-check">
-                <li>Away behind the word</li>
-                <li>Bookmarksgrove right at the coast</li>
-                <li>Separated they live</li>
-              </ul> --}}
-            </div>
-          
         </div>
-        @endforeach
-        
-      </div>
-      @endif
+        <hr>
+
+        <div class="tab-content">
+            <!-- Past Events -->
+            <div class="tab-pane active" id="past">
+                <div class="causes-wrap row">
+                    @forelse($pastEvents as $event)
+                        <div class="col-md-4 xs-padding">
+                            <a href="{{ route('event.detail', $event->id) }}">
+                                <div class="causes-content">
+                                    <div class="causes-thumb">
+                                        <img src="{{ asset($event->image) }}" alt="Event Image">
+                                    </div>
+                                    <div class="causes-details">
+                                        <h3>{{ $event->title }}</h3>
+                                        <p>{{ Str::limit($event->meta_description, 100) }}</p>
+                                        <p style="font-size:12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
+                                        <a href="{{ route('event.detail', $event->id) }}" class="read-more">Read More</a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @empty
+                        <p class="text-center">No past events found.</p>
+                    @endforelse
+                </div>
+            </div>
+
+            <!-- Current Events -->
+            <div class="tab-pane" id="current">
+                <div class="causes-wrap row">
+                    @forelse($currentEvents as $event)
+                        <div class="col-md-4 xs-padding">
+                            <a href="{{ route('event.detail', $event->id) }}">
+                                <div class="causes-content">
+                                    <div class="causes-thumb">
+                                        <img src="{{ asset($event->image) }}" alt="Event Image">
+                                    </div>
+                                    <div class="causes-details">
+                                        <h3>{{ $event->title }}</h3>
+                                        <p>{{ Str::limit($event->meta_description, 100) }}</p>
+                                        <p style="font-size:12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
+                                        <a href="{{ route('event.detail', $event->id) }}" class="read-more">Read More</a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @empty
+                        <p class="text-center">No current events available.</p>
+                    @endforelse
+                </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="tab-pane" id="upcoming">
+                <div class="causes-wrap row">
+                    @forelse($upcomingEvents as $event)
+                        <div class="col-md-4 xs-padding">
+                            <a href="{{ route('event.detail', $event->id) }}">
+                                <div class="causes-content">
+                                    <div class="causes-thumb">
+                                        <img src="{{ asset($event->image) }}" alt="Event Image">
+                                    </div>
+                                    <div class="causes-details">
+                                        <h3>{{ $event->title }}</h3>
+                                        <p>{{ Str::limit($event->meta_description, 100) }}</p>
+                                        <p style="font-size:12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
+                                        <a href="{{ route('event.detail', $event->id) }}" class="read-more">Read More</a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @empty
+                        <p class="text-center">No upcoming events scheduled.</p>
+                    @endforelse
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</section>
+<!-- START SECTION EVENT -->
   <!-- Event -->
 
 
-   
+
 @endsection

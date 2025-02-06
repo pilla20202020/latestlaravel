@@ -3,6 +3,15 @@
     <td><img src="{{ asset(str_replace('\\', '/', $event->image)) }}" class="img-circle width-1" alt="slide_image" width="50" height="50"></td>
     <td>{{ Str::limit($event->title, 47) }}</td>
     <td>{{ $event->event_date ? \Carbon\Carbon::parse($event->event_date)->format('Y-m-d') : 'N/A' }}</td>
+    <td>
+        @if ($event->type == 'past')
+            <span class="badge rounded-pill text-bg-warning">Past</span>
+        @elseif ($event->type == 'present')
+            <span class="badge rounded-pill text-bg-primary">Present</span>
+        @else
+            <span class="badge rounded-pill text-bg-info">Upcoming</span>
+        @endif
+    </td>
     <td class="text-right">
         <a href="{{route('event.edit', $event->slug)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
             <i class="fas fa-edit"></i>

@@ -4,80 +4,97 @@
 
 @section('guest')
     <!-- BEGIN LOGIN SECTION -->
-    <section class="section-account">
-        <div class="row col-md-12 logo" align="center">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="logo" height="100">
-        </div>
-        <div class="row col-md-12" align="center">
-            <div class="card col-sm-4 col-sm-offset-4 ">
-                <div class="card-body">
-                    <br/>
-                    <span class="text-lg text-bold text-primary" style="color: #6E2B86;">{{ ('TEST ADMIN PANEL') }}</span>
-                    <br/><br/>
+    <div>
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-lg-4">
+                    <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
+                        <div class="w-100">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-9">
+                                    <div>
+                                        <div class="text-center">
+                                            <div>
+                                                <a href="{{route('homepage')}}" class="auth-logo">
+                                                    <img src="{{asset('backend/assets/images/logo.jfif')}}" alt="" height="80" class=" logo-dark mx-auto">
+                                                    <img src="{{asset('backend/assets/images/logo.jfif')}}" alt="" height="80" class=" logo-light mx-auto">
+                                                </a>
+                                            </div>
 
-                    <form class="form form-validate" role="form" style="text-align:left;" method="POST"
-                          action="{{ url('/login') }}" autocomplete="off" novalidate>
-                        {!! csrf_field() !!}
-                        <div class="form-group">
-                            <label for="email"
-                                   class="text col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                            <h4 class="font-size-18 mt-4">Welcome Back !</h4>
+                                            <p class="text-muted">Sign in to continue to Dashboard.</p>
+                                        </div>
 
-                            {{--<div class="col-md-6">--}}
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" style="height: 57px"
-                                   name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <div class="p-2 mt-5">
+                                            <form class="form form-validate" role="form" style="text-align:left;" method="POST"
+                                                action="{{ url('/login') }}" autocomplete="off" novalidate>
+                                                {!! csrf_field() !!}
+                                                <div class="form-group">
+                                                    <label for="email"
+                                                        class="text col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                            @enderror
-                            {{--</div>--}}
+                                                    {{--<div class="col-md-6">--}}
+                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" style="height: 57px"
+                                                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                                    @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                                </span>
+                                                    @enderror
+                                                    {{--</div>--}}
+                                                </div>
+                                                {{--<div class="form-group">--}}
+                                                {{--<input type="text" class="form-control" style="height: 57px" id="email" name="email"--}}
+                                                {{--value="{{ old('email') }}" required>--}}
+                                                {{--<label for="login">Email</label>--}}
+                                                {{--</div>--}}
+                                                <div class="form-group mt-3">
+                                                    <label for="password">Password</label>
+                                                    <input type="password" class="form-control" style="height: 57px" id="password"
+                                                        name="password" required>
+                                                </div>
+                                                <br/>
+
+                                                <div class="form-group row">
+                                                    {{--<div class="form-group row">--}}
+
+                                                    {{--</div>--}}
+
+
+                                                    {{--<div class="col-xs-6 text-left">--}}
+                                                    {{--<div class="checkbox checkbox-inline checkbox-styled">--}}
+                                                    {{--<label>--}}
+                                                    {{--<span>Remember me</span>--}}
+                                                    {{--</label>--}}
+                                                    {{--</div>--}}
+                                                    {{--</div><!--end .col -->--}}
+                                                    <div class="col-xs-6 text-right">
+                                                        <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
+                                                    </div><!--end .col -->
+                                                </div><!--end .row -->
+                                            </form>
+                                        </div>
+
+                                        {{-- <div class="mt-5 text-center">
+                                            <p>Don't have an account ? <a href="auth-register.html" class="fw-medium text-primary"> Register </a> </p>
+                                            <p>© <script>document.write(new Date().getFullYear())</script> Stexo. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</p>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        {{--<div class="form-group">--}}
-                        {{--<input type="text" class="form-control" style="height: 57px" id="email" name="email"--}}
-                        {{--value="{{ old('email') }}" required>--}}
-                        {{--<label for="login">Email</label>--}}
-                        {{--</div>--}}
-                        <div class="form-group">
-                            <input type="password" class="form-control" style="height: 57px" id="password"
-                                   name="password" required>
-                            <label for="password">Password</label>
-                            <p class="help-block">
-                                <a href="{{ url('/password/reset') }}" target="_blank">Forgot?</a>
-                            </p>
-                        </div>
-                        <br/>
-
-                        <div class="form-group row">
-                            {{--<div class="form-group row">--}}
-
-                            {{--</div>--}}
-
-
-                            {{--<div class="col-xs-6 text-left">--}}
-                            {{--<div class="checkbox checkbox-inline checkbox-styled">--}}
-                            {{--<label>--}}
-                            {{--<span>Remember me</span>--}}
-                            {{--</label>--}}
-                            {{--</div>--}}
-                            {{--</div><!--end .col -->--}}
-                            <div class="col-xs-6 text-right">
-                                <button class="btn btn-primary btn-raised" type="submit" style="background-color: #28A575;
-    border-color: #28A575;">Login</button>
-                            </div><!--end .col -->
-                        </div><!--end .row -->
-                    </form>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="authentication-bg">
+                        <div class="bg-overlay"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- END LOGIN SECTION -->
+    </div>
 
-    <footer class="text-center">
-        <p>
-            Copyright &#183; {{ str_replace('_',' ',config('app.name'))}} &#183; {{date('Y')}}
-        </p>
-    </footer>
 @endsection
 
 @push('styles')

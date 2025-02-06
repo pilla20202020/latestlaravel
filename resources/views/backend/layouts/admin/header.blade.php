@@ -5,7 +5,7 @@
             <div class="navbar-brand-box">
                 <a href="index.html" class="logo">
                     <span class="logo-light  fs-5 fw-semibold ">
-                        <i class="mdi mdi-camera-control"></i> STEXO
+                        <i class="mdi mdi-camera-control"></i> SERAP Lee
                     </span>
                     <span class="logo-sm fs-2">
                         <i class="mdi mdi-camera-control"></i>
@@ -17,7 +17,7 @@
                 <i class="mdi mdi-menu"></i>
             </button>
 
-        
+
         </div>
 
         <div class="d-flex">
@@ -137,12 +137,20 @@
 
             <div class="dropdown notification-list d-inline-block user-dropdown">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{asset('backend/assets/images/users/user-4.jpg')}}" alt="Header Avatar">
+                    <img class="rounded-circle header-profile-user" src="{{asset('backend/assets/images/logo.jfif')}}" alt="Header Avatar">
                 </button>
                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
                     <!-- item-->
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle "></i> Profile</a>
-                    <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                    {{-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle "></i> Profile</a> --}}
+                    <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+         document.getElementById('logout-form').submit();"><i class="mdi mdi-power text-danger"></i>
+                        Logout
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                        class="d-none">
+                            @csrf
+                        </form>
+                    </a>
                 </div>
             </div>
 

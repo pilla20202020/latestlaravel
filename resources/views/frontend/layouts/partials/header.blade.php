@@ -2,46 +2,70 @@
 
 
 	<!-- Start header -->
-	<header class="top-navbar">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container">
-				<a class="navbar-brand" href="{{route('homepage')}}">
-					<img src="{{ asset('assets/images/logo.png') }}" alt="" />
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-				  <span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbars-rs-food">
-					<ul class="navbar-nav ml-auto">
-              @foreach(menus() as $key => $menu)
-                <?php
-                $hasSub = !$menu->subMenus->isEmpty();
-                ?>
-                <li class="nav-item  {{($hasSub) ? "dropdown" : ""}} ">
-                    <a class="{{($hasSub) ? "dropdown-toggle" : ""}} nav-link" href="{{ url($menu->url) }} "
-                      data-toggle="{{($hasSub) ? "dropdown" : ""}}">
-                        {{$menu->name}}
-                    </a>
-                    @if($hasSub)
-                        <div class="dropdown-menu">
-                            <ul>
-                                @foreach($menu->subMenus as $key => $sub)
-                                    <li>
-                                        <a class="dropdown-item nav-link nav-item"
-                                          href="{{url($sub->url)}}">{{ $sub->name }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
+	<div class="site-preloader-wrap">
+        <div class="spinner"></div>
+    </div><!-- Preloader -->
+
+    <header id="header" class="header-section">
+        <div class="top-header">
+            <div class="container">
+                <div class="top-content-wrap row">
+                    <div class="col-sm-8">
+                        <ul class="left-info">
+                            <li><a href="#"><i class="ti-email"></i>Info@YourDomain.com</a></li>
+                            <li><a href="#"><i class="ti-mobile"></i>+(333) 052 39876</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 d-none d-md-block">
+                        <ul class="right-info">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-header">
+            <div class="container">
+                <div class="bottom-content-wrap row">
+                    <div class="col-sm-4">
+                        <div class="site-branding">
+                            <a href="{{route('homepage')}}"><img src="{{asset('backend/assets/images/logo.jpeg')}}" alt="SERAP LEE FOUNDATION" class="logo_img img-fluid"></a>
                         </div>
-                    @endif
-                </li>
-                
-            @endforeach
-            <li class="nav-item"><a class="nav-link btn btn-lg btn-circle btn-outline-new-white" href="{{route('book')}}">Book a table</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
+                    </div>
+                   <div class="col-sm-8 text-right">
+                       <ul id="mainmenu" class="nav navbar-nav nav-menu">
+                            <li><a href="{{route('homepage')}}">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="causes.html">Causes</a></li>
+                            <li><a href="{{route('events')}}">Event</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul>
+                                   <li><a href="gallery.html">Gallery</a></li>
+                                   <li><a href="team.html">Volunteers</a></li>
+                                   <li><a href="404.html">404 Not Found</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="blog-grid.html">Blog</a>
+                                <ul>
+                                   <li><a href="blog-grid.html">Blog Grid</a></li>
+                                   <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                                   <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                                   <li><a href="blog-single.html">Blog Single</a></li>
+                                </ul>
+                            </li>
+                            <li> <a href="contact.html">Contact</a></li>
+                        </ul>
+                        <a href="#" class="default-btn">Donet Now</a>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </header><!-- /Header Section -->
+
+    <div class="header-height"></div>
 	<!-- End header -->
-	
+
