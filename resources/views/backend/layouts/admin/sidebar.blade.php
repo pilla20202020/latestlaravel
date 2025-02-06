@@ -49,6 +49,23 @@
                         <i class="icon-paper-sheet"></i><span> Volunteer </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('blog.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Blog </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('album.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Album </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('gallery.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Galleries </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
