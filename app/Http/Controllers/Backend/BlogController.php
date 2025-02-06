@@ -15,17 +15,11 @@ class BlogController extends Controller
     {
         $this->blog = $blog;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
-        $blogs = $this->blog->orderBy('created_at', 'asc')->get();
+        $blog = $this->blog->orderBy('created_at', 'desc')->get();
 
-        return view('backend.blog.index', compact('blogs'));
+        return view('backend.blog.index', compact('blog'));
     }
 
     /**
@@ -35,9 +29,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
         return view('backend.blog.create');
-
     }
 
     /**
@@ -48,11 +40,12 @@ class BlogController extends Controller
      */
     public function store(BlogRequest $request)
     {
-        if ($blog = $this->blog->create($request->data())) {
-            if ($request->hasFile('image')) {
+        if($blog = $this->blog->create($request->blogFillData())) {
+            if($request->hasFile('image')) {
                 $this->uploadFile($request, $blog);
             }
             return redirect()->route('blog.index');
+
         }
     }
 
@@ -73,11 +66,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(blog $blog)
+    public function edit(Blog $blog)
     {
-        //
         return view('backend.blog.edit', compact('blog'));
-
     }
 
     /**
@@ -89,8 +80,7 @@ class BlogController extends Controller
      */
     public function update(BlogRequest $request, Blog $blog)
     {
-        //
-        if ($blog->update($request->data())) {
+        if ($blog->update($request->blogFillData())) {
             $blog->fill([
                 'slug' => $request->title,
             ])->save();
@@ -99,7 +89,6 @@ class BlogController extends Controller
             }
         }
         return redirect()->route('blog.index')->withSuccess(trans('blog has been updated'));
-
     }
 
     /**
@@ -110,7 +99,6 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
         $blog = $this->blog->find($id);
         $blog->delete();
         return redirect()->route('blog.index')->withSuccess(trans('blog has been deleted'));
@@ -118,27 +106,43 @@ class BlogController extends Controller
 
     function uploadFile(Request $request, $blog)
     {
-        $file = $request->file('image');
-        $path = 'uploads/blog';
-        $fileName = $this->uploadFromAjax($file, $path);
-        if (!empty($blog->image))
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Get the uploaded file
+            $file = $request->file('image');
+
+            // Define the destination path for the file
+            $path = 'uploads' . DIRECTORY_SEPARATOR . 'blog';  // Use DIRECTORY_SEPARATOR here
+
+            // Create the directory if it doesn't exist
+            $destinationPath = public_path($path);
+            if (!file_exists($destinationPath)) {
+                // Try creating the directory and log any issues
+                $created = mkdir($destinationPath, 0755, true); // Creates directory with correct permissions
+                if (!$created) {
+                    Log::error('Failed to create directory: ' . $destinationPath);
+                    return response()->json(['error' => 'Failed to create folder'], 500);
+                }
+            }
+
+            // Generate a unique file name
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            // Move the file to the public storage folder
+            $file->move($destinationPath, $fileName);
+
+            // Delete existing image if it exists
+          if (!empty($blog->image)) {
             $this->__deleteImages($blog);
-
-        $data['image'] = $fileName;
-        $this->updateImage($blog->id, $data);
-
-    }
-
-    public function __deleteImages($subCat)
-    {
-        try {
-            if (is_file($subCat->image_path))
-                unlink($subCat->image_path);
-
-            if (is_file($subCat->thumbnail_path))
-                unlink($subCat->thumbnail_path);
-        } catch (\Exception $e) {
-
+        }
+            // Save the new file name in the database
+            $data['image'] = $path . DIRECTORY_SEPARATOR . $fileName;
+            $this->updateImage($blog->id, $data);
+        } else {
+            // Handle case where no valid image is uploaded
+            return response()->json(['error' => 'No valid image uploaded'], 400);
         }
     }
 
@@ -153,5 +157,17 @@ class BlogController extends Controller
             return false;
         }
     }
-}
 
+    public function __deleteImages($subCat)
+    {
+        try {
+            if (is_file($subCat->image_path))
+                unlink($subCat->image_path);
+
+            if (is_file($subCat->thumbnail_path))
+                unlink($subCat->thumbnail_path);
+        } catch (\Exception $e) {
+
+        }
+    }
+}

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Album;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreAlbum extends FormRequest
 {
@@ -28,11 +29,12 @@ class StoreAlbum extends FormRequest
         ];
     }
 
-    public function data()
+    public function albumFillData()
     {
-       
+
         $data = [
             'name'                  => $this->get('name'),
+            'slug' => Str::slug($this->get('name')),
             'is_published' => ($this->get('is_published') ? $this->get('is_published') : '') == 'on' ? '1' : '0',
             'is_status' => ($this->get('is_status') ? $this->get('is_status') : '') == 'on' ? '1' : '0',
             'is_featured' => ($this->get('is_featured') ? $this->get('is_featured') : '') == 'on' ? '1' : '0'

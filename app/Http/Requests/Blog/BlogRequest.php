@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Blog;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class BlogRequest extends FormRequest
 {
@@ -28,10 +29,12 @@ class BlogRequest extends FormRequest
         ];
     }
 
-    public function data()
+    public function blogFillData()
     {
         $data = [
             'title'    => $this->get('title'),
+            'slug' => Str::slug($this->get('title')),
+            'type'    => $this->get('type'),
             'content'      => $this->get('content'),
             'short_description'      => $this->get('short_description'),
             'is_featured' => ($this->get('is_featured') ? $this->get('is_featured') : '') == 'on' ? '1' : '0'

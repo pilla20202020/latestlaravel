@@ -1,24 +1,37 @@
 <tr>
     <td>{{++$key}}</td>
-    <td><img src="{{asset($blog->thumbnail_path)}}" class="img-circle width-1" alt="{{$blog->title}}" width="50" height="50"></td>
+    <td><img src="{{ asset(str_replace('\\', '/', $blog->image)) }}" class="img-circle width-1" alt="blog_image" width="50" height="50"></td>
     <td>{{ Str::limit($blog->title, 47) }}</td>
-    <td>{{ Str::limit($blog->content, 47) }}</td>
-    <td class="text-center">
-        @if($blog->is_featured =='1')
-            <span class="badge" style="background-color: #419645">{{$blog->is_featured ? 'Yes' : 'No'}}</span>
-        @elseif($blog->is_featured =='0')
-            <span class="badge" style="background-color: #f44336">{{$blog->is_featured ? 'Yes' : 'No'}}</span>
-        @endif
-    </td>
-
     <td class="text-right">
         <a href="{{route('blog.edit', $blog->slug)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
-            <i class="glyphicon glyphicon-edit"></i>
+            <i class="fas fa-edit"></i>
         </a>
-        <a href="{{ route('blog.destroy', $blog->id) }}">
-        <button type="button"
-            class="btn btn-flat btn-danger btn-xs item-delete" title="delete">
-            <i class="glyphicon glyphicon-trash"></i>
+
+        <button class="btn btn-flat btn-danger btn-xs" title="delete" onclick="openDeleteModal({{ $blog->id }}, '{{ $blog->title }}')">
+            <i class="fas fa-trash-alt"></i>
         </button>
     </td>
 </tr>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the blog titled "<strong id="blogTitle"></strong>"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" action="" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

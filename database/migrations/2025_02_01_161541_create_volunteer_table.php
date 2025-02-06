@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('volunteers', function (Blueprint $table) {
             $table->id();
             $table->string('slug', 250)->unique();
-            $table->string('title');
+            $table->string('title', 255);
             $table->string('position')->nullable();
             $table->string('meta_description')->nullable();
-            $table->string('content')->nullable();
+            $table->longText('content')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

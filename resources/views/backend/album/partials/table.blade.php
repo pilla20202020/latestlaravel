@@ -1,17 +1,36 @@
 <tr>
     <td>{{++$key}}</td>
-{{--    <td><img src="{{asset($album->thumbnail_path)}}" class="img-circle width-1" alt="album_image" width="50" height="50"></td>--}}
     <td>{{ Str::limit($album->name, 47) }}</td>
-{{--    <td class="text-center">{{ Carbon\Carbon::parse($album->date)->format('Y-m-d') }}</td>--}}
     <td class="text-right">
         <a href="{{route('album.edit', $album->slug)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
-            <i class="glyphicon glyphicon-edit"></i>
+            <i class="fas fa-edit"></i>
         </a>
-        <a href="{{ route('album.destroy', $album->id) }}">
-            <button type="button" 
-                class="btn btn-flat btn-danger btn-xs item-delename="delete">
-                <i class="glyphicon glyphicon-trash"></i>
-            </button>
+
+        <button class="btn btn-flat btn-danger btn-xs" title="delete" onclick="openDeleteModal({{ $album->id }}, '{{ $album->title }}')">
+            <i class="fas fa-trash-alt"></i>
+        </button>
     </td>
 </tr>
 
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the album titled "<strong id="albumTitle"></strong>"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" action="" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

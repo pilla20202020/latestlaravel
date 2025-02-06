@@ -16,7 +16,7 @@ class CreateSlidersTable extends Migration
         Schema::create('sliders', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('title', 100)->nullable();
+            $table->string('title', 255)->nullable();
             $table->string('caption', 150)->nullable();
             $table->string('link_url')->nullable();
             $table->string('image')->nullable();
