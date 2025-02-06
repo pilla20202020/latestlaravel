@@ -24,14 +24,14 @@ class StoreGallery extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required'
+            'album_id' => 'required',
         ];
     }
 
-    public function data()
+    public function galleryFillData()
     {
         $data = [
-            // 'album_id'               => $this->get('album_id'),
+            'album_id'               => $this->get('album_id'),
             // 'title'                  => $this->get('title'),
             // 'meta_description'      => $this->get('meta_description'),
             'is_published' => ($this->get('is_published') ? $this->get('is_published') : '') == 'on' ? '1' : '0',

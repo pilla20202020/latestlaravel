@@ -26,7 +26,7 @@ class GalleryController extends Controller
 
     public function index()
     {
-        
+
         $gallery = $this->gallery->orderBy('created_at', 'desc')->get();
         return view('backend.gallery.index', compact('gallery'));
     }
@@ -36,7 +36,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        
+
         // $albums = $this->album->get();
         $albums = $this->album->get();
         return view('backend.gallery.create',compact('albums'));
@@ -49,7 +49,7 @@ class GalleryController extends Controller
     public function store(StoreGallery $request)
     {
         //dd($request->all());
-        if ($gallery = $this->gallery->create($request->data())) {
+        if ($gallery = $this->gallery->create($request->galleryFillData())) {
             if ($request->hasFile('image')) {
                 $this->uploadFile($request, $gallery);
             }
@@ -65,18 +65,14 @@ class GalleryController extends Controller
     public function edit( $id)
     {
         $gallery = $this->gallery->find($id);
-        return view('backend.gallery.edit', compact('gallery'));
+        $albums = $this->album->get();
+        $album_search = $gallery->album_id;
+        return view('backend.gallery.edit', compact('gallery','album_search','albums'));
     }
 
     public function update(StoreGallery $request, Gallery $gallery)
     {
-        $request->validate([
-          
-            'image' => 'required',
-        ]);
-        if ($gallery->update($request->data())) {
-            
-            
+        if ($gallery->update($request->galleryFillData())) {
             if ($request->hasFile('image')) {
                 $this->uploadFile($request, $gallery);
             }
@@ -89,19 +85,48 @@ class GalleryController extends Controller
     {
         $gallery = $this->gallery->find($id);
         $gallery->delete();
-        return redirect()->route('gallery.index')->withSuccess(trans('gallery has been deleted'));
+        return redirect()->route('gallery.index')->withSuccess(trans('Gallery has been deleted'));
     }
-    function uploadFile(Request $request, $gallery)
+    function uploadFile(Request $request, $volunteer)
     {
-        $file = $request->file('image');
-        $path = 'uploads/gallery';
-        $fileName = $this->uploadFromAjax($file, $path);
-        if (!empty($gallery->image))
-            $this->__deleteImages($gallery);
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Get the uploaded file
+            $file = $request->file('image');
 
-        $data['image'] = $fileName;
-        $this->updateImage($gallery->id, $data);
+            // Define the destination path for the file
+            $path = 'uploads' . DIRECTORY_SEPARATOR . 'volunteer';  // Use DIRECTORY_SEPARATOR here
 
+            // Create the directory if it doesn't exist
+            $destinationPath = public_path($path);
+            if (!file_exists($destinationPath)) {
+                // Try creating the directory and log any issues
+                $created = mkdir($destinationPath, 0755, true); // Creates directory with correct permissions
+                if (!$created) {
+                    Log::error('Failed to create directory: ' . $destinationPath);
+                    return response()->json(['error' => 'Failed to create folder'], 500);
+                }
+            }
+
+            // Generate a unique file name
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            // Move the file to the public storage folder
+            $file->move($destinationPath, $fileName);
+
+            // Delete existing image if it exists
+          if (!empty($volunteer->image)) {
+            $this->__deleteImages($volunteer);
+        }
+            // Save the new file name in the database
+            $data['image'] = $path . DIRECTORY_SEPARATOR . $fileName;
+            $this->updateImage($volunteer->id, $data);
+        } else {
+            // Handle case where no valid image is uploaded
+            return response()->json(['error' => 'No valid image uploaded'], 400);
+        }
     }
 
     public function __deleteImages($subCat)

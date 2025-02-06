@@ -13,7 +13,7 @@ class Gallery extends Model
      *
      * @var array
      */
-  
+
 
     protected $path ='uploads/gallery';
 
@@ -26,11 +26,11 @@ class Gallery extends Model
     // }
 
     protected $fillable = [
-       
+       'album_id',
         'image',
         'is_featured',
         'is_published',
-       
+
     ];
 
     /**
@@ -151,5 +151,8 @@ class Gallery extends Model
         return $this->path.'/thumb/'. $this->image;
     }
 
-    
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
+    }
 }

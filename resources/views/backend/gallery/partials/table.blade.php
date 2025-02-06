@@ -1,22 +1,40 @@
 <tr>
     <td>{{++$key}}</td>
-    <td><img src="{{asset($gallery->thumbnail_path)}}" class="img-circle width-1" alt="gallery_image" width="50" height="50"></td>
+    <td><img src="{{ asset(str_replace('\\', '/', $gallery->image)) }}" class="img-circle width-1" alt="gallery_image" width="50" height="50"></td>
+    <td>{{ Str::limit($gallery->album->name, 47) }}</td>
+{{--    <td class="text-center">{{ Carbon\Carbon::parse($gallery->date)->format('Y-m-d') }}</td>--}}
 
-    <td class="text-center">
-        @if($gallery->is_published =='1')
-            <span class="badge" style="background-color: #419645">{{$gallery->is_published ? 'Yes' : 'No'}}</span>
-        @elseif($gallery->is_published =='0')
-            <span class="badge" style="background-color: #f44336">{{$gallery->is_published ? 'Yes' : 'No'}}</span>
-        @endif    </td>
+
     <td class="text-right">
-        <a href="{{ route('gallery.edit', $gallery->id)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
-            <i class="glyphicon glyphicon-edit"></i>
+        <a href="{{route('gallery.edit', $gallery->id)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
+            <i class="fas fa-edit"></i>
         </a>
-        <a href="{{ route('gallery.destroy', $gallery->id) }}">
-            <button type="button" 
-                class="btn btn-flat btn-danger btn-xs item-delete" title="delete">
-                <i class="glyphicon glyphicon-trash"></i>
-            </button>
+
+        <button class="btn btn-flat btn-danger btn-xs" title="delete" onclick="openDeleteGalleryModal({{ $gallery->id }}, '{{ $gallery->album->name }}')">
+            <i class="fas fa-trash-alt"></i>
+        </button>
     </td>
 </tr>
 
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the album "<strong id="galleryTitle"></strong> image"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" action="" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
