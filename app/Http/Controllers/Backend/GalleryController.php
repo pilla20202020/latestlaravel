@@ -95,7 +95,6 @@ class GalleryController extends Controller
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             // Get the uploaded file
             $file = $request->file('image');
-            dd($file);
 
             // Define the destination path for the file
             $path = 'uploads' . DIRECTORY_SEPARATOR . 'gallery';  // Use DIRECTORY_SEPARATOR here
