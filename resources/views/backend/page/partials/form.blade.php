@@ -43,15 +43,16 @@
 
                     <div class="row mt-3">
                         <div class="col-sm-12">
-                            <label class="text-default-light">Image(Optional)</label>
+                            <label class="text-default-light">Image</label>
                             @if(isset($page) && $page->image)
                                 <input type="file" name="image" class="dropify" id="input-file-events"
-                                       data-default-file="{{ asset($page->thumbnail_path)}}"/>
+                                       data-default-file="{{ asset(str_replace('\\', '/', $page->image)) }}"/>
 
                             @else
-                                <input type="file" name="image" class="dropify"/>
+                                <input type="file" name="image" class="dropify" required/>
                             @endif
                             <input type="hidden" name="removeimage" id="removeimage" value=""/>
+                            <span id="textarea1-error" class="text-danger">{{ $errors->first('image') }}</span>
                         </div>
                         <!--<div class="col-sm-6">-->
                         <!--    <label class="text-default-light">Banner Image(Optional)</label>-->
