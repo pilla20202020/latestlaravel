@@ -30,24 +30,12 @@ class ClientRequest extends FormRequest
         return $rules;
     }
 
-    public function data(){
-        
-        
-        $inputs=[
-            'sector_id'               => $this->get('sector_id'),
-            'title' => $this->get('title'),
-            'position'=> $this->get('position'),
-            'company'=> $this->get('company'),
-            'content'   => $this->get('content'),
-            'is_published' => ($this->get('is_published') ? $this->get('is_published') : '') == 'on' ? '1' : '0',
-            'is_status' => ($this->get('is_status') ? $this->get('is_status') : '') == 'on' ? '1' : '0',
-            'is_featured' => ($this->get('is_featured') ? $this->get('is_featured') : '') == 'on' ? '1' : '0'
+    public function clientFillData(){
 
+
+        $inputs=[
+            'title' => $this->get('title'),
         ];
-      
-        if ($this->has('publish')) {
-            $inputs['is_published'] = 1;
-        }
 
         return $inputs;
     }

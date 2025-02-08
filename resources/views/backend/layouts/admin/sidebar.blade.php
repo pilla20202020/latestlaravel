@@ -68,6 +68,16 @@
                         <i class="icon-paper-sheet"></i><span> Galleries </span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('client.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Client </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('setting.index') }}" class="waves-effect">
+                        <i class="icon-paper-sheet"></i><span> Setting </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
