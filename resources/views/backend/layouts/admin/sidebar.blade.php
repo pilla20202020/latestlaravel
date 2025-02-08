@@ -59,23 +59,31 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('album.index') }}" class="waves-effect">
-                        <i class="icon-paper-sheet"></i><span> Album </span>
-                    </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-coffee"></i> <span> Gallery <span class="float-end menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span> </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{ route('album.index') }}" class="waves-effect">
+                                <i class="mdi mdi-image-album"></i><span> Album </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('gallery.index') }}" class="waves-effect">
+                                <i class="mdi mdi-google-photos"></i><span> Galleries </span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="{{ route('gallery.index') }}" class="waves-effect">
-                        <i class="icon-paper-sheet"></i><span> Galleries </span>
-                    </a>
-                </li>
+
+
+
                 <li>
                     <a href="{{ route('client.index') }}" class="waves-effect">
-                        <i class="icon-paper-sheet"></i><span> Client </span>
+                        <i class="fas fa-user"></i><span> Client </span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('setting.index') }}" class="waves-effect">
-                        <i class="icon-paper-sheet"></i><span> Setting </span>
+                        <i class="ti-settings"></i><span> Setting </span>
                     </a>
                 </li>
             </ul>

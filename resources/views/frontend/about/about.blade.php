@@ -3,33 +3,42 @@
 
 
 <!-- Start header -->
-<div class="all-page-title page-breadcrumb">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>About Us</h1>
+<section class="overlay_bg_50">
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content">
+                <h2>About Us</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
+                    <li class="breadcrumb-item active">About Us</li>
+                </ol>
             </div>
         </div>
     </div>
-</div>
+</section>
 <!-- End header -->
 
 <!-- Start About -->
-<div class="about-section-box">
+<section class="blog-section bg-grey padding">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6 text-center">
-                <div class="inner-column">
-                    <p>{!!$about->content!!}</p>
-                    <a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a>
+            <div class="col-lg-9 sm-padding">
+                <div class="blog-items single-post row">
+                    @if ($about->image)
+                        <img src="{{asset($about->image)}}" alt="{{$about->title}}" class="img-fluid">
+
+                    @endif
+                    <div class="container mt-3">
+                        <div class="row">
+                            <p>{!!$about->content!!}</p>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <img src="{{asset($about->image_path)}}" alt="" class="img-fluid">
-            </div>
+            </div><!-- Blog Posts -->
         </div>
     </div>
-</div>
+</section>
 <!-- End About -->
 
 @endsection

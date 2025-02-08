@@ -23,7 +23,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-head">
-                            <header>General Settings</header>
+                            <header class="p-3">General Settings</header>
                             <div class="tools">
                                 <input type="submit" class="btn btn-primary" value="Save All">
                             </div>
@@ -36,19 +36,19 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-head">
-                                        <header>General</header>
+                                        <header class="p-3">General</header>
                                     </div>
                                     <div class="card-body tab-content">
                                         <div class="tab-pane active" id="first2">
                                             <div class="form-group">
-                                                <label for="setting[donation]">Make Donation</label>
+                                                <label class="pt-3" for="setting[donation]">Make Donation</label>
                                                 <textarea name="setting[donation]" class="form-control" rows="2" >{{ old('setting.donation', setting('donation')) }}</textarea>
-                                                <label for="setting[fundraising]">Fundraising</label>
+                                                <label class="pt-3" for="setting[fundraising]">Fundraising</label>
                                                 <textarea name="setting[fundraising]" class="form-control" rows="2" >{{ old('setting.fundraising', setting('fundraising')) }}</textarea>
-                                                <label for="setting[become_volunteer]">Become a become_Volunteer</label>
+                                                <label class="pt-3" for="setting[become_volunteer]">Become a become_Volunteer</label>
                                                 <textarea name="setting[become_volunteer]" class="form-control" rows="2" >{{ old('setting.become_volunteer', setting('become_volunteer')) }}</textarea>
 
-                                                {{-- <label for="setting[footer_content]">Footer Content</label>
+                                                {{-- <label class="pt-3" for="setting[footer_content]">Footer Content</label>
                                                 <textarea name="setting[footer_content]" class="form-control" rows="2" >{{ old('setting.footer_content', setting('footer_content')) }}</textarea> --}}
                                             </div>
                                         </div>
@@ -63,17 +63,17 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-head">
-                                        <header>General</header>
+                                        <header class="p-3">General Information</header>
                                     </div>
                                     <div class="card-body tab-content">
                                         <div class="tab-pane active" id="first2">
                                             <div class="form-group">
-                                                <label for="setting[profile]">Profile</label>
+                                                <label class="pt-3" for="setting[profile]">Profile</label>
                                                 <textarea name="setting[profile]" class="form-control" rows="2" >{{ old('setting.profile', setting('profile')) }}</textarea>
                                             </div>
-                                            <label for="setting[history]">Our History</label>
+                                            <label class="pt-3" for="setting[history]">Our History</label>
                                             <textarea name="setting[history]" class="form-control" rows="2" >{{ old('setting.history', setting('history')) }}</textarea>
-                                            <label for="setting[mission]">Our Mission</label>
+                                            <label class="pt-3" for="setting[mission]">Our Mission</label>
                                             <textarea name="setting[mission]" class="form-control" rows="2" >{{ old('setting.mission', setting('mission')) }}</textarea>
 
 
@@ -91,25 +91,25 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-head">
-                                        <header>Page Counter</header>
+                                        <header class="p-3">Page Counter</header>
                                     </div>
                                     <div class="card-body tab-content">
                                         <div class="tab-pane active" id="first2">
                                             <div class="tab-pane active" id="first2">
                                                 <div class="form-group">
-                                                    <label for="setting[money]">Money Donated</label>
+                                                    <label class="pt-3" for="setting[money]">Money Donated</label>
                                                     <input type="text" name="setting[money]" class="form-control"  value="{{ old('setting.money', setting('money')) }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="setting[volunteer]">Volunteer around the world</label>
+                                                    <label class="pt-3" for="setting[volunteer]">Volunteer around the world</label>
                                                     <input type="text" name="setting[volunteer]" class="form-control" value="{{ old('setting.volunteer', setting('volunteer')) }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="setting[people]">People Impacted</label>
+                                                    <label class="pt-3" for="setting[people]">People Impacted</label>
                                                     <input type="text" name="setting[people]" class="form-control" value="{{ old('setting.people', setting('people')) }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="setting[positive]">Positive Feedback</label>
+                                                    <label class="pt-3" for="setting[positive]">Positive Feedback</label>
                                                     <input type="text" name="setting[positive]" class="form-control" value="{{ old('setting.positive', setting('positive')) }}">
                                                 </div>
                                             </div>
@@ -125,24 +125,24 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-head">
-                                        <header>Contacts</header>
+                                        <header class="p-3">Contacts</header>
                                     </div>
                                     <div class="card-body tab-content">
                                         <div class="tab-pane active" id="first3">
                                             <div class="form-group">
-                                                <label for="setting[phone]">Phone</label>
+                                                <label class="pt-3" for="setting[phone]">Phone</label>
                                                 <input type="text" name="setting[phone]" class="form-control"  value="{{ old('setting.phone', setting('phone')) }}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="setting[email]">Email</label>
+                                                <label class="pt-3" for="setting[email]">Email</label>
                                                 <input type="email" name="setting[email]" class="form-control"  value="{{ old('setting.email', setting('email')) }}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="setting[domain]">Domain</label>
+                                                <label class="pt-3" for="setting[domain]">Domain</label>
                                                 <input type="text" name="setting[domain]" class="form-control"  value="{{ old('setting.domain', setting('domain')) }}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="setting[address]">Address</label>
+                                                <label class="pt-3" for="setting[address]">Address</label>
                                                 <input type="text" name="setting[address]" class="form-control"  value="{{ old('setting.address', setting('address')) }}">
                                             </div>
                                         </div>
@@ -156,23 +156,23 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-head">
-                                        <header>Social Links</header>
+                                        <header class="p-3">Social Links</header>
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="setting[facebook]">Facebook</label>
+                                            <label class="pt-3" for="setting[facebook]">Facebook</label>
                                             <input type="text" name="setting[facebook]" class="form-control"  value="{{ old('setting.facebook', setting('facebook')) }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="setting[twitter]">Twitter</label>
+                                            <label class="pt-3" for="setting[twitter]">Twitter</label>
                                             <input type="text" name="setting[twitter]" class="form-control"  value="{{ old('setting.twitter', setting('twitter')) }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="setting[youtube]">Youtube</label>
+                                            <label class="pt-3" for="setting[youtube]">Youtube</label>
                                             <input type="text" name="setting[youtube]" class="form-control"  value="{{ old('setting.youtube', setting('youtube')) }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="setting[instagram]">Instagram</label>
+                                            <label class="pt-3" for="setting[instagram]">Instagram</label>
                                             <input type="text" name="setting[instagram]" class="form-control"  value="{{ old('setting.instagram', setting('instagram')) }}">
                                         </div>
                                     </div>

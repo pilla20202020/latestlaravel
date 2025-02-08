@@ -2,6 +2,22 @@
 @section('content')
 
 
+
+    <!-- Event -->
+    <section class="overlay_bg_50">
+        <div class="pager-header">
+            <div class="container">
+                <div class="page-content">
+                    <h2>Event</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
+                        <li class="breadcrumb-item active">{{$event->title}}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Page Header -->
   <!-- Event -->
 
   <section class="blog-section bg-grey padding">

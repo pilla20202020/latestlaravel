@@ -142,8 +142,8 @@ Route::controller(FrontendController::class)->group(function () {
     Route::post('booking', 'bookingDetails')->name('booking-details');
     Route::get('book-a-table', 'book')->name('book');
     Route::get('teams', 'teams')->name('teams');
-    Route::get('blogs', 'blog')->name('blog');
-    Route::get('blogsdetail/{blogs}', 'blogDetail')->name('blogs.detail');
+    Route::get('blogs/{type}', 'blog')->name('blogs');
+    Route::get('blogsdetail/{blogs}', 'blogDetail')->name('blog.detail');
     Route::get('events', 'events')->name('events');
     Route::get('eventDetail/{event}', 'eventDetail')->name('event.detail');
     Route::get('{page}', 'page')->name('page.detail');

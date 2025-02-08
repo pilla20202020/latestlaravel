@@ -2,6 +2,15 @@
     <td>{{++$key}}</td>
     <td><img src="{{ asset(str_replace('\\', '/', $blog->image)) }}" class="img-circle width-1" alt="blog_image" width="50" height="50"></td>
     <td>{{ Str::limit($blog->title, 47) }}</td>
+    <td>
+        @if ($blog->type == 'recent-cause')
+            <span class="badge rounded-pill text-bg-warning">Recent Cause</span>
+        @elseif ($blog->type == 'recent-stories')
+            <span class="badge rounded-pill text-bg-primary">Recent Stories</span>
+        @else
+            <span class="badge rounded-pill text-bg-info">Blog</span>
+        @endif
+    </td>
     <td class="text-right">
         <a href="{{route('blog.edit', $blog->slug)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
             <i class="fas fa-edit"></i>
@@ -11,6 +20,8 @@
             <i class="fas fa-trash-alt"></i>
         </button>
     </td>
+
+
 </tr>
 
 

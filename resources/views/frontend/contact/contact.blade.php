@@ -1,92 +1,70 @@
 @extends ('frontend.layouts.app')
 @section('content')
-<!-- Start All Pages -->
-<div class="all-page-title page-breadcrumb">
-  <div class="container text-center">
-    <div class="row">
-      <div class="col-lg-12">
-        <h1>Contact</h1>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End All Pages -->
 
-<!-- Start Contact -->
-<!--<div class="map-full"></div>-->
-<div class="contact-box">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="heading-title text-center">
-          <h2>Contact</h2>
+  <!-- Event -->
+  <section class="overlay_bg_50">
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content">
+                <h2>Contact Us</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
+                    <li class="breadcrumb-item active">Contact Us</li>
+                </ol>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="row">
-      <div class="col-lg-6">
-        @if(Illuminate\Support\Facades\Session::has('success'))
-        <div class="alert alert-success">
-            {{Illuminate\Support\Facades\Session::get('success')}}
-        </div>
-         @endif
-          <form method="post" name="enq" action="{{route('send-contact')}}">
-            @csrf
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required data-error="Please enter your name">
-                  <div class="help-block with-errors"></div>
-                </div>                                 
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <input type="text" placeholder="Your Email" id="email" class="form-control" name="email" required data-error="Please enter your email">
-                  <div class="help-block with-errors"></div>
-                </div> 
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <input type="number" placeholder="Your Phone Number" id="phone" class="form-control" name="phone" required data-error="Please enter your phone number">
-                  <div class="help-block with-errors"></div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group"> 
-                  <textarea class="form-control" id="message" name="message" placeholder="Your Message" rows="4" data-error="Write your message" required></textarea>
-                  <div class="help-block with-errors"></div>
-                </div>
-                <div class="submit-button text-center">
-                  <button class="btn btn-common" id="submit" type="submit">Send Message</button>
-                  <div id="msgSubmit" class="h3 text-center hidden"></div> 
-                  <div class="clearfix"></div> 
-                </div>
-              </div>
-            </div>            
-          </form>
-      </div>
-      <div class="col-lg-6">
-          <img src="{{asset('assets/images/map-web.jpg')}}" alt="Image" class="img-fluid">
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End Contact -->
-@stop
+</section>
+<!-- /Page Header -->
 
-@push('scripts')
-<script src="{{asset('assets/js/jquery.mapify.js') }}"></script>
-<script>
-$('.map-full').mapify({
-  points: [
-    {
-      lat: 40.7143528,
-      lng: -74.0059731,
-      marker: true,
-      title: 'Marker title',
-      infoWindow: 'Kaniz Restaurant'
-    }
-  ]
-});	
-</script>
-@endpush
+<section class="contact-section padding">
+    <div class="container">
+        <div class="section-heading text-center mb-40">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="row contact-wrap">
+            <div class="col-md-6 xs-padding">
+                <div class="contact-info">
+                    <h3>Get in touch</h3>
+                    <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
+                    <p>The secret to happiness lies in helping others. Never underestimate the difference.</p>
+                    <ul>
+                        <li><i class="ti-location-pin"></i> 315 West 33rd Street New York, NY 10001</li>
+                        <li><i class="ti-mobile"></i> +1 212 425 8617, +1 212 425 8533</li>
+                        <li><i class="ti-email"></i> Youremail@companyname.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 xs-padding">
+                <div class="contact-form">
+                    <h3>Drop us a line</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <form action="contact.php" method="post" id="ajax_form" class="form-horizontal">
+                        <div class="form-group colum-row row">
+                            <div class="col-sm-6">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <textarea id="message" name="message" cols="30" rows="5" class="form-control message" placeholder="Message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <button id="submit" class="default-btn" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                        <div id="form-messages" class="alert" role="alert"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- /Contact Section -->
+
+@endsection
+

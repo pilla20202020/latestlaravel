@@ -489,6 +489,33 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
 }
 
 /*Mobile Menu */
+.quick-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quick-links li {
+    margin-bottom: 10px;
+}
+
+.quick-links li a {
+    display: block;
+    padding: 2px 15px;
+    color: #999;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.quick-links li a:hover {
+    color: #999;
+}
+
+.quick-links li i {
+    font-size: 12px;
+    padding-right: 7px
+}
+
 .slicknav_menu {
     background: none;
     padding: 4px 0;
@@ -1289,7 +1316,7 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
 	background-position: center center;
 	-webkit-background-size: cover;
 	background-size: cover;
-    min-height: 300px;
+    min-height: 220px;
     display: flex;
     align-items: center;
 }
@@ -1302,7 +1329,7 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5); /* Transparent black overlay */
     z-index: 1; /* Ensure it is behind the content */
-    height: 435px;
+    height: 357px;
 }
 
 .page-content {
@@ -1400,6 +1427,9 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
 }
 .gallery-wrap img{
     width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 .gallery-wrap .hover{
     background-color: rgba(0, 0, 0, 0.8);

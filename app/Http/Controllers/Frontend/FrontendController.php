@@ -54,10 +54,13 @@ class FrontendController extends Controller
         })->sortByDesc('created_at')->take(3); // Take latest 3 upcoming events
 
         $volunteers = Volunteer::latest()->take(4)->get();
+        $recentStories = Blog::where('type','recent-stories')->latest()->take(3)->get();
+        $recentCauses = Blog::where('type','recent-cause')->latest()->take(3)->get();
+        $clients = Client::latest()->get();
         // $galleries= Gallery::latest()->take(9)->get();
         // $about = Page::where('slug','About Us')->first();
         // $products = Product::get();
-        return view('frontend.home', compact( 'sliders','testimonials','pastEvents','currentEvents','upcomingEvents','volunteers'));
+        return view('frontend.home', compact( 'sliders','testimonials','pastEvents','currentEvents','upcomingEvents','volunteers','recentStories','recentCauses','clients'));
     }
 
     public function page($slug = null)
@@ -86,6 +89,7 @@ class FrontendController extends Controller
     public function about()
     {
         $about = Page::where('slug','About Us')->first();
+        dd($about);
         return view('frontend.about.about',compact('about'));
     }
 
@@ -99,7 +103,9 @@ class FrontendController extends Controller
     public function gallery()
     {
         $galleries = Gallery::latest()->get();
-        return view('frontend.gallery.index', compact('galleries'));
+        $albums = Album::latest()->get();
+        // dd($galleries);
+        return view('frontend.gallery.index', compact('galleries','albums'));
     }
 
     public function contact()
@@ -119,15 +125,18 @@ class FrontendController extends Controller
         return view('frontend.teams.detail',compact('teams'));
     }
 
-    public function blog()
+    public function blog($type)
     {
-        $blogs = Blog::get();
-        return view('frontend.blog.index',compact('blogs'));
+        if($type){
+            $blogs = Blog::where('type',$type)->get();
+            return view('frontend.blog.index',compact('blogs', 'type'));
+        }
     }
 
-    public function blogDetail(Blog $blogs){
-
-        return view('frontend.blog.detail', compact('blogs'));
+    public function blogDetail($id){
+        $blogs = Blog::inRandomOrder()->limit(7)->whereNotIn('id', [$id])->get();
+        $blog = Blog::where('id', $id)->first();
+        return view('frontend.blog.detail', compact('blog','blogs'));
 
     }
 

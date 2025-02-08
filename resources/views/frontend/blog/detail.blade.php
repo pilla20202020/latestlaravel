@@ -2,52 +2,66 @@
 @section('content')
 
 
-<!-- Start All Pages -->
-<div class="all-page-title page-breadcrumb">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Blog</h1>
+  <!-- blog -->
+
+    <!-- Event -->
+<section class="overlay_bg_50">
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content">
+                <h2>{{$blog->title}}</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
+                    <li class="breadcrumb-item active">{{$blog->title}}</li>
+                </ol>
             </div>
         </div>
     </div>
-</div>
-<!-- End All Pages -->
+</section>
+<!-- /Page Header -->
 
-<!-- Start blog details -->
-<div class="blog-box">
+  <section class="blog-section bg-grey padding">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="heading-title text-center">
-                    <h2>Blog</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            @if($blogs)
-                <div class="col-xl-12 col-lg-12 col-12">
-                    <div class="blog-inner-details-page">
-                        <div class="blog-inner-box">
-                            <div class="side-blog-img">
-                                <img class="img-fluid" src="{{asset($blogs->image_path)}}" alt="">							
-                               
-                            </div>
-                            <div class="inner-blog-detail details-page">
-                                <h3>{{$blogs->title}}</h3>
-                                <ul>
-                                    <li><i class="zmdi zmdi-account"></i>{{$blogs->short_description}}</span></li>
-                                </ul>
-                                <p>{!!$blogs->content!!}</p>
-                                
-                            </div>
+            <div class="col-lg-9 sm-padding">
+                <div class="blog-items single-post row">
+                    <img src="{{asset($blog->image)}}" alt="{{$blog->title}}" class="img-fluid">
+                    <h2>{{$blog->title}}</h2>
+                    <div class="container mt-3">
+                        <div class="row">
+                            <p>{!!$blog->content!!}</p>
                         </div>
                     </div>
+
                 </div>
-            @endif
-    
+            </div><!-- Blog Posts -->
+            <div class="col-lg-3 sm-padding">
+                <div class="sidebar-wrap">
+                    <div class="sidebar-widget mb-50">
+                        <h4>Other Post</h4>
+                        <ul class="recent-posts">
+                            @if (isset($blogs))
+                                @foreach ($blogs as $blog)
+                                    <li>
+                                        <img src="{{asset($blog->image)}}" alt="{{$blog->title}}">
+                                        <div>
+                                            <h4><a href="{{route('blog.detail', $blog->id)}}">{{$blog->title}}</a></h4>
+                                            <span class="date" style="font-size: 12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($blog->blog_date)->format('M d, Y') }}</span>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endif
+
+
+                        </ul>
+                    </div><!-- Recent Posts -->
+
+                </div><!-- /Sidebar Wrapper -->
+            </div>
         </div>
     </div>
-</div>
-<!-- End details -->
+</section>
+
+
+
 @endsection

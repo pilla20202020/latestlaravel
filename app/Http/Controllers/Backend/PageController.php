@@ -64,10 +64,10 @@ class PageController extends Controller
 
         if ($page = $this->page->create($request->pageFillData())) {
             if ($request->hasFile('image')) {
-                $this->uploadFile($request, $page, 'image');
+                $this->uploadFile($request, $page);
             }
             if ($request->hasFile('banner_image')) {
-                $this->uploadFile($request, $page, 'banner_image');
+                $this->uploadFile($request, $page);
             }
             return redirect()->route('page.index');
 
@@ -94,10 +94,10 @@ class PageController extends Controller
                 'slug' => $request->title,
             ])->save();
             if ($request->hasFile('image')) {
-                $this->uploadFile($request, $page, 'image');
+                $this->uploadFile($request, $page);
             }
             if ($request->hasFile('banner_image')) {
-                $this->uploadFile($request, $page, 'banner_image');
+                $this->uploadFile($request, $page);
             }
         }
 //        DB::transaction(function () use ($request, $page)
@@ -117,29 +117,46 @@ class PageController extends Controller
         return redirect()->route('page.index')->withSuccess(trans('page has been deleted'));
     }
 
-    function uploadFile(Request $request, $page, $type = null)
+    function uploadFile(Request $request, $page)
     {
-        if ($type == 'image') {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Get the uploaded file
             $file = $request->file('image');
-            $path = 'uploads/page';
-            $fileName = $this->uploadFromAjax($file, $path);
-            if (!empty($page->image))
-                $this->__deleteImages($page);
 
-            $data['image'] = $fileName;
+            // Define the destination path for the file
+            $path = 'uploads' . DIRECTORY_SEPARATOR . 'page';  // Use DIRECTORY_SEPARATOR here
+
+            // Create the directory if it doesn't exist
+            $destinationPath = public_path($path);
+            if (!file_exists($destinationPath)) {
+                // Try creating the directory and log any issues
+                $created = mkdir($destinationPath, 0755, true); // Creates directory with correct permissions
+                if (!$created) {
+                    Log::error('Failed to create directory: ' . $destinationPath);
+                    return response()->json(['error' => 'Failed to create folder'], 500);
+                }
+            }
+
+            // Generate a unique file name
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            // Move the file to the public storage folder
+            $file->move($destinationPath, $fileName);
+
+            // Delete existing image if it exists
+          if (!empty($page->image)) {
+            $this->__deleteImages($page);
         }
-        if ($type == 'banner_image') {
-            $file = $request->file('banner_image');
-            $path = 'uploads/banner_image';
-            $fileName = $this->uploadFromAjax($file, $path);
-            if (!empty($page->banner_image))
-                $this->__deleteImages($page);
-
-            $data['banner_image'] = $fileName;
+            // Save the new file name in the database
+            $data['image'] = $path . DIRECTORY_SEPARATOR . $fileName;
+            $this->updateImage($page->id, $data);
+        } else {
+            // Handle case where no valid image is uploaded
+            return response()->json(['error' => 'No valid image uploaded'], 400);
         }
-
-        $this->updateImage($page->id, $data);
-
     }
 
     public function __deleteImages($subCat)
@@ -150,10 +167,6 @@ class PageController extends Controller
 
             if (is_file($subCat->thumbnail_path))
                 unlink($subCat->thumbnail_path);
-
-            if (is_file($subCat->banner_path))
-                unlink($subCat->banner_path);
-
         } catch (\Exception $e) {
 
         }
@@ -162,7 +175,7 @@ class PageController extends Controller
     public function updateImage($pageId, array $data)
     {
         try {
-            $page = Page::find($pageId);
+            $page = $this->gallery->find($pageId);
             $page = $page->update($data);
             return $page;
         } catch (Exception $e) {

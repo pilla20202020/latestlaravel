@@ -73,67 +73,24 @@
                 <p>Help today because tomorrow you may be the one who <br> needs more helping!</p>
             </div><!-- /Section Heading -->
             <div class="causes-wrap row">
-                <div class="col-md-4 xs-padding">
-                    <div class="causes-content">
-                       <div class="causes-thumb">
-                            <img src="{{asset('images/cause-1.jfif')}}" alt="causes">
-                            <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="wow cssanimation fadeInLeft">25%</span></div>
+                @foreach ($recentCauses as $cause)
+                    <div class="col-md-4 xs-padding">
+                        <a href="{{ route('blog.detail', $cause->id) }}">
+                            <div class="causes-content">
+                                <div class="causes-thumb">
+                                    <img src="{{ asset($cause->image) }}" alt="Cause Image">
+                                </div>
+                                <div class="causes-details">
+                                    <h3>{{ $cause->title }}</h3>
+                                    <p>{{ Str::limit($cause->short_description, 100) }}</p>
+                                    <a href="{{ route('blog.detail', $cause->id) }}" class="read-more">Read More</a>
+                                </div>
                             </div>
-                       </div>
-                        <div class="causes-details">
-                            <h3>First charity activity of this summer.</h3>
-                            <p>Help today because tomorrow you may be the one who needs more helping!</p>
-                            <div class="donation-box">
-                                <p><i class="ti-bar-chart"></i>Goal: $45000</p>
-                                <p><i class="ti-thumb-up"></i>Raised: $5000</p>
-                            </div>
-                            <a href="#" class="read-more">Read More</a>
-                        </div>
-                    </div>
-                </div><!-- /Causes-1 -->
-                <div class="col-md-4 xs-padding">
-                    <div class="causes-content">
-                       <div class="causes-thumb">
-                            <img src="{{asset('images/cause-2.jfif')}}" alt="causes">
-                            <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="wow cssanimation fadeInLeft">45%</span></div>
-                            </div>
-                       </div>
-                        <div class="causes-details">
-                            <h3>Big charity: build school for poor children.</h3>
-                            <p>Help today because tomorrow you may be the one who needs more helping!</p>
-                            <div class="donation-box">
-                                <p><i class="ti-bar-chart"></i>Goal: $45000</p>
-                                <p><i class="ti-thumb-up"></i>Raised: $5000</p>
-                            </div>
-                            <a href="#" class="read-more">Read More</a>
-                        </div>
-                    </div>
-                </div><!-- /Causes-2 -->
-                <div class="col-md-4 xs-padding">
-                    <div class="causes-content">
-                       <div class="causes-thumb">
-                            <img src="{{asset('images/cause-3.jfif')}}" alt="causes">
-                            <a href="#" class="donate-btn">Donate Now<i class="ti-plus"></i></a>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="wow cssanimation fadeInLeft">75%</span></div>
-                            </div>
-                       </div>
-                        <div class="causes-details">
-                            <h3>Building clean-water system for rural poor.</h3>
-                            <p>Help today because tomorrow you may be the one who needs more helping!</p>
-                            <div class="donation-box">
-                                <p><i class="ti-bar-chart"></i>Goal: $45000</p>
-                                <p><i class="ti-thumb-up"></i>Raised: $5000</p>
-                            </div>
-                            <a href="#" class="read-more">Read More</a>
-                        </div>
-                    </div>
-                </div><!-- /Causes-3 -->
+                        </a>
+                    </div><!-- /Causes-1 -->
+                @endforeach
             </div>
+            <a href="{{ route('blogs','recent-cause') }}" class="default-btn view-all-events">View All Causes</a>
         </div>
     </section><!-- /Causes Section -->
 
@@ -155,13 +112,13 @@
                         <div class="col-md-6 xs-padding">
                             <img src="{{asset('images/history.jpg')}}" alt="about-thumb">
                             <h3>Our History</h3>
-                            <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor.</p>
+                            <p>{{setting('mission')}}</p>
                             <a href="#" class="default-btn">Read More</a>
                         </div>
                         <div class="col-md-6 xs-padding">
                             <img src="{{asset('images/mission.jpeg')}}" alt="about-thumb">
                             <h3>Our Mission</h3>
-                            <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor.</p>
+                            <p>{{setting('mission')}}</p>
                             <a href="#" class="default-btn">Read More</a>
                         </div>
                     </div>
@@ -177,7 +134,6 @@
             <div class="row">
                 <div class="col-md-6 xs-padding">
                     <div class="campaigns-wrap">
-                        <h4>Featured Campaigns</h4>
                         <h2>Featured project to built a School.</h2>
                         <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
                         <div class="progress">
@@ -427,41 +383,26 @@
             <div class="row">
                 <div class="col-lg-12 xs-padding">
                     <div class="blog-items grid-list row">
-                        <div class="col-md-4 padding-15">
-                            <div class="blog-post">
-                                <img src="{{asset('images/causes-1.jpg')}}" alt="blog post">
-                                <div class="blog-content">
-                                    <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span>
-                                    <h3><a href="#">The History of Donation Told</a></h3>
-                                    <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                                    <a href="#" class="post-meta">Read More</a>
+                        @foreach ($recentStories as $story)
+                            <div class="col-md-4 padding-15">
+                                <div class="blog-post">
+                                    <a href="{{route('blog.detail', $story->id)}}">
+                                        <img src="{{asset($story->image)}}" alt="blog post">
+                                        <div class="blog-content">
+                                            {{-- <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span> --}}
+                                            <h3><a href="#">{{$story->title}}</a></h3>
+                                            <p>{{$story->short_description}}</p>
+                                            <a href="{{route('blog.detail', $story->id)}}" class="post-meta">Read More</a>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-                        </div><!-- Post 1 -->
-                        <div class="col-md-4 padding-15">
-                            <div class="blog-post">
-                                <img src="{{asset('images/causes-2.jpg')}}" alt="blog post">
-                                <div class="blog-content">
-                                    <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span>
-                                    <h3><a href="#">Help the Comunity</a></h3>
-                                    <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                                    <a href="#" class="post-meta">Read More</a>
-                                </div>
-                            </div>
-                        </div><!-- Post 2 -->
-                        <div class="col-md-4 padding-15">
-                            <div class="blog-post">
-                                <img src="{{asset('images/causes-3.jpg')}}" alt="blog post">
-                                <div class="blog-content">
-                                    <span class="date"><i class="fa fa-clock-o"></i> January 01.2021</span>
-                                    <h3><a href="#">Charity Ever Rule the World?</a></h3>
-                                    <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                                    <a href="#" class="post-meta">Read More</a>
-                                </div>
-                            </div>
-                        </div><!-- Post 3 -->
+                            </div><!-- Post 1 -->
+                        @endforeach
+
                     </div>
                 </div><!-- Blog Posts -->
+
+                <a href="{{ route('blogs','recent-stories') }}" class="default-btn view-all-events">View All Stories</a>
             </div>
         </div>
     </section><!-- Blog Section -->
@@ -470,30 +411,11 @@
     <div class="sponsor-section bd-bottom">
         <div class="container">
             <ul id="sponsor-carousel" class="sponsor-items owl-carousel">
-                <li class="sponsor-item">
-                    <img src="{{asset('images/sponsor-1.png')}}" alt="sponsor-image">
-                </li>
-                <li class="sponsor-item">
-                    <img src="{{asset('images/sponsor-2.png')}}" alt="sponsor-image">
-                </li>
-                <li class="sponsor-item">
-                    <img src="{{asset('images/sponsor-3.png')}}" alt="sponsor-image">
-                </li>
-                <li class="sponsor-item">
-                    <img src="{{asset('images/sponsor-4.png')}}" alt="sponsor-image">
-                </li>
-                <li class="sponsor-item">
-                    <img src="{{asset('images/sponsor-5.png')}}" alt="sponsor-image">
-                </li>
-                <li class="sponsor-item">
-                    <img src="{{asset('images/sponsor-1.png')}}" alt="sponsor-image">
-                </li>
-                <li class="sponsor-item">
-                    <img src="{{asset('images/sponsor-2.png')}}" alt="sponsor-image">
-                </li>
-                <li class="sponsor-item">
-                    <img src="{{asset('images/sponsor-3.png')}}" alt="sponsor-image">
-                </li>
+                @foreach ($clients as $client)
+                    <li class="sponsor-item">
+                        <img src="{{ asset($client->image) }}" alt="{{$client->title}}">
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div><!-- ./Sponsor Section -->

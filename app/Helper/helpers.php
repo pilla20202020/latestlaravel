@@ -1,11 +1,6 @@
 <?php
 
 use App\Models\Setting\Setting;
-use App\Modules\Models\Country\Country;
-use App\Modules\Models\District\District;
-use App\Modules\Models\Menu\Menu;
-use App\Modules\Models\Province\Province;
-use App\Modules\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 function setting($query)

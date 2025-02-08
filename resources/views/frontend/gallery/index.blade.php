@@ -1,44 +1,50 @@
 @extends ('frontend.layouts.app')
 @section('content')
 
-
- 	<!-- Start All Pages -->
-   <div class="all-page-title page-breadcrumb">
-		<div class="container text-center">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Gallery</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End All Pages -->
-	
-	<!-- Start Gallery -->
-	<div class="gallery-box">
-		<div class="container">
-      @if ($galleries->isNotEmpty())
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="heading-title text-center">
-              <h2>Gallery</h2>
+  <!-- Event -->
+  <section class="overlay_bg_50">
+    <div class="pager-header">
+        <div class="container">
+            <div class="page-content">
+                <h2>Gallery</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
+                    <li class="breadcrumb-item active">Gallery</li>
+                </ol>
             </div>
-          </div>
         </div>
-        <div class="tz-gallery">
-          <div class="row">
-            @foreach($galleries as $gallery)
-              <div class="col-sm-12 col-md-4 col-lg-4">
-                <a class="lightbox" href="{{asset($gallery->image_path)}}">
-                  <img class="img-fluid" src="{{asset($gallery->image_path)}}" alt="Gallery Images">
-                </a>
-              </div>
-            @endforeach
-          </div>
+    </div>
+</section>
+<!-- /Page Header -->
+
+	<!-- Start Gallery -->
+	<section class="gallery-section bg-grey bd-bottom padding">
+        <div class="container">
+            <div class="row">
+                <ul class="gallery-filter align-center mb-30">
+                    <li class="active" data-filter="*">All</li>
+                    @foreach ($albums as $album)
+                        {{-- <li><a href="#" data-filter=".{{$album->slug}}">{{$album->name}}</a></li> --}}
+                        <li data-filter=".{{$album->slug}}">{{$album->name}}</li>
+                    @endforeach
+                </ul><!-- /.gallery filter -->
+            </div>
+            <div class="gallery-items row">
+                @if($galleries)
+                    @foreach($galleries as $gallery)
+                        <div class="col-lg-4 col-sm-6 single-item {{$gallery->album->slug}} design">
+                            <div class="gallery-wrap">
+                                <img src="{{asset($gallery->image)}}" alt="gallery">
+                                <div class="hover">
+                                    <a class="img-popup" data-gall="galleryimg" href="{{asset($gallery->image)}}"><i class="ti-image"></i></a>
+                                </div>
+                            </div>
+                        </div><!-- /Item-1 -->
+                    @endforeach
+                @endif
+            </div>
         </div>
-      @endif
-		</div>
-	</div>
+    </section><!-- /Gallery Section -->
 	<!-- End Gallery -->
 
 @endsection

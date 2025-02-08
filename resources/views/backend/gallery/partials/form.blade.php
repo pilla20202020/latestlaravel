@@ -12,14 +12,14 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                   <select name="album_id" class="form-control" id="album_id" required>
-                                           <option value="">Select Album</option>
-                                           @foreach($albums as $album)
-                                               <option value="{{$album->id}}" @if(isset($album_search)) @if($album_search == $album->id) selected @endif @endif>{{$album->name}}</option>
-                                           @endforeach
-                                   </select>
-                                   <span id="textarea1-error" class="text-danger">{{ $errors->first('album_id') }}</span>
-
+                                <label class="text-default-light">Album</label>
+                                <select name="album_id" class="form-control" id="album_id" required>
+                                        <option value="">Select Album</option>
+                                        @foreach($albums as $album)
+                                            <option value="{{$album->id}}" @if(isset($album_search)) @if($album_search == $album->id) selected @endif @endif>{{$album->name}}</option>
+                                        @endforeach
+                                </select>
+                                <span id="textarea1-error" class="text-danger">{{ $errors->first('album_id') }}</span>
                             </div>
                        </div>
                     </div>

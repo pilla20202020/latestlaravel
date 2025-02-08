@@ -8,22 +8,32 @@
                         <img src="{{asset('backend/assets/images/logo.jfif')}}" alt="SERAP LEE FOUNDATION" class="img-fluid footer_logo_img">
                         <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor</p>
                         <ul class="social-icon">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            @if(setting('facebook') !=null)
+                                <li><a href="{{setting('facebook')}}"><i class="ti-facebook"></i></a></li>
+                            @endif
+
+                            @if(setting('twitter') !=null)
+                                <li><a href="{{setting('twitter')}}"><i class="ti-twitter-alt"></i></a></li>
+                            @endif
+
+                            @if(setting('instagram') !=null)
+                                <li><a href="{{setting('instagram')}}"><i class="ti-instagram"></i></a></li>
+                            @endif
+
+                            @if(setting('youtube') !=null)
+                                <li><a href="{{setting('youtube')}}"><i class="ti-youtube"></i></a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4 xs-padding">
                     <div class="widget-content">
-                        <h3>Recent Campaigns</h3>
-                        <ul class="widget-link">
-                            <li><a href="#">First charity activity of this summer. <span>-1 Year Ago</span></a></li>
-                            <li><a href="#">Big charity: build school for poor children. <span>-2 Year Ago</span></a></li>
-                            <li><a href="#">Clean-water system for rural poor. <span>-2 Year Ago</span></a></li>
-                            <li><a href="#">Nepal earthqueak donation campaigns. <span>-3 Year Ago</span></a></li>
+                        <h3>Quick Links</h3>
+                        <ul class="quick-links">
+                            <li><a href="{{ route('homepage') }}"><i class="ti-minus"></i>Home</a></li>
+                            <li><a href="{{ route('about') }}"><i class="ti-minus"></i>About Us</a></li>
+                            <li><a href="{{ route('events') }}"><i class="ti-minus"></i>Services</a></li>
+                            <li><a href="{{ route('gallery') }}"><i class="ti-minus"></i>Gallery</a></li>
                         </ul>
                     </div>
                 </div>
@@ -31,10 +41,21 @@
                     <div class="widget-content">
                         <h3>Charitify Location</h3>
                         <ul class="address">
-                            <li><i class="ti-email"></i> Info@YourDomain.com</li>
-                            <li><i class="ti-mobile"></i> +(333) 052 39876</li>
-                            <li><i class="ti-world"></i> Www.YourWebsite.com</li>
-                            <li><i class="ti-location-pin"></i> 60 Grand Avenue. Central New Road 0708, USA</li>
+                            @if(setting('email') !=null)
+                                <li><i class="ti-email"></i> {{setting('email')}}</li>
+                            @endif
+
+                            @if(setting('phone') !=null)
+                                <li><i class="ti-mobile"></i> {{setting('phone')}}</li>
+                            @endif
+
+                            @if(setting('domain') !=null)
+                                <li><i class="ti-world"></i> {{setting('domain')}}</li>
+                            @endif
+
+                            @if(setting('address') !=null)
+                                <li><i class="ti-location-pin"></i> {{setting('address')}}</li>
+                            @endif
                         </ul>
                     </div>
                 </div>

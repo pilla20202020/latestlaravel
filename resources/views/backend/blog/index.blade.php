@@ -37,6 +37,7 @@
                                             <th width="5%">S.N</th>
                                             <th width="25%">Image</th>
                                             <th width="30%">Title</th>
+                                            <th width="30%">Type</th>
                                             <th width="15%" class="text-right">Actions</th>
                                         </tr>
                                     </thead>
