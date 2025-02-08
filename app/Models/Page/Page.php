@@ -10,7 +10,6 @@ class Page extends Model
 
 
     protected $path = 'uploads/page';
-    protected $banner_path = 'uploads/banner_image';
 
     public function sluggable()
     {
@@ -40,7 +39,7 @@ class Page extends Model
 
 
     protected $appends = [
-        'thumbnail_path', 'image_path', 'banner_path'
+        'thumbnail_path', 'image_path',
     ];
     /**
      * The attributes that should be typecast into boolean.
@@ -185,14 +184,5 @@ class Page extends Model
     function getThumbnailPathAttribute()
     {
         return $this->path . '/thumb/' . $this->image;
-    }
-
-    function getBannerPathAttribute()
-    {
-        if ($this->banner_image) {
-            return $this->banner_path . '/' . $this->banner_image;
-        } else {
-            return 'assets/images/reliance/Background.jpg';
-        }
     }
 }

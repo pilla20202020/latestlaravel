@@ -1,5 +1,6 @@
 <tr>
     <td>{{++$key}}</td>
+    <td><img src="{{ asset(str_replace('\\', '/', $page->image)) }}" class="img-circle width-1" alt="page_image" width="50" height="50"></td>
     <td>{{ Str::limit($page->title, 47) }}</td>
 
 
@@ -14,7 +15,7 @@
         <a href="{{route('page.edit', $page->slug)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
             <i class="fas fa-edit"></i>
         </a>
-        
+
         <button class="btn btn-flat btn-danger btn-xs" title="delete" onclick="openDeleteModal({{ $page->id }}, '{{ $page->title }}')">
             <i class="fas fa-trash-alt"></i>
         </button>

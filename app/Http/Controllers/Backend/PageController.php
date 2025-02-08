@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Page\StorePage;
 use App\Models\Page\Page;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
-
+use Exception;
 class PageController extends Controller
 {
     /**
@@ -54,27 +52,12 @@ class PageController extends Controller
      */
     public function store(StorePage $request)
     {
-
-//        DB::transaction(function () use ($request)
-//        {
-//            $page = Page::create($request->pageFillData());
-//
-//            $this->uploadRequestImage($request, $page);
-//        });
-
         if ($page = $this->page->create($request->pageFillData())) {
             if ($request->hasFile('image')) {
                 $this->uploadFile($request, $page);
             }
-            if ($request->hasFile('banner_image')) {
-                $this->uploadFile($request, $page);
-            }
             return redirect()->route('page.index');
-
-
         }
-
-
     }
 
     /**
@@ -94,9 +77,6 @@ class PageController extends Controller
                 'slug' => $request->title,
             ])->save();
             if ($request->hasFile('image')) {
-                $this->uploadFile($request, $page);
-            }
-            if ($request->hasFile('banner_image')) {
                 $this->uploadFile($request, $page);
             }
         }
@@ -148,17 +128,16 @@ class PageController extends Controller
 
             // Delete existing image if it exists
           if (!empty($page->image)) {
-            $this->__deleteImages($page);
+            $this->__deleteImages($page); // Assuming you have logic to delete old images
         }
             // Save the new file name in the database
             $data['image'] = $path . DIRECTORY_SEPARATOR . $fileName;
-            $this->updateImage($page->id, $data);
+            $this->updateImage($page->id, $data); // Update image record in your database
         } else {
             // Handle case where no valid image is uploaded
             return response()->json(['error' => 'No valid image uploaded'], 400);
         }
     }
-
     public function __deleteImages($subCat)
     {
         try {
@@ -175,7 +154,7 @@ class PageController extends Controller
     public function updateImage($pageId, array $data)
     {
         try {
-            $page = $this->gallery->find($pageId);
+            $page = $this->page->find($pageId);
             $page = $page->update($data);
             return $page;
         } catch (Exception $e) {

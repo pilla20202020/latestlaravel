@@ -35,7 +35,8 @@
                                     <thead>
                                         <tr>
                                             <th width="5%">S.N</th>
-                                            <th width="50%">Name</th>
+                                            <th width="25%">Image</th>
+                                            <th width="30%">Title</th>
                                             <th width="15%" class="text-right">Actions</th>
                                         </tr>
                                     </thead>
@@ -43,11 +44,11 @@
                                         @each('backend.page.partials.table', $pages, 'page')
                                     </tbody>
                                 </table>
-                
+
                             </div> <!-- end card-body -->
                         </div> <!-- end card -->
                     </div> <!-- end col -->
-                </div> 
+                </div>
             </div>
         </div>
     </section>
@@ -58,7 +59,7 @@
         function openDeleteModal(pageId, pageTitle) {
             // Set the page title in the modal
             document.getElementById('pageTitle').textContent = pageTitle;
-            
+
             // Set the form action to the delete URL for the selected page
             document.getElementById('deleteForm').action = '{{ route('page.destroy', ':id') }}'.replace(':id', pageId);
             // Show the modal
