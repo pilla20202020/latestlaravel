@@ -24,7 +24,8 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title'=>'required'
+            'title' =>'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
         ];
 
         return $rules;

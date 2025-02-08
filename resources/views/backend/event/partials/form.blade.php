@@ -36,6 +36,7 @@
                             <div class="form-group">
                                 <label for="type">Event Type</label>
                                 <select name="type" class="form-control" required>
+                                    <option value="">Select Type</option>
                                     <option value="upcoming" {{ old('type', isset($event->type) ? $event->type : '') == 'upcoming' ? 'selected' : '' }}>Upcoming</option>
                                     <option value="present" {{ old('type', isset($event->type) ? $event->type : '') == 'present' ? 'selected' : '' }}>Present</option>
                                     <option value="past" {{ old('type', isset($event->type) ? $event->type : '') == 'past' ? 'selected' : '' }}>Past</option>
@@ -72,9 +73,10 @@
                                        data-default-file="{{ asset(str_replace('\\', '/', $event->image)) }}"/>
 
                             @else
-                                <input type="file" name="image" class="dropify"/>
+                                <input type="file" name="image" class="dropify" required/>
                             @endif
                             <input type="hidden" name="removeimage" id="removeimage" value=""/>
+                            <span id="textarea1-error" class="text-danger">{{ $errors->first('image') }}</span>
                         </div>
                         <!--<div class="col-sm-6">-->
                         <!--    <label class="text-default-light">Banner Image(Optional)</label>-->

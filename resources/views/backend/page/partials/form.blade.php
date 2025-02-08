@@ -43,7 +43,7 @@
 
                     <div class="row mt-3">
                         <div class="col-sm-12">
-                            <label class="text-default-light">Featured Image(Optional)</label>
+                            <label class="text-default-light">Image(Optional)</label>
                             @if(isset($page) && $page->image)
                                 <input type="file" name="image" class="dropify" id="input-file-events"
                                        data-default-file="{{ asset($page->thumbnail_path)}}"/>

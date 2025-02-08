@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                   <select name="album_id" class="form-control" id="album_id">
+                                   <select name="album_id" class="form-control" id="album_id" required>
                                            <option value="">Select Album</option>
                                            @foreach($albums as $album)
                                                <option value="{{$album->id}}" @if(isset($album_search)) @if($album_search == $album->id) selected @endif @endif>{{$album->name}}</option>
@@ -26,13 +26,13 @@
 
                     <div class="row mt-3">
                         <div class="col-sm-12">
-                            <label class="text-default-light">Featured Image</label>
+                            <label class="text-default-light">Image</label>
                             @if(isset($gallery) && $gallery->image)
                                 <input required type="file" name="image" class="dropify" id="input-file-events"
                                        data-default-file="{{ asset(str_replace('\\', '/', $gallery->image)) }}"/>
 
                             @else
-                                <input type="file" name="image" class="dropify"/>
+                                <input type="file" name="image" class="dropify" required/>
                             @endif
                             <input type="hidden" name="removeimage" id="removeimage" value=""/>
                             <span id="textarea1-error" class="text-danger">{{ $errors->first('image') }}</span>

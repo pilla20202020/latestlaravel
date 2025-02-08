@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <label for="type">Blog Type</label>
                                 <select name="type" class="form-control" required>
-                                    <option value="" >Select Type</option>
+                                    <option value="">Select Type</option>
                                     <option value="recent-stories" {{ old('type', isset($blog->type) ? $blog->type : '') == 'recent-stories' ? 'selected' : '' }}>Recent Stories</option>
                                     <option value="recent-cause" {{ old('type', isset($blog->type) ? $blog->type : '') == 'recent-cause' ? 'selected' : '' }}>Recent Cause</option>
                                     <option value="blog" {{ old('type', isset($blog->type) ? $blog->type : '') == 'blog' ? 'selected' : '' }}>Blog</option>
@@ -58,13 +58,14 @@
                         <div class="col-sm-12">
                             <label class="text-default-light">Image</label>
                             @if(isset($blog) && $blog->image)
-                                <input type="file" name="image" class="dropify" id="input-file-blogs"
+                                <input type="file" name="image" class="dropify" id="input-file-blogs" 
                                        data-default-file="{{ asset(str_replace('\\', '/', $blog->image)) }}"/>
 
                             @else
-                                <input type="file" name="image" class="dropify"/>
+                                <input type="file" name="image" class="dropify" required/>
                             @endif
                             <input type="hidden" name="removeimage" id="removeimage" value=""/>
+                            <span class="text-danger">{{ $errors->first('image') }}</span>
                         </div>
                         <!--<div class="col-sm-6">-->
                         <!--    <label class="text-default-light">Banner Image(Optional)</label>-->

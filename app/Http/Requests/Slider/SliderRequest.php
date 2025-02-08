@@ -24,8 +24,9 @@ class SliderRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title'=>'required',
-            'caption'=>'nullable',
+            'title' =>'required|string|max:255',
+            'caption'=>'nullable|string|max:10000',
+            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:5120',
         ];
 
         return $rules;

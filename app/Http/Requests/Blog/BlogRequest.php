@@ -25,10 +25,13 @@ class BlogRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required'
+            'title' =>'required|string|max:255',
+            'type' => 'required',
+            'content' => 'nullable|string|max:10000',
+            'short_description' => 'nullable|string|max:500',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
         ];
     }
-
     public function blogFillData()
     {
         $data = [

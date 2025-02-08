@@ -87,7 +87,7 @@ class GalleryController extends Controller
         $gallery->delete();
         return redirect()->route('gallery.index')->withSuccess(trans('Gallery has been deleted'));
     }
-    function uploadFile(Request $request, $volunteer)
+    function uploadFile(Request $request, $gallery)
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -97,7 +97,7 @@ class GalleryController extends Controller
             $file = $request->file('image');
 
             // Define the destination path for the file
-            $path = 'uploads' . DIRECTORY_SEPARATOR . 'volunteer';  // Use DIRECTORY_SEPARATOR here
+            $path = 'uploads' . DIRECTORY_SEPARATOR . 'gallery';  // Use DIRECTORY_SEPARATOR here
 
             // Create the directory if it doesn't exist
             $destinationPath = public_path($path);
@@ -117,12 +117,12 @@ class GalleryController extends Controller
             $file->move($destinationPath, $fileName);
 
             // Delete existing image if it exists
-          if (!empty($volunteer->image)) {
-            $this->__deleteImages($volunteer);
+          if (!empty($gallery->image)) {
+            $this->__deleteImages($gallery);
         }
             // Save the new file name in the database
             $data['image'] = $path . DIRECTORY_SEPARATOR . $fileName;
-            $this->updateImage($volunteer->id, $data);
+            $this->updateImage($gallery->id, $data);
         } else {
             // Handle case where no valid image is uploaded
             return response()->json(['error' => 'No valid image uploaded'], 400);

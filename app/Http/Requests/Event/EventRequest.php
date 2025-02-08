@@ -24,7 +24,11 @@ class EventRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title'=>'required'
+            'title' => 'required|string|max:255',
+            'type' => 'required',
+            'content' => 'nullable|string|max:10000',
+            'meta_description' => 'nullable|string|max:500',
+            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:5120',
         ];
 
         return $rules;

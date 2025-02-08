@@ -1,4 +1,4 @@
-u@extends('backend.layouts.admin.admin')
+@extends('backend.layouts.admin.admin')
 
 @section('title', 'Blog')
 

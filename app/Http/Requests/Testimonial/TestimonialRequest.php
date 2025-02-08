@@ -24,7 +24,11 @@ class TestimonialRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required'
+            'title' =>'required|string|max:50',
+            'office' => 'nullable|string|max:50',
+            'position' => 'nullable|string|max:50',
+            'content' => 'nullable|string|max:10000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
         ];
     }
 
