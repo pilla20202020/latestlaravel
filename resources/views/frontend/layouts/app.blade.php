@@ -34,6 +34,8 @@
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
+        <link href="{{asset('backend/assets/css/icons.min.css ')}}" rel="stylesheet" type="text/css" />
+
 
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -55,6 +57,10 @@
   @include('frontend.layouts.partials.footer')
 
   <a data-scroll href="#header" id="scroll-to-top"><i class="ti-angle-double-up"></i></a>
+
+  <a href="https://wa.me/9813378610" target="_blank" class="whatsapp-icon">
+        <i class="mdi mdi-whatsapp"></i>
+  </a>
 
 <!-- ALL JS FILES -->
 <script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
@@ -90,6 +96,14 @@
 <script src="{{ asset('js/contact.js') }}"></script>
 <!-- Main JS -->
 <script src="{{ asset('js/main.js') }}"></script>
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
 @stack('scripts')
