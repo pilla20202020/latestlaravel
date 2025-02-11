@@ -19,6 +19,10 @@
                             @if(setting('phone') !=null)
                                 <li><a href="#"><i class="ti-mobile"></i> {{setting('phone')}}</a></li>
                             @endif
+
+                            <li>    
+                                <div id="google_translate_element"></div>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-sm-4 d-none d-md-block">

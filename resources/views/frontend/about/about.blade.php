@@ -36,6 +36,30 @@
 
                 </div>
             </div><!-- Blog Posts -->
+
+            <div class="col-lg-3 sm-padding">
+                <div class="sidebar-wrap">
+                    <div class="sidebar-widget mb-50">
+                        <h4>Events</h4>
+                        <ul class="recent-posts">
+                            @if (isset($events))
+                                @foreach ($events as $event)
+                                    <li>
+                                        <img src="{{asset($event->image)}}" alt="{{$event->title}}">
+                                        <div>
+                                            <h4><a href="{{route('event.detail', $event->id)}}">{{$event->title}}</a></h4>
+                                            <span class="date" style="font-size: 12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</span>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endif
+
+
+                        </ul>
+                    </div><!-- Recent Posts -->
+
+                </div><!-- /Sidebar Wrapper -->
+            </div>
         </div>
     </div>
 </section>

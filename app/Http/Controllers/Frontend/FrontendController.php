@@ -65,21 +65,20 @@ class FrontendController extends Controller
 
     public function page($slug = null)
     {
-
         if ($slug) {
 
-            $page = Page::whereSlug($slug)->whereIsPublished(1)->first();
-            $allevents = Event::get();
+            $page = Page::whereSlug($slug)->first();
+            $events = Event::inRandomOrder()->limit(7)->get();
 
 
             if ($page == null) {
-                return view('frontend.errors.404',compact('allevents'));
+                return view('frontend.errors.404',compact('events'));
             }
 
             if ($page) {
                 $pages = Page::whereIsPublished(1)->whereIsPrimary(0)->whereNotIn('id', [$page->id])->take(10)->inRandomOrder()->get();
                 if ($pages) {
-                    return view('frontend.page', compact('page', 'pages','allevents'));
+                    return view('frontend.page', compact('page', 'pages','events'));
                 }
             } else {
                 return view('frontend.errors.404');
@@ -89,8 +88,8 @@ class FrontendController extends Controller
     public function about()
     {
         $about = Page::where('slug','About Us')->first();
-        dd($about);
-        return view('frontend.about.about',compact('about'));
+        $events = Event::inRandomOrder()->limit(7)->get();
+        return view('frontend.about.about',compact('about','events'));
     }
 
     public function menu(Category $categories, Product $products)
