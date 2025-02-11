@@ -73,9 +73,11 @@
                         </li>
                     </ul>
                 </li>
-
-
-
+                <li>
+                    <a href="{{ route('news.index') }}" class="waves-effect">
+                        <i class="fas fa-newspaper"></i><span> News and Notice </span>
+                    </a>
+                </li>
                 <li>
                     <a href="{{ route('client.index') }}" class="waves-effect">
                         <i class="fas fa-user"></i><span> Client </span>

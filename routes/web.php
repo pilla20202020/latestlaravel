@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\BookingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\VolunteerController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Auth;
@@ -127,6 +128,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Blog Management
     Route::resource('blog', BlogController::class);
     Route::resource('volunteer', VolunteerController::class);
+    Route::resource('news', NewsController::class);
 });
 
 // Frontend Routes
