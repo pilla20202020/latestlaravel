@@ -67,7 +67,7 @@ class MenuController extends Controller
     {
         SubMenu::create($request->subMenuFillData());
 
-        return back()->withSuccess(trans('messages.create_success', ['entity' => 'Sub Menu']))->with('collapse_in', $menu->id);
+        return redirect()->route('menu.index')->withSuccess(trans('messages.create_success', ['entity' => 'Sub Menu']))->with('collapse_in', $menu->id);
     }
 
     /**
@@ -141,7 +141,7 @@ class MenuController extends Controller
      */
     public function subMenuModal(Menu $menu)
     {
-        $model1 = Page::published()->primary(false)->get();
+        $model1 = Page::get();
 
         $model2 = Gallery::published()->get();
 

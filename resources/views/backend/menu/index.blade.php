@@ -37,89 +37,77 @@
                             </div>
                             <div class="col-md-8 col-md-offset-2 mt-4" style="width: 1200px">
                                 <div class="panel-group" id="menu-accordion" data-sortable="true">
-                                    @foreach ($menus as $key => $menu)
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Menu</h4>
-                                                <p class="card-title-desc">Manage your menu items using the collapsible accordion structure.</p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Menu</h4>
+                                            <p class="card-title-desc">Manage your menu items using the collapsible accordion structure.</p>
 
-                                                <div id="menu-accordion" class="custom-accordion">
-                                                    @foreach ($menus as $key => $menu)
-                                                        <div class="card mb-1 shadow-none">
-                                                            <div class="card-header d-flex justify-content-between align-items-center" id="heading-menu-{{ $key }}">
-                                                                <a href="#collapse-menu-{{ $key }}" class="text-reset flex-grow-1" data-bs-toggle="collapse"
-                                                                    aria-expanded="{{ session('collapse_in') == $menu->slug ? 'true' : 'false' }}"
-                                                                    aria-controls="collapse-menu-{{ $key }}">
-                                                                    <h6 class="m-0">
-                                                                        {{ $menu->name }}
-                                                                        <i class="fas fa-angle-down float-end accor-plus-icon" style="font-size: 22px;padding-right:20px"></i>
-                                                                    </h6>
+                                            <div id="menu-accordion" class="custom-accordion">
+                                                @foreach ($menus as $key => $menu)
+                                                    <div class="card mb-1 shadow-none">
+                                                        <div class="card-header d-flex justify-content-between align-items-center" id="heading-menu-{{ $key }}">
+                                                            <a href="#collapse-menu-{{ $key }}" class="text-reset flex-grow-1" data-bs-toggle="collapse"
+                                                                aria-expanded="{{ session('collapse_in') == $menu->slug ? 'true' : 'false' }}"
+                                                                aria-controls="collapse-menu-{{ $key }}">
+                                                                <h6 class="m-0">
+                                                                    {{ $menu->name }}
+                                                                    <i class="fas fa-angle-down float-end accor-plus-icon" style="font-size: 22px;padding-right:20px"></i>
+                                                                </h6>
+                                                            </a>
+
+                                                            <div class="d-flex gap-2">
+                                                                <a href="{{route('menu.edit',$menu->id)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
+                                                                    <i class="fas fa-edit"></i>
                                                                 </a>
-
-                                                                <div class="d-flex gap-2">
-                                                                    <a href="{{route('menu.edit',$menu->id)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
-                                                                        <i class="fas fa-edit"></i>
+                                                                <button type="button" class="btn btn-primary btn-add-sub-menu" data-url="{{ route('menu.subMenu.component.modal', $menu->id) }}">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </button>
+                                                                @unless($menu->is_primary)
+                                                                    <a class="btn btn-danger btn-sm" data-url="{{ route('menu.destroy', $menu->id) }}">
+                                                                        <i class="far fa-trash-alt"></i>
                                                                     </a>
-                                                                    <button type="button" class="btn btn-primary btn-add-sub-menu" data-url="{{ route('menu.subMenu.component.modal', $menu->id) }}">
-                                                                        <i class="fas fa-plus"></i>
-                                                                    </button>
-                                                                    @unless($menu->is_primary)
-                                                                        <a class="btn btn-danger btn-sm" data-url="{{ route('menu.destroy', $menu->id) }}">
-                                                                            <i class="far fa-trash-alt"></i>
-                                                                        </a>
-                                                                    @endunless
-                                                                </div>
+                                                                @endunless
                                                             </div>
+                                                        </div>
 
-                                                            <div id="collapse-menu-{{ $key }}" class="collapse {{ session('collapse_in') == $menu->slug ? 'show' : '' }}"
-                                                                aria-labelledby="heading-menu-{{ $key }}" data-bs-parent="#menu-accordion">
-                                                                <div class="card-body">
-                                                                    <div class="custom-accordion mt-2">
-                                                                        @foreach ($menu->subMenus->sortBy('order') as $subKey => $subMenu)
-                                                                            <div class="card mb-1 shadow-none">
-                                                                                <div class="card-header d-flex justify-content-between align-items-center" id="heading-submenu-{{ $subKey }}">
-                                                                                    <a href="#collapse-submenu-{{ $subKey }}" class="text-reset flex-grow-1" data-bs-toggle="collapse"
-                                                                                        aria-expanded="false" aria-controls="collapse-submenu-{{ $subKey }}">
-                                                                                        <h6 class="m-0">
-                                                                                            {{ $subMenu->name }}
+                                                        <div id="collapse-menu-{{ $key }}" class="collapse {{ session('collapse_in') == $menu->slug ? 'show' : '' }}"
+                                                            aria-labelledby="heading-menu-{{ $key }}" data-bs-parent="#menu-accordion">
+                                                            <div class="card-body">
+                                                                <div class="custom-accordion mt-2">
+                                                                    @foreach ($menu->subMenus->sortBy('order') as $subKey => $subMenu)
+                                                                        <div class="card mb-1 shadow-none">
+                                                                            <div class="card-header d-flex justify-content-between align-items-center" id="heading-submenu-{{ $subKey }}">
+                                                                                <a href="#collapse-submenu-{{ $subKey }}" class="text-reset flex-grow-1" data-bs-toggle="collapse"
+                                                                                    aria-expanded="false" aria-controls="collapse-submenu-{{ $subKey }}">
+                                                                                    <h6 class="m-0">
+                                                                                        {{ $subMenu->name }}
 
-                                                                                        </h6>
-                                                                                    </a>
+                                                                                    </h6>
+                                                                                </a>
 
-                                                                                    <div class="d-flex gap-2">
-                                                                                        <button type="button" class="btn btn-primary btn-sm btn-add-sub-menu" data-url="{{ route('menu.subMenu.childsubMenu.component.childmodal', $subMenu->id) }}">
-                                                                                            <i class="fas fa-plus"></i>
-                                                                                        </button>
-                                                                                        @unless($subMenu->is_primary)
-                                                                                            <a class="btn btn-danger btn-sm" data-url="{{ route('menu.subMenu.destroy', [$menu->id, $subMenu->id]) }}">
-                                                                                                <i class="far fa-trash-alt"></i>
-                                                                                            </a>
-                                                                                        @endunless
-                                                                                        <a class="btn btn-icon-toggle"><i class="fa fa-angle-down"></i></a>
-                                                                                    </div>
-                                                                                </div>
 
-                                                                                <div id="collapse-submenu-{{ $subKey }}" class="collapse"
-                                                                                    aria-labelledby="heading-submenu-{{ $subKey }}" data-bs-parent="#collapse-menu-{{ $key }}">
-                                                                                    <div class="card-body">
-                                                                                        <div class="mt-2">
-                                                                                            @foreach ($subMenu->childsubMenus->sortBy('order') as $childSubKey => $childsubMenu)
-                                                                                                <p>{{ $childsubMenu->name }}</p>
-                                                                                            @endforeach
-                                                                                        </div>
+                                                                            </div>
+
+                                                                            <div id="collapse-submenu-{{ $subKey }}" class="collapse"
+                                                                                aria-labelledby="heading-submenu-{{ $subKey }}" data-bs-parent="#collapse-menu-{{ $key }}">
+                                                                                <div class="card-body">
+                                                                                    <div class="mt-2">
+                                                                                        @foreach ($subMenu->childsubMenus->sortBy('order') as $childSubKey => $childsubMenu)
+                                                                                            <p>{{ $childsubMenu->name }}</p>
+                                                                                        @endforeach
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        @endforeach
-                                                                    </div>
+                                                                        </div>
+                                                                    @endforeach
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endforeach
-                                                </div>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
-                                    @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +130,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="page pb-2">Page</label>
+                            <label class="page ">Page</label>
                             <select class="form-control select2 mt-2" name="page">
                                 <option value="">Select a page or leave blank (#)</option>
                                 @foreach ($pages as $page)
@@ -150,19 +138,19 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label class="name">Name</label>
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control" required placeholder="(same as page title)">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label for="order">Order</label>
                             <input type="number" name="order" class="form-control" value="{{ old('order') }}" min="1">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label for="url">URL</label>
                             <input type="text" name="url" class="form-control" value="{{ old('url') }}">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label for="icon">Icon</label>
                             <input type="text" name="icon" class="form-control" value="{{ old('icon') }}">
                         </div>

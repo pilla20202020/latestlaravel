@@ -17,11 +17,11 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <label for="name" class="name">Name</label>
                         <input type="text" name="name" value="{{ old('name') }}" class="form-control" required placeholder="(same as page title)" id="name">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <label for="custom_url" class="name">Custom URL</label>
                         <input type="text" name="custom_url" value="{{ old('custom_url') }}" class="form-control" placeholder="(enter your custom URL here..)" id="custom_url">
                     </div>

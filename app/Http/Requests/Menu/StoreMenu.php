@@ -45,7 +45,9 @@ class StoreMenu extends FormRequest
             $inputs = [
                 'menu_id' => $this->menu->id,
                 'name' => $this->get('name') ? $this->get('name') : $page->title,
-                
+                'slug' =>  isset($page)
+                            ? $page->slug
+                            : ($this->get('name') ? Str::slug($this->get('name')) : '#'),
                 // 'name_np' => $this->get('name_np') ? $this->get('name_np') : $page->title,
                 'url' => isset($page) ? $page->slug : ($this->get('custom_url') ? $this->get('custom_url') : '#'),
                 'order' => $first_sub_menu_order ? $first_sub_menu_order->order + 1 : 0,
@@ -98,14 +100,13 @@ class StoreMenu extends FormRequest
 
         $inputs = [
             'name' => $this->get('name') ? $this->get('name') : $page->title,
-            'slug' =>  isset($page) 
-            ? $page->slug 
+            'slug' =>  isset($page)
+            ? $page->slug
             : ($this->get('name') ? Str::slug($this->get('name')) : '#'),
             // 'name_np'    => $this->get('name_np') ? $this->get('name_np') : $page->title_np,
 //            'url'        => route('page.show', $page->slug) ,
             'url' => isset($page) ? $page->slug : ($this->get('custom_url') ? $this->get('custom_url') : '#'),
-
-            // 'order' => Menu::orderBy('order', 'desc')->first()->order + 1,
+            'order' =>  $this->get('order') ? $this->get('order') : Menu::orderBy('order', 'desc')->first()->order + 1,
         ];
 
         return $inputs;

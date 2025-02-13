@@ -56,33 +56,28 @@
                         </div>
                     </div>
                    <div class="col-sm-8 text-right">
-                       <ul id="mainmenu" class="nav navbar-nav nav-menu">
-                            <li><a href="{{route('homepage')}}">Home</a></li>
-
-                            <li><a href="#">About us</a>
-                                <ul>
-                                    <li><a href="{{route('about')}}">About Us</a></li>
-                                    <li><a href="{{route('page.detail','our-mission')}}">Our Mission</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{{route('events')}}">Event</a></li>
-                            <li><a href="#">Resources</a>
-                                <ul>
-                                    <li><a href="{{route('gallery')}}">Gallery</a></li>
-                                    <li><a href="{{route('news&notices')}}">News and Notices</a></li>
-                                    <li><a href="{{ route('blogs','recent-cause') }}">Causes</a></li>
-                                    <li><a href="{{ route('blogs','recent-stories') }}">Stories</a></li>
-                                </ul>
-                            </li>
-                            {{-- <li><a href="blog-grid.html">Blog</a>
-                                <ul>
-                                   <li><a href="blog-grid.html">Blog Grid</a></li>
-                                   <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                   <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                   <li><a href="blog-single.html">Blog Single</a></li>
-                                </ul>
-                            </li> --}}
-                            <li> <a href="{{route('contact')}}">Contact Us</a></li>
+                        <ul id="mainmenu" class="nav navbar-nav nav-menu">
+                            @foreach(menus() as $menu)
+                                <?php
+                                $hasSub = !$menu->subMenus->isEmpty();
+                                ?>
+                                <li>
+                                    <a class="{{ ($hasSub) ? 'dropdown-toggle' : '' }}" href="{{ url($menu->url) }}" data-toggle="{{ ($hasSub) ? 'dropdown' : '' }}">
+                                        {{ $menu->name }}
+                                    </a>
+                                    @if($hasSub)
+                                        <ul class="sub-menu">
+                                            @foreach($menu->subMenus->sortBy('order') as $sub)
+                                                <li>
+                                                    <a href="{{ url($sub->url) }}">
+                                                        {{ $sub->name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </li>
+                            @endforeach
                         </ul>
                         {{-- <a href="#" class="default-btn">Donet Now</a> --}}
                    </div>

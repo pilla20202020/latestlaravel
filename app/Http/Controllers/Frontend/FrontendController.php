@@ -38,7 +38,6 @@ class FrontendController extends Controller
     {
 
         $sliders = Slider::get();
-        // $menus = Menu::get();
         $testimonials = Testimonial::get();
         $events = Event::all();
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Menu\Menu;
 use App\Models\Setting\Setting;
 use Illuminate\Support\Facades\Storage;
 
@@ -8,6 +9,11 @@ function setting($query)
     $setting = Setting::fetch($query)->first();
 
     return $setting ? $setting->value : null;
+}
+
+function menus()
+{
+    return Menu::orderBy('order','ASC')->get();
 }
 
 // SMS CURL
