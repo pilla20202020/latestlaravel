@@ -25,7 +25,7 @@ class StoreGallery extends FormRequest
     {
         return [
             'album_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
         ];
     }
 

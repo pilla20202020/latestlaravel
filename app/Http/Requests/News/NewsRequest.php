@@ -28,7 +28,7 @@ class NewsRequest extends FormRequest
             'type' => 'required',
             'content' => 'nullable|string|max:10000',
             'meta_description' => 'nullable|string|max:500',
-            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
         ];
 
         return $rules;

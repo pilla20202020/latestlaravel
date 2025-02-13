@@ -78,7 +78,7 @@ class SliderController extends Controller
     function uploadFile(Request $request, $slider)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             // Get the uploaded file
