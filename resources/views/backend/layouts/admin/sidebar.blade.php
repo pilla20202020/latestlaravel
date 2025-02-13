@@ -14,11 +14,11 @@
                     </a>
                 </li>
 
-                {{-- <li>
+                <li>
                     <a href="{{ route('menu.index') }}" class="waves-effect">
                         <i class="icon-share"></i><span> Menu </span>
                     </a>
-                </li> --}}
+                </li>
 
                 <li>
                     <a href="{{ route('slider.index') }}" class="waves-effect">

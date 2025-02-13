@@ -19,7 +19,7 @@
         <div class="section-body">
             <div class="card">
                 <div class="card-head d-flex justify-content-between align-items-center p-4">
-                    <header class="text-capitalize">All newss</header>
+                    <header class="text-capitalize">All news</header>
                     <div class="tools">
                         <a class="btn btn-primary ink-reaction" href="{{ route(substr(Route::currentRouteName(), 0 , strpos(Route::currentRouteName(), '.')) . '.create') }}">
                             Add

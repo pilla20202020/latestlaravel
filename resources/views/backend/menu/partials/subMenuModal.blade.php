@@ -1,6 +1,6 @@
 <form action="{{ route('menu.subMenu.store', $menu->id) }}" method="POST" class="form">
     @csrf
-    <div class="modal fade" id="addSubMenu" tabindex="-1" role="dialog" aria-labelledby="addSubMenuLabel">
+    <div class="modal fade" id="addSubMenu"  data-bs-target="#addSubMenu" tabindex="-1" role="dialog" aria-labelledby="addSubMenuLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

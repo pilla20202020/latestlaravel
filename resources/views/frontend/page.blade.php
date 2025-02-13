@@ -55,16 +55,38 @@
                                             </li>
                                         @endforeach
                                     @endif
-            
-            
+
+
                                 </ul>
                             </div><!-- Recent Posts -->
-            
+
+                        </div><!-- /Sidebar Wrapper -->
+
+                        <div class="sidebar-wrap">
+                            <div class="sidebar-widget mb-50">
+                                <h4>News & Notices</h4>
+                                <ul class="recent-posts">
+                                    @if (isset($news))
+                                        @foreach ($news as $data)
+                                            <li>
+                                                <img src="{{asset($data->image)}}" alt="{{$data->title}}">
+                                                <div>
+                                                    <h4><a href="{{route('news.detail', $data->id)}}">{{$data->title}}</a></h4>
+                                                    <span class="date" style="font-size: 12px"><i class="ti-calendar"></i> {{ \Carbon\Carbon::parse($data->event_date)->format('M d, Y') }}</span>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    @endif
+
+
+                                </ul>
+                            </div><!-- Recent Posts -->
+
                         </div><!-- /Sidebar Wrapper -->
                     </div>
                 </div>
             </div>
         </section>
 
-        
+
 @endsection

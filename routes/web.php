@@ -80,13 +80,17 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::prefix('menu')->name('menu.')->group(function () {
         Route::get('', [MenuController::class, 'index'])->name('index');
         Route::get('/indexnp', [MenuController::class, 'indexnp'])->name('indexnp');
+        Route::get('{menu}/edit',[MenuController::class, 'edit'])->name('edit');
         Route::post('', [MenuController::class, 'store'])->name('store');
         Route::put('', [MenuController::class, 'update'])->name('update');
         Route::delete('{menu}', [MenuController::class, 'destroy'])->name('destroy');
+        Route::put('update/{id}',[MenuController::class, 'updateMenu'])->name('update-menu');
 
         // SubMenu Management
         Route::prefix('{menu}/subMenu')->name('subMenu.')->group(function () {
             Route::post('', [MenuController::class, 'storeSubMenu'])->name('store');
+            Route::get('/{subMenu}/edit', [MenuController::class, 'editSubMenu'])->name('edit');
+            Route::put('subMenu/{id}', [MenuController::class, 'updateSubMenu'])->name('update');
             Route::delete('{subMenu}', [MenuController::class, 'destroySubMenu'])->name('destroy');
             Route::get('modal', [MenuController::class, 'subMenuModal'])->name('component.modal');
         });
@@ -148,5 +152,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('blogsdetail/{blogs}', 'blogDetail')->name('blog.detail');
     Route::get('events', 'events')->name('events');
     Route::get('eventDetail/{event}', 'eventDetail')->name('event.detail');
+    Route::get('news&notices', 'news')->name('news&notices');
+    Route::get('newsDetail/{event}', 'newsDetail')->name('news.detail');
     Route::get('{page}', 'page')->name('page.detail');
 });

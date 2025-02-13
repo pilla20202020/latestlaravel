@@ -22,11 +22,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
-                        <div class="card-head">
-                            <header class="p-3">General Settings</header>
-                            <div class="tools">
-                                <input type="submit" class="btn btn-primary" value="Save All">
-                            </div>
+                        <div class="card-head d-flex justify-content-between align-items-center p-3">
+                            <header>General Settings</header>
+                            <input type="submit" class="btn btn-primary ms-auto" value="Save All">
                         </div>
                     </div>
                 </div>

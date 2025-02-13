@@ -23,7 +23,7 @@ class MenuController extends Controller
     {
         $menus = Menu::with('subMenus')->orderBy('order')->get();
 
-        $model1 = Page::published()->primary(false)->get();
+        $model1 = Page::get();
 
         $model2 = Gallery::published()->get();
 
@@ -82,11 +82,21 @@ class MenuController extends Controller
     //     return back()->withSuccess(trans('message.create_success', ['entity' => 'Child Sub Menu']))->with('collapse_in', $subMenu->id);
     // }
 
+    public function edit(Menu $menu)
+    {
+        return view('backend.menu.edit',compact('menu'));
+    }
+
+    public function editSubMenu(Menu $menu, SubMenu $subMenu)
+    {
+        return view('backend.menu.editsub',compact('menu','subMenu'));
+    }
 
     /**
      * @param Request $request
      * @return mixed
      */
+
     public function update(Request $request)
     {
         foreach ($request->get('order') as $order => $menuId)
@@ -166,6 +176,37 @@ class MenuController extends Controller
 
     //     return view('backend.menu.partials.childsubMenuModal', compact('subMenu', 'pages'));
     // }
+
+    public function updateMenu(Request $request, $id)
+    {
+        $menu = Menu::find($id);
+        if ($menu->update($request->all())) {
+            $name = $request->name;
+            $name = explode(" ",$name);
+            $slug = implode("-", $name);
+            $slug = strtolower($slug);
+            $menu->fill([
+                'slug' => $slug,
+            ])->save();
+            return redirect()->route('menu.index')->withSuccess(trans('Menu has been updated'));
+        }
+    }
+
+    public function updateSubMenu(Request $request, $id)
+    {
+        $subMenu = SubMenu::find($id);
+        if($subMenu->update($request->all())){
+            $name = $request->name;
+            $name = explode(" ",$name);
+            $slug = implode("-",$name);
+            $slug = strtolower($slug);
+            $subMenu->fill([
+                'slug' => $slug,
+            ])->save();
+            return redirect()->route('menu.index')->withSuccess(trans('Menu has been updated'));
+
+        }
+    }
 
     /**
      * @param Menu $menu

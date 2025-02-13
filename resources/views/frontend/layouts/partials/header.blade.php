@@ -20,7 +20,7 @@
                                 <li><a href="#"><i class="ti-mobile"></i> {{setting('phone')}}</a></li>
                             @endif
 
-                            <li>    
+                            <li>
                                 <div id="google_translate_element"></div>
                             </li>
                         </ul>
@@ -58,17 +58,22 @@
                    <div class="col-sm-8 text-right">
                        <ul id="mainmenu" class="nav navbar-nav nav-menu">
                             <li><a href="{{route('homepage')}}">Home</a></li>
-                            <li><a href="{{route('about')}}">About</a></li>
-                            <li><a href="{{ route('blogs','recent-cause') }}">Causes</a></li>
-                            <li><a href="{{route('events')}}">Event</a></li>
-                            <li><a href="{{route('events')}}">Gallery</a></li>
-                            {{-- <li><a href="#">Pages</a>
+
+                            <li><a href="#">About us</a>
                                 <ul>
-                                   <li><a href="gallery.html">Gallery</a></li>
-                                   <li><a href="team.html">Volunteers</a></li>
-                                   <li><a href="404.html">404 Not Found</a></li>
+                                    <li><a href="{{route('about')}}">About Us</a></li>
+                                    <li><a href="{{route('page.detail','our-mission')}}">Our Mission</a></li>
                                 </ul>
-                            </li> --}}
+                            </li>
+                            <li><a href="{{route('events')}}">Event</a></li>
+                            <li><a href="#">Resources</a>
+                                <ul>
+                                    <li><a href="{{route('gallery')}}">Gallery</a></li>
+                                    <li><a href="{{route('news&notices')}}">News and Notices</a></li>
+                                    <li><a href="{{ route('blogs','recent-cause') }}">Causes</a></li>
+                                    <li><a href="{{ route('blogs','recent-stories') }}">Stories</a></li>
+                                </ul>
+                            </li>
                             {{-- <li><a href="blog-grid.html">Blog</a>
                                 <ul>
                                    <li><a href="blog-grid.html">Blog Grid</a></li>

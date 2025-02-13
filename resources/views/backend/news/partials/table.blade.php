@@ -2,7 +2,7 @@
     <td>{{++$key}}</td>
     <td><img src="{{ asset(str_replace('\\', '/', $news->image)) }}" class="img-circle width-1" alt="slide_image" width="50" height="50"></td>
     <td>{{ Str::limit($news->title, 47) }}</td>
-    <td>{{ $news->news_date ? \Carbon\Carbon::parse($news->news_date)->format('Y-m-d') : 'N/A' }}</td>
+    <td>{{ $news->date ? \Carbon\Carbon::parse($news->date)->format('Y-m-d') : 'N/A' }}</td>
     <td>
         @if ($news->type == 'news')
             <span class="badge rounded-pill text-bg-warning">News</span>

@@ -19,6 +19,7 @@ use App\Models\Blog\Blog;
 use App\Models\Page\Page;
 use App\Models\Product\Product;
 use App\Models\Category\Category;
+use App\Models\NewsNotice\NewsNotice;
 use App\Models\Project\Project;
 use App\Models\Sector\Sector;
 use App\Models\Slider\Slider;
@@ -69,6 +70,7 @@ class FrontendController extends Controller
 
             $page = Page::whereSlug($slug)->first();
             $events = Event::inRandomOrder()->limit(7)->get();
+            $news = NewsNotice::inRandomOrder()->limit(7)->get();
 
 
             if ($page == null) {
@@ -78,7 +80,7 @@ class FrontendController extends Controller
             if ($page) {
                 $pages = Page::whereIsPublished(1)->whereIsPrimary(0)->whereNotIn('id', [$page->id])->take(10)->inRandomOrder()->get();
                 if ($pages) {
-                    return view('frontend.page', compact('page', 'pages','events'));
+                    return view('frontend.page', compact('page', 'pages','events','news'));
                 }
             } else {
                 return view('frontend.errors.404');
@@ -162,6 +164,30 @@ class FrontendController extends Controller
         $events = Event::inRandomOrder()->limit(7)->whereNotIn('id', [$id])->get();
         $event = Event::where('id', $id)->first();
         return view('frontend.event.detail', compact('event','events'));
+
+    }
+
+
+    public function news()
+    {
+        $news = NewsNotice::all();
+
+        $allNews = $news->filter(function ($data) {
+            return $data->type === 'news';
+        });
+
+        $allNoticies = $news->filter(function ($data) {
+            return $data->type === 'notice';
+        });
+
+        return view('frontend.news.index',compact('allNews', 'allNoticies'));
+    }
+
+    public function newsDetail($id)
+    {
+        $news = NewsNotice::inRandomOrder()->limit(7)->whereNotIn('id', [$id])->get();
+        $newsDetail = NewsNotice::where('id', $id)->first();
+        return view('frontend.news.detail', compact('newsDetail','news'));
 
     }
 
