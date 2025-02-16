@@ -101,7 +101,7 @@
             <div class="row">
                <div class="col-md-4 xs-padding">
                     <div class="profile-wrap">
-                        <img class="profile" src="{{asset('images/profile.jpeg')}}" alt="profile">
+                        <img class="profile" src="{{asset('images/ceo.jpeg')}}" alt="profile">
                         <h3>Serap Jangbu Sherpa <span>Founder & Chairman.</span></h3>
                         <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
                         <img src="{{asset('images/sign.jpeg')}}" alt="sign">

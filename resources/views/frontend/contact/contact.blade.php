@@ -25,7 +25,12 @@
         <div class="row contact-wrap">
             <div class="col-md-6 xs-padding">
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d70583.66518626417!2d85.31122492561778!3d27.690618824853658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x39eb199612ca0981%3A0xb87d3af41b8cf943!2sNabil%20Bank%20Ltd%2C%20M8QP%2BM6G%2C%20Devkota%20Sadak%2C%20Kathmandu%2044600!3m2!1d27.6892061!2d85.3355338!4m0!5e1!3m2!1sen!2snp!4v1739691700279!5m2!1sen!2snp" width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @if(setting('maps') !=null)
+                        <iframe src="{{setting('maps')}}" width="500" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @else
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d70583.66518626417!2d85.31122492561778!3d27.690618824853658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x39eb199612ca0981%3A0xb87d3af41b8cf943!2sNabil%20Bank%20Ltd%2C%20M8QP%2BM6G%2C%20Devkota%20Sadak%2C%20Kathmandu%2044600!3m2!1d27.6892061!2d85.3355338!4m0!5e1!3m2!1sen!2snp!4v1739691700279!5m2!1sen!2snp" width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    @endif
                 </div>
             </div>
             <div class="col-md-6 xs-padding">

@@ -143,6 +143,10 @@
                                                 <label class="pt-3" for="setting[address]">Address</label>
                                                 <input type="text" name="setting[address]" class="form-control"  value="{{ old('setting.address', setting('address')) }}">
                                             </div>
+                                            <div class="form-group">
+                                                <label class="pt-3" for="setting[maps]">Maps IFrame</label>
+                                                <input type="text" name="setting[maps]" class="form-control"  value="{{ old('setting.maps', setting('maps')) }}">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
