@@ -63,7 +63,7 @@
                                                                     <i class="fas fa-plus"></i>
                                                                 </button>
                                                                 @unless($menu->is_primary)
-                                                                    <a class="btn btn-danger btn-sm" data-url="{{ route('menu.destroy', $menu->id) }}">
+                                                                    <a class="btn btn-danger btn-sm btn-delete" data-url="{{ route('menu.destroy', $menu->id) }}">
                                                                         <i class="far fa-trash-alt"></i>
                                                                     </a>
                                                                 @endunless
@@ -173,6 +173,11 @@
 
     <script>
         $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $('.nestable-list').nestable();
             $(document).on("click", ".btn-add-sub-menu", function (e) {
                 e.stopPropagation();
@@ -203,7 +208,9 @@
                         $.ajax({
                             type: "POST",
                             url: $button.data("url"),
-                            data: { _method: "DELETE" },
+                            data: {
+                                _method: "DELETE"
+                            },
                             success: function (response) {
                                 if (response.Menu) {
                                     $button.closest(".panel").detach();
@@ -214,6 +221,10 @@
                                 } else {
                                     $button.closest(".dd-item").detach();
                                 }
+
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 400);
                             },
                             error: function () {
                                 bootbox.alert("Error deleting menu!");

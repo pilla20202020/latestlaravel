@@ -36,6 +36,8 @@
 
         <link href="{{asset('backend/assets/css/icons.min.css ')}}" rel="stylesheet" type="text/css" />
 
+        @stack('styles')
+
 
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
