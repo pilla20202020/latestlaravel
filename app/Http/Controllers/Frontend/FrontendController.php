@@ -193,7 +193,6 @@ class FrontendController extends Controller
 
     public function sendcontact(Request $request)
     {
-
         $data = $request->all();
         Mail::to('ritu.gubhaju20@gmail.com')->send(new SendContactInfo($data));
         return redirect()->back()->withSuccess(trans('Contact Inquiry Send Successfully'));

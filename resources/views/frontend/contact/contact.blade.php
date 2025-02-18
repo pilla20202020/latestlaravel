@@ -34,10 +34,16 @@
                 </div>
             </div>
             <div class="col-md-6 xs-padding">
+                @if(Illuminate\Support\Facades\Session::has('success'))
+                <div class="alert alert-success" id="alert-success">
+                    {{Illuminate\Support\Facades\Session::get('success')}}
+                </div>
+                @endif
                 <div class="contact-form">
                     <h3>Drop us a line</h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <form action="contact.php" method="post" id="ajax_form" class="form-horizontal">
+                    <form action="{{route('send-contact')}}" method="POST">
+                        @csrf
                         <div class="form-group colum-row row">
                             <div class="col-sm-6">
                                 <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
@@ -45,10 +51,13 @@
                             <div class="col-sm-6">
                                 <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
                             </div>
+                            <div class="col-sm-6 mt-2">
+                                <input type="number" id="phone" name="phone" class="form-control" placeholder="Phone" required>
+                            </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <textarea id="message" name="message" cols="30" rows="5" class="form-control message" placeholder="Message" required></textarea>
+                                <textarea id="message" name="message" cols="30" rows="5" class="form-control message" placeholder="Enter The Message" required></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -65,6 +74,14 @@
 </section><!-- /Contact Section -->
 
 @endsection
+
+@push('scripts')
+    <script>
+        setTimeout(function(){
+            $('#alert-success').hide();
+        }, 3000);
+    </script>
+@endpush
 
 
 
